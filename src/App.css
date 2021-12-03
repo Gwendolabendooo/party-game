@@ -5,6 +5,10 @@ ul{
   padding-left: 0!important;
 }
 
+a{
+  text-decoration: none!important;
+}
+
 #root{
   min-height: 100vh;
   display: flex;
@@ -38,6 +42,58 @@ li{
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.ctn-autoClick{
+  width: 700px;
+}
+
+.ctn-randomL{
+  font-size: 25px;
+  color: white;
+}
+
+.autoClick-btn{
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin: auto;
+  border-radius: 5px;
+  box-shadow: 0px 0 9px 0px #ea6d77;
+  background-color: #E84855;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+[type = search]{
+  box-shadow: 0px 0 16px 4px #ea6d77;
+  padding: 15px;
+  font-family: 'Paytone One', sans-serif;
+  width: 600px;
+  border-radius: 6px;
+  margin: 50px;
+  font-size: 18px;
+  background-color: #ffffffeb;
+  border: none;
+  transition: all .3s;
+  outline: none;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+}
+
+[type = search]:focus{
+  box-shadow: 0px 0 20px 9px #ef2e3e;
+}
+
+.ctn-search-jeu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .paire-card{
@@ -81,6 +137,74 @@ li{
   -moz-transform: rotateY(180deg)!important;
   -ms-transform: rotateY(180deg)!important;
   -o-transform: rotateY(180deg)!important;
+}
+
+.card-game{
+  width: 300px;
+  height: 200px;
+  transition: filter .3s;
+  color: white;
+  box-shadow: 0px 0 9px 0px #ea6d77;
+  border-radius: 5px;
+  background-color: #E84855;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  position: relative;
+  margin: 20px;
+  animation-duration: .5s;
+  animation-name: apparition;
+  -webkit-transition: filter .3s;
+  -moz-transition: filter .3s;
+  -ms-transition: filter .3s;
+  -o-transition: filter .3s;
+}
+
+.card-more{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  display: flex;
+  font-family: 'Paytone One', sans-serif;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  box-shadow: 0px 0 3px 2px #ea6d77;
+  background-color: #E84855;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ctn-jeux{
+  display: flex;
+  width: 80%;
+  margin: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card-select{
+  filter: brightness(0.6);
+}
+
+.card-title{
+  display: flex;
+  font-family: 'Paytone One', sans-serif;
+  height: 20%;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.card-img{
+  height: 80%;
+  cursor: pointer;
 }
 
 .rotate{
@@ -151,11 +275,32 @@ li{
   text-align: center;
 }
 
+.auto-progress{
+  width: 400px;
+  height: 10px;
+  background-color: aliceblue;
+  position: relative;
+  margin: 200px;
+}
+
+.auto-progress > div{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 10px;
+  transition: all .2s;
+  width: 10px;
+  background-color: red;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+}
+
 .mini-games{
   display: flex;
   flex-direction: row;
   width: 100%;
-  align-items: center;
   justify-content: space-around;
 }
 
@@ -172,4 +317,14 @@ li{
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+}
+
+@keyframes apparition {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
