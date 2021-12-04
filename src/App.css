@@ -280,7 +280,9 @@ li{
   height: 10px;
   background-color: aliceblue;
   position: relative;
-  margin: 200px;
+  margin: auto;
+  min-width: 0%;
+  max-width: 100%;
 }
 
 .auto-progress > div{
@@ -301,7 +303,56 @@ li{
   display: flex;
   flex-direction: row;
   width: 100%;
+  align-items: center;
   justify-content: space-around;
+}
+
+.ctn-autoC{
+  position: relative;
+}
+
+.displayRandomL{
+  position: absolute;
+  left: 50%;
+  font-variant: all-small-caps;
+  color: black;
+  top: -140px;
+  font-size: 88px;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  animation-duration: .5s;
+  animation-name: apparition;
+}
+
+.chrono{
+  position: absolute;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 66px;
+  right: 143px;
+  top: 126px;
+  font-family: 'Paytone One';
+  color: #ef818a;
+  border: solid #e84855 5px;
+  font-size: 40px;
+  width: 300px;
+}
+
+.displayRandomL > span{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 40%;
 }
 
 .ctn-score{

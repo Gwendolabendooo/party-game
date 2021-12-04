@@ -15,6 +15,7 @@ import AutoClickers from './views/autoClickers';
 import Score from './components/Score';
 
 import Jeux from './views/select-jeux';
+import Stopwatch from './components/Stopwatch';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/auto-click">
                 <div className="mini-games">
                     <AutoClickers />
+                    <Stopwatch />
                     <Score />
                 </div>
             </Route>
