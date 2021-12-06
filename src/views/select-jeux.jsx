@@ -20,11 +20,13 @@ const Jeux = () => {
             setFilter(detail)
         });
 
+        console.log()
+
         return (
             <div className="ctn-search-jeu">
                 <SearchBox />
                 <div className="ctn-jeux">
-                    {listJeux.filter(name => name.includes(filter)).map((jeu) => <a href={"/"+jeu}><Jeu name={jeu} /></a>)}
+                    {listJeux.filter(name => name.includes(filter)).map((jeu) => <Jeu name={jeu} />)}
                 </div>
             </div>
             

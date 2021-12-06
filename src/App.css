@@ -5,6 +5,10 @@ ul{
   padding-left: 0!important;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 a{
   text-decoration: none!important;
 }
@@ -21,6 +25,10 @@ li{
   margin: 0;
 }
 
+.chrono{
+  user-select: none;
+}
+
 .list-score > li{
   border-bottom: solid #E84855 2px;
   display: flex;
@@ -28,6 +36,139 @@ li{
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.nom-j{
+  width: 140px;
+  height: 80px;
+  margin: 10px;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  text-align: center;
+  background-color: #3879e2;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.nom-j > img{
+  height: 58px;
+}
+
+.nom-j > span{
+  font-size: 16px;
+  white-space:nowrap;
+}
+
+.btn-start{
+  font-size: 22px;
+  padding: 15px;
+  background-color: #3879e2;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  cursor: pointer;
+  margin: 20px;
+  transition: all .4s;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+}
+
+.btn-start:hover{
+  color: #3879e2;
+  background-color: white;
+}
+
+.ctn-lobby{
+  width: 1000px;
+  height: 850px;
+  font-family: 'Paytone One';
+  font-size: 30px;
+  color: white;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all .4s;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+  text-transform: uppercase;
+}
+
+.room-ctn{
+  width: 80%;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  overflow: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  align-content: space-around;
+  height: 150px;
+  overflow-y: hidden;
+  background-color: #ffffff1e;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.room-ctn > div{
+  display: flex;
+  width: 100%;
+  text-transform: uppercase;
+  align-items: center;
+}
+
+.room-ctn::-webkit-scrollbar-thumb {
+  background-color: #01163841;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.room-ctn::-webkit-scrollbar {
+  height: 8px;
+}
+
+.ctn-jeux::-webkit-scrollbar-thumb {
+  background-color: #01163841;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.ctn-jeux::-webkit-scrollbar {
+  width: 8px;
+}
+
+.crown{
+  position: absolute;
+  top: -32px;
+}
+
+.room-name{
+  padding: 25px;
+  text-transform: uppercase;
 }
 
 .list-score > li:nth-child(1){
@@ -68,12 +209,13 @@ li{
 }
 
 [type = search]{
-  box-shadow: 0px 0 16px 4px #ea6d77;
-  padding: 15px;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  padding: 8px;
   font-family: 'Paytone One', sans-serif;
-  width: 600px;
+  width: 400px;
   border-radius: 6px;
-  margin: 50px;
+  margin: 10px;
+  margin-top: 20px;
   font-size: 18px;
   background-color: #ffffffeb;
   border: none;
@@ -86,14 +228,18 @@ li{
 }
 
 [type = search]:focus{
-  box-shadow: 0px 0 20px 9px #ef2e3e;
+  box-shadow: 0px 0 10px 8px #3879e2;
 }
 
 .ctn-search-jeu{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 800px;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  margin: auto;
+  margin-top: 40px;
+  background-color: #ffffff1e;
 }
 
 .paire-card{
@@ -140,17 +286,13 @@ li{
 }
 
 .card-game{
-  width: 300px;
-  height: 200px;
+  width: 200px;
+  height: 150px;
   transition: filter .3s;
   color: white;
-  box-shadow: 0px 0 9px 0px #ea6d77;
-  border-radius: 5px;
-  background-color: #E84855;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+  border: solid #2c75ed 4px;
+  box-shadow: 0px 0 9px 0px #080808c4;
+  background-color: #2c75ed;
   position: relative;
   margin: 20px;
   animation-duration: .5s;
@@ -173,19 +315,21 @@ li{
   align-items: center;
   justify-content: space-around;
   text-align: center;
-  box-shadow: 0px 0 3px 2px #ea6d77;
-  background-color: #E84855;
+  box-shadow: 0px 0 3px 2px #2c75ed;
+  background-color: #2c75ed;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .ctn-jeux{
   display: flex;
-  width: 80%;
+  width: 800px;
+  height: 380px;
+  overflow: auto;
   margin: auto;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .card-select{
@@ -196,10 +340,9 @@ li{
   display: flex;
   font-family: 'Paytone One', sans-serif;
   height: 20%;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
-  font-size: 18px;
-  padding-left: 10px;
+  font-size: 16px;
 }
 
 .card-img{
@@ -361,6 +504,7 @@ li{
   background-color: #EF818A;
   width: 20%;
   min-width: 250px;
+  user-select: none;
   height: 400px;
   box-shadow: 0px 0 9px 0px #ea6d77;
   border-radius: 5px;

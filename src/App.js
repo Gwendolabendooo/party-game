@@ -9,15 +9,22 @@ import {
     Link
   } from "react-router-dom";
 
+
 import Paires from './views/paires';
+import Echange from './Lobby/echange';
 import AutoClickers from './views/autoClickers';
 
 import Score from './components/Score';
 
 import Jeux from './views/select-jeux';
+import Lobby from './components/Lobby';
+import CreLobby from './components/creLobby';
 import Stopwatch from './components/Stopwatch';
 
+
 function App() {
+
+
   return (
     <Router>
         <Switch>
@@ -36,7 +43,13 @@ function App() {
             </Route>
             <Route path="/">
                 <div className="mini-games">
-                    <Jeux />
+                    <CreLobby  test={"test"}/>
+                </div>
+            </Route>
+            <Route path="/ghjg">
+                <div className="mini-games">
+                    <Echange />
+                    <Jeux/>
                 </div>
             </Route>
       </Switch>
