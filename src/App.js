@@ -31,14 +31,12 @@ function App() {
             <Route path="/paires">
                 <div className="mini-games">
                     <Paires />
-                    <Score />
                 </div>
             </Route>
             <Route path="/auto-click">
                 <div className="mini-games">
                     <AutoClickers />
                     <Stopwatch />
-                    <Score />
                 </div>
             </Route>
             <Route path="/">

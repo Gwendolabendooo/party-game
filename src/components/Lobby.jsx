@@ -9,31 +9,45 @@ import {SocketContext, socket} from './socket';
 
 import Jeux from '../views/select-jeux';
 import Icone from '../img/12.svg';
+import OrdrePassage from './ordrePassage';
+import Paire from '../components/Paire';
 
 class Lobby extends React.Component  {
     constructor(props) {
         super(props);
         this.state = {
             listeJ: [],
-            cpt: 0
+            cpt: 0,
+            chef: '',
+            start: false,
+            id: ''
         }
-        socket.emit('arrivee', this.props.room);
+        socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
 
         socket.on('arrive', (room) => {
+            console.log(room)
             room.shift()
-            this.setState({listeJ: room})
+            this.setState({listeJ: room, chef: room[0][0]})
             console.log(this.state.listeJ)
         });
 
+        socket.emit('id', "client");
 
-        socket.on('connection', (connected) => {
-            console.log(connected);
-            socket.emit('connection', "client");
+        socket.on('id', (identifiant) => {
+            this.setState({id: identifiant})
         });
+
+        socket.on('start', (start) => {
+            console.log(start);
+            this.setState({start: true})
+        });
+    }
+    
+    start(){
+        socket.emit('start', "true");
     }
 
     scrollHorizontal(event){
-            // this.scrollLeft += event.deltaY;
             event.preventDefault();
             document.getElementById("scrollHorizontal").scrollLeft += event.deltaY * 2
     }
@@ -44,20 +58,24 @@ class Lobby extends React.Component  {
         )
 
         return (
-            <div className="ctn-lobby">
-                <div className="room-name">
-                    {this.props.room}
-                </div>
-                <div className="room-ctn" id="scrollHorizontal" onWheel={this.scrollHorizontal}>
-                    <div>
-                        {this.state.listeJ.reverse().map(element => <div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<img src={Icone}></img><span>{element}</span></div>)}
+            this.state.start === false ? 
+                <div className="ctn-lobby">
+                    <div className="room-name">
+                        {this.props.room}
                     </div>
+                    <div className="room-ctn" id="scrollHorizontal" onWheel={this.scrollHorizontal}>
+                        <div>
+                            {this.state.listeJ.map(element => <div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<img src={Icone}></img><span>{element[1]}</span></div>)}
+                        </div>
+                    </div>
+                    <div>
+                        <Jeux />
+                    </div>
+                    <div className="btn-start" onClick={this.start}>Commencer</div>
                 </div>
-                <div>
-                    <Jeux />
+            :   <div className="d-flex align-items-center align-content-around flex-column ctn-max-jeux justify-content-evenly">
+                    <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
                 </div>
-                <div className="btn-start">Commencer</div>
-            </div>
         ) 
     } 
 }

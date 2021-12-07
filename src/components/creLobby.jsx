@@ -9,30 +9,47 @@ class creLobby extends React.Component  {
         super(props);
         this.state = {value: '',
                       joined: true,
-                      room: "tset"
+                      room: "",
+                      pseudo: ""
                     };
 
         this.joined = true;
 
+        this.updateName = this.updateName.bind(this);
+        this.updateLobby = this.updateLobby.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-    
-    handleChange(event) {
-        this.setState({value: event.target.value});
     }
     
     handleSubmit(event) {
         event.preventDefault();
-        socket.emit('addRoom', event.target[0].value);
-        this.setState({joined: false, room: event.target[0].value})
+        console.log(event.target[0].value)
+        this.setState({joined: false})
+        socket.emit('addRoom', event.target[1].value);
+    }
+
+    updateName(e) {
+        console.log(e.target.value)
+        this.setState({pseudo: e.target.value})
+    }
+
+    updateLobby(e) {
+        console.log(e.target.value)
+        this.setState({room: e.target.value})
     }
 
     render() {
 
         return (
-            <div>
-                {this.state.joined === true ? <div className="ctn-autoC"><form onSubmit={this.handleSubmit}><input type="text" name="" value={this.state.value} onChange={this.handleChange} id="" /><input type="submit" /></form></div> : <Lobby room={this.state.room} />}
+            <div className="d-flex align-center" style={{height: 100+'%'}}>
+                {this.state.joined === true ? 
+                <div className="ctn-autoC">
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" name="Pseudo" value={this.state.pseudo} onChange={this.updateName} required id="" />
+                        <input type="text" name="Lobby" value={this.state.room} onChange={this.updateLobby} required id="" />
+                        <input type="submit" />
+                    </form>
+                </div>
+                : <Lobby room={this.state.room} pseudo={this.state.pseudo} />}
             </div>
         ) 
     } 
