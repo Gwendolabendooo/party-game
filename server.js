@@ -38,9 +38,19 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('initial-paires', tab);
     })
 
+    //Incrementer points
+    socket.on('paire-increment', (test) => {
+      io.to(Array.from(socket.rooms)).emit('paire-increment', socket.id);
+    })
+
     //Maj card turn
     socket.on('tour-enemy', (tab) => {
       socket.broadcast.to(Array.from(socket.rooms)).emit('tour-enemy', tab);
+    })
+
+    //Fin paire
+    socket.on('paire-fin', (tab) => {
+        io.to(Array.from(socket.rooms)).emit('paire-fin', tab);
     })
 
     //Tour suivant
@@ -50,13 +60,18 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
     //création lobby
     socket.on('addRoom', (room) => {
-      console.log(room, "addroom")
+      console.log(room, "addroom", Lobbys)
+      let exist = 0;
       socket.join(room)
       if (Lobbys.length !== 0) {
+        console.log(Lobbys[0][0], "------------------------")
         for (var i = 0; i < Lobbys.length; i++) {
-            if (Lobbys[i].indexOf(room) === -1) {
-                Lobbys.push([room])
+          if (Lobbys[i][0] === room) {
+            exist++
             } 
+        }
+        if(exist === 0){
+          Lobbys.push([room])
         }
       }else{
         Lobbys.push([room])
@@ -70,5 +85,21 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
     socket.on('disconnect', () => {
       console.log('user disconnected');
+
+      //Suppression liste des joueurs
+      let exist = 0;
+      if (Lobbys.length !== 0) {
+        console.log(Lobbys[0][0], "------------------------")
+        for (var i = 0; i < Lobbys.length; i++) {
+            for (let index = 0; index < Lobbys[i].length; index++) {
+                if (Lobbys[i][index][0] === socket.id) {
+                    Lobbys[i].splice(index, 1)
+                    console.log(Lobbys[i], "modif")
+                    io.to(Array.from(socket.rooms)).emit("deco", Lobbys[i]);
+                }    
+                console.log(exist)
+            }
+        }
+      }
     });
 });

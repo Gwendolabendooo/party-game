@@ -3,6 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAppleAlt, faBacon, faBone, faCarrot, faCheese, faEgg, faFish, faHamburger, faIceCream, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import Score from './Score';
 import OrdrePassage from './ordrePassage';
 
 import {SocketContext, socket} from './socket';
@@ -15,8 +16,15 @@ class paire extends React.Component {
             id: this.props.cle,
             chef: this.props.chef,
             iterate: 0,
-            listCard: []
+            listCard: [],
+            points: 0,
+            finPartie: false,
         }
+
+        var tabPoints = this.props.listej
+        tabPoints.forEach(element => {
+            element[2] = 0;
+        });
 
         if (this.state.chef === this.state.id) {
             const tab = this.Randomize()
@@ -35,6 +43,22 @@ class paire extends React.Component {
             this.setState({listeJ: newList})
         });
 
+        socket.on('paire-increment', (tab) => {
+            console.log(tab)
+            let newTab = this.state.listeJ
+            newTab.forEach(element => {
+                if (tab === element[0]) {
+                    element[2]++
+                }
+            });
+            this.setState({listeJ: newTab})
+        })
+
+        //fin partie
+        socket.on('paire-fin', (tab) => {
+            this.setState({finPartie: true})
+        })
+
         socket.on('tour-enemy', (tab) => {
             document.getElementById(tab).classList.toggle("rotate")
             if (document.querySelectorAll('.rotate').length === 2) {
@@ -44,10 +68,10 @@ class paire extends React.Component {
                         document.querySelectorAll('.rotate')[1].classList.add("paired") 
             
                         document.querySelectorAll('.rotate')[1].classList.remove("rotate") 
-                        document.querySelectorAll('.rotate')[0].classList.remove("rotate") 
-            
-                        if (document.querySelectorAll('.paired').length === 22) {
-                            alert("lets go")
+                        document.querySelectorAll('.rotate')[0].classList.remove("rotate")
+
+                        if (document.querySelectorAll('.paired').length === 24) {
+                            socket.emit('paire-fin', tab);
                         }
                     }else{
                         document.querySelectorAll('.rotate')[1].classList.remove("rotate") 
@@ -88,10 +112,9 @@ class paire extends React.Component {
 
                 document.querySelectorAll('.rotate')[1].classList.remove("rotate") 
                 document.querySelectorAll('.rotate')[0].classList.remove("rotate") 
-
-                if (document.querySelectorAll('.paired').length === 20) {
-                    alert("lets go")
-                }
+                
+                // socket emit
+                socket.emit('paire-increment', "paire");
             }else{
                 document.querySelectorAll('.rotate')[1].classList.remove("rotate") 
                 document.querySelectorAll('.rotate')[0].classList.remove("rotate") 
@@ -138,6 +161,7 @@ class paire extends React.Component {
                 <div className="mini-game paires">
                     {this.state.listCard.map((element, i) => <div className="paire-card" id={i} key={i} data-card={element}><div className="paire-card-front" onClick={verifPaire}></div><div className="paire-card-back" style={{backgroundColor: random_bg_color()}}><FontAwesomeIcon className="text-white" icon={['fas', element]} /></div></div> )}
                 </div>
+                {this.state.finPartie ? <Score  listej={this.state.listeJ}/> : this.state.finPartie}
             </div>
         )  
     }

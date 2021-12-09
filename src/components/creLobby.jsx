@@ -40,7 +40,7 @@ class creLobby extends React.Component  {
     render() {
 
         return (
-            <div className="d-flex align-center" style={{height: 100+'%'}}>
+            <div className="d-flex" style={{height: 100+'%', alignItems: "center"}}>
                 {this.state.joined === true ? 
                 <div className="ctn-autoC">
                     <form onSubmit={this.handleSubmit}>

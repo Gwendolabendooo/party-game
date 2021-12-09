@@ -31,6 +31,12 @@ class Lobby extends React.Component  {
             console.log(this.state.listeJ)
         });
 
+        socket.on('deco', (room) => {
+            room.shift()
+            this.setState({listeJ: room, chef: room[0][0]})
+            console.log(this.state.listeJ)
+        });
+
         socket.emit('id', "client");
 
         socket.on('id', (identifiant) => {
