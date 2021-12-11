@@ -168,7 +168,7 @@ class paire extends React.Component {
         });
 
         return (
-            <div className="d-flex align-center justify-content-evenly align-center flex-column ctn-skin" style={{width: 100 +'%', height: 100 + '%'}}>
+            <div className="d-flex align-center justify-content-evenly align-center flex-column ctn-skin apparition-game" style={{width: 100 +'%', height: 100 + '%'}}>
                 <OrdrePassage listej={this.state.listeJ}/>
                 <Transition  title={"Jeu des paires"}/> 
                 <input type="hidden" id="joueur1" name={this.state.listeJ[0][0]} value={this.state.id} />
