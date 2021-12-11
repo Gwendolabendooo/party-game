@@ -9,8 +9,108 @@ html{
   scroll-behavior: smooth;
 }
 
+body{
+  overflow: hidden;
+}
+
 a{
   text-decoration: none!important;
+}
+
+input[type="text"] {
+  border-radius: 10px;
+  background: none;
+  padding: 20px;
+  margin: 20px;
+  border: solid 4px #3879E2;
+  outline: none;
+  width: 100%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  font-family: 'Paytone One', sans-serif;
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  text-align: center;
+}
+
+.desc-jeu{
+  width: 500px;
+  height: 100%;
+}
+
+.btn-creLobby{
+  width: 100%!important;
+  color: white;
+  outline: none;
+  margin-top: 60px!important;
+  font-family: 'Paytone One', sans-serif;
+  border: none;
+}
+
+.ctn-skin{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.skin{
+  height: 300px;
+  width: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.coupe{
+  margin-top: -405px;
+  width: 435px;
+}
+.tete{
+  width: 200px;
+}
+.yeux{
+  width: 130px;
+  margin-top: -120px;
+}
+.bouche{
+  margin-top: -90px;
+  width: 80px;
+}
+
+.ctn-creLobby > span{
+  height: 92%;
+  width: 4px;
+  background-color: #3879E2;
+  box-shadow: 0px 0 9px 0px #3879e2;
+}
+
+.ctn-creLobby{
+  width: 1000px;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  height: 700px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  border: solid 3px #3879e2;
+  background-color: #1dadfb21;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ctn-creLobby > form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  align-content: space-around;
+  width: 60%;
+  transform: scale(.8);
 }
 
 #root{
@@ -388,6 +488,11 @@ li{
   filter: brightness(0.6);
 }
 
+.title{
+  font-family: 'Paytone One', sans-serif;
+  font-size: 50px;
+}
+
 .card-title{
   display: flex;
   font-family: 'Paytone One', sans-serif;
@@ -593,6 +698,59 @@ li{
   align-items: center;
   justify-content: space-around;
   top: 50%;
+}
+
+.ctn-back-transition{
+display: flex;
+align-content: space-between;
+height: 100vh;
+width: 100%;
+align-items: center;
+background: #011638;
+overflow: hidden;
+
+}
+.load{
+width: 260px;
+height: 12px;
+left: 0;
+top: 0;
+transition: left 1s;
+background: #3879E2;
+position: absolute;
+}
+.load-2{
+background: #89d9ff;
+}
+h2{
+position: absolute;
+white-space: nowrap;
+}
+.ctn-transition{
+z-index: 50;
+position: relative;
+width:200%;
+height:200px;
+background-color: #98989829;
+  display: flex;
+color: white;
+text-transform: uppercase;
+font-size: 50px;
+font-weight: bold;
+align-items: center;
+justify-content: space-around;
+}
+
+@keyframes slidein {
+from {
+transform: rotate3d(13, 5, 0, 
+10deg);
+}
+
+to {
+transform: rotate3d(13, 5, 0, 
+360deg);
+}
 }
 
 @keyframes apparition {

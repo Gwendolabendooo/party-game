@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../logo.svg'
+import {SocketContext, socket} from './socket';
 
 import Icone from '../img/12.svg';
 
@@ -11,6 +12,11 @@ class score extends React.Component {
         }
       }
 
+    suivant(){
+        socket.emit('Jeu-suivant', true);
+        console.log("suivant")
+    }
+
     render() {
         return (
             <div className="ctn-popin">
@@ -18,10 +24,10 @@ class score extends React.Component {
                     <div className="ctn-score">
                         <div style={{textTransform: "uppercase"}}>Score</div>
                         <ul className="list-score">
-                            {this.props.listej.map(element => <li><div className="rank"></div><div className="nom-j position-relative"><img src={Icone}></img><span>{element[1]}</span></div><div className="points"><div>{element[2]}</div></div></li>)}
+                            {this.props.listej.map((element, i) => <li><div className="rank">{i+1}</div><div className="nom-j position-relative"><img src={Icone}></img><span>{element[1]}</span></div><div className="points"><div>{element[2]}</div></div></li>)}
                         </ul>
                     </div>
-                    <div className="btn-start btn-suivant">Jeu suivant</div>
+                    <div className="btn-start btn-suivant" onClick={this.suivant}>Jeu suivant</div>
                 </div>
             </div>
         )  

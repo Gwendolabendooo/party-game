@@ -8,6 +8,8 @@ import OrdrePassage from './ordrePassage';
 
 import {SocketContext, socket} from './socket';
 
+import Transition from './transition';
+
 class paire extends React.Component {
     constructor(props) {
         super(props);
@@ -56,7 +58,13 @@ class paire extends React.Component {
 
         //fin partie
         socket.on('paire-fin', (tab) => {
-            this.setState({finPartie: true})
+            let score = this.state.listeJ;
+            console.log(score)
+            score.sort(function(a, b) {
+                return b[2] - a[2];
+            })
+            console.log(score)
+            this.setState({finPartie: true, listeJ: score})
         })
 
         socket.on('tour-enemy', (tab) => {
@@ -70,7 +78,7 @@ class paire extends React.Component {
                         document.querySelectorAll('.rotate')[1].classList.remove("rotate") 
                         document.querySelectorAll('.rotate')[0].classList.remove("rotate")
 
-                        if (document.querySelectorAll('.paired').length === 24) {
+                        if (document.querySelectorAll('.paired').length === 2) {
                             socket.emit('paire-fin', tab);
                         }
                     }else{
@@ -154,9 +162,15 @@ class paire extends React.Component {
             return "rgb(" + x + "," + y + "," + z + ")";
         }
 
+        var nombres = [[8, 2], [5, 4], [6, 6]];
+        nombres.sort(function(a, b) {
+          return b[1] - a[1];
+        });
+
         return (
-            <div className="d-flex align-center justify-content-evenly align-center flex-column" style={{width: 100 +'%', height: 100 + '%'}}>
+            <div className="d-flex align-center justify-content-evenly align-center flex-column ctn-skin" style={{width: 100 +'%', height: 100 + '%'}}>
                 <OrdrePassage listej={this.state.listeJ}/>
+                <Transition  title={"Jeu des paires"}/> 
                 <input type="hidden" id="joueur1" name={this.state.listeJ[0][0]} value={this.state.id} />
                 <div className="mini-game paires">
                     {this.state.listCard.map((element, i) => <div className="paire-card" id={i} key={i} data-card={element}><div className="paire-card-front" onClick={verifPaire}></div><div className="paire-card-back" style={{backgroundColor: random_bg_color()}}><FontAwesomeIcon className="text-white" icon={['fas', element]} /></div></div> )}

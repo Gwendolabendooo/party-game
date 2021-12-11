@@ -58,6 +58,17 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('tour-suivant', room);
     });
 
+    //Jeu suivant
+    socket.on('Jeu-suivant', (room) => {
+      io.to(Array.from(socket.rooms)).emit('Jeu-suivant', room);
+      console.log("jeu suivant")
+    });
+
+    //Jeu suivant
+    socket.on('transit', (room) => {
+      io.to(Array.from(socket.rooms)).emit('transit', room);
+    });
+
     //création lobby
     socket.on('addRoom', (room) => {
       console.log(room, "addroom", Lobbys)

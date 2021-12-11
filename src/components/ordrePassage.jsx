@@ -36,7 +36,7 @@ class ordrePassage extends React.Component  {
         )
 
         return (
-            <div className="room-ctn" style={{width: 100+"%", height: 'auto'}} id="scrollHorizontal" onWheel={this.scrollHorizontal}>
+            <div className="room-ctn" style={{width: 1000+"px", height: 'auto'}} id="scrollHorizontal" onWheel={this.scrollHorizontal}>
                 <div>
                     {console.log(this.state.listeJ)}
                     {this.state.listeJ.map(element => <div className="nom-j position-relative" data-second={element[0] !== this.state.listeJ[0][0] ? true : false}><div className="score-liste">{element[2]}</div><img src={Icone}></img><span>{element[1]}</span></div>)}

@@ -1,5 +1,7 @@
 import React, { useState, setState } from 'react';
 
+import Transition from './transition'
+
 let cpt = 0;
 
 let random1 =Math.floor(Math.random()*100)
@@ -60,6 +62,7 @@ const AutoClicker = () => {
 
     return (
         <div className="ctn-autoC">
+            <Transition  title={"Auto clicker"}/> 
             {randomeL === null ? '' : <div className='displayRandomL'><span>{randomeL}</span></div>}
             <div className="auto-progress mb-3 mt-3">
                 <div style={{width: click + '%'}}>

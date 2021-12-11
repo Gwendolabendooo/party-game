@@ -17,7 +17,7 @@ import AutoClickers from './views/autoClickers';
 import Score from './components/Score';
 
 import Jeux from './views/select-jeux';
-import Lobby from './components/Lobby';
+import Transition from './components/transition';
 import CreLobby from './components/creLobby';
 import Stopwatch from './components/Stopwatch';
 
@@ -28,9 +28,9 @@ function App() {
   return (
     <Router>
         <Switch>
-            <Route path="/paires">
+            <Route path="/test">
                 <div className="mini-games">
-                    <Paires />
+                    <Transition />
                 </div>
             </Route>
             <Route path="/auto-click">

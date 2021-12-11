@@ -11,6 +11,7 @@ import Jeux from '../views/select-jeux';
 import Icone from '../img/12.svg';
 import OrdrePassage from './ordrePassage';
 import Paire from '../components/Paire';
+import Autoclick from '../components/autoClicker';
 
 class Lobby extends React.Component  {
     constructor(props) {
@@ -20,7 +21,8 @@ class Lobby extends React.Component  {
             cpt: 0,
             chef: '',
             start: false,
-            id: ''
+            id: '', 
+            autoclick: false
         }
         socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
 
@@ -47,8 +49,13 @@ class Lobby extends React.Component  {
             console.log(start);
             this.setState({start: true})
         });
+
+        socket.on('Jeu-suivant', (start) => {
+            console.log(start);
+            this.setState({autoclick: true})
+        });
     }
-    
+
     start(){
         socket.emit('start', "true");
     }
@@ -79,8 +86,12 @@ class Lobby extends React.Component  {
                     </div>
                     <div className="btn-start" onClick={this.start}>Commencer</div>
                 </div>
-            :   <div className="d-flex align-items-center align-content-around flex-column ctn-max-jeux justify-content-evenly">
-                    <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
+            :    <div className="d-flex align-items-center align-content-around flex-column ctn-max-jeux justify-content-evenly w-100">
+                    {this.state.autoclick ? 
+                    <div className='w-100'>
+                        <Autoclick />
+                    </div> : 
+                    <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>}
                 </div>
         ) 
     } 

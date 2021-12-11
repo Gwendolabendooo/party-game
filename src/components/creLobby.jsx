@@ -4,6 +4,11 @@ import React, { useState, setState } from 'react';
 import {SocketContext, socket} from './socket';
 import Lobby from './Lobby';
 
+import CoupeGoku from '../Skin/Coupe/San goku.svg'
+import Tete from '../Skin/Tete/Tete.svg'
+import Bouche from '../Skin/Bouche/Bouche.svg'
+import Yeux from '../Skin/Yeux/Yeux homme.svg'
+
 class creLobby extends React.Component  {
     constructor(props) {
         super(props);
@@ -40,14 +45,26 @@ class creLobby extends React.Component  {
     render() {
 
         return (
-            <div className="d-flex" style={{height: 100+'%', alignItems: "center"}}>
+            <div className="d-flex justify-content-around" style={{height: 100+'%', alignItems: "center", width: 100+"%"}}>
                 {this.state.joined === true ? 
-                <div className="ctn-autoC">
+                <div className="ctn-creLobby">
                     <form onSubmit={this.handleSubmit}>
-                        <input type="text" name="Pseudo" value={this.state.pseudo} onChange={this.updateName} required id="" />
-                        <input type="text" name="Lobby" value={this.state.room} onChange={this.updateLobby} required id="" />
-                        <input type="submit" />
+                        <div className='ctn-skin'>
+                            <div className='skin'>
+                                <img src={Tete} className='tete' alt="" />
+                                <img src={CoupeGoku} className='coupe' alt="" />
+                                <img src={Yeux} className='yeux' alt="" />
+                                <img src={Bouche} className='bouche' alt="" />
+                            </div>
+                        </div>
+                        <input type="text" name="Pseudo" placeholder='Ex: Jean Dupond' value={this.state.pseudo} onChange={this.updateName} required id="" />
+                        <input type="text" name="Lobby" placeholder='Ex: Toulouse' value={this.state.room} onChange={this.updateLobby} required id="" />
+                        <input type="submit" className='btn-start btn-creLobby' />
                     </form>
+                    <span></span>
+                    <div className='desc-jeu'>
+
+                    </div>
                 </div>
                 : <Lobby room={this.state.room} pseudo={this.state.pseudo} />}
             </div>
