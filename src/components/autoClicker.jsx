@@ -61,7 +61,7 @@ const AutoClicker = () => {
     document.addEventListener('keypress', keypressED);
 
     return (
-        <div className="ctn-autoC">
+        <div className="ctn-autoC apparition-game">
             <Transition  title={"Auto clicker"}/> 
             {randomeL === null ? '' : <div className='displayRandomL'><span>{randomeL}</span></div>}
             <div className="auto-progress mb-3 mt-3">

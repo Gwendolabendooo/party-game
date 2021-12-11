@@ -22,7 +22,7 @@ class transition extends React.Component {
             { left: 0 + "%" }
           ], {
             // timing options
-            duration: 300,
+            duration: 290,
             iterations: 1
           })
 
