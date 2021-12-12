@@ -89,7 +89,7 @@ class Lobby extends React.Component  {
             :    <div className="d-flex align-items-center align-content-around flex-column ctn-max-jeux justify-content-evenly w-100">
                     {this.state.autoclick ? 
                     <div className='w-100'>
-                        <Autoclick />
+                        <Autoclick cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
                     </div> : 
                     <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>}
                 </div>

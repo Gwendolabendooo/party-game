@@ -36,7 +36,6 @@ function App() {
             <Route path="/auto-click">
                 <div className="mini-games">
                     <AutoClickers />
-                    <Stopwatch />
                 </div>
             </Route>
             <Route path="/">

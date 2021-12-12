@@ -69,6 +69,13 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('transit', room);
     });
 
+    //Fin autoclick
+    socket.on('fin-autoClick', (data) => {
+      var retour = [socket.id, data];
+      io.to(Array.from(socket.rooms)).emit('fin-autoClick', retour);
+      console.log(retour)
+    });
+
     //création lobby
     socket.on('addRoom', (room) => {
       console.log(room, "addroom", Lobbys)

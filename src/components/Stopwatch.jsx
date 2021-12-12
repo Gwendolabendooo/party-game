@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import StopwatchDisplay from "./StopwatchDisplay.jsx";
+import {SocketContext, socket} from './socket';
 
 class Stopwatch extends React.Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class Stopwatch extends React.Component {
       running: false,
       currentTimeMs: 0,
       currentTimeSec: 0,
-      currentTimeMin: 0
+      currentTimeMin: 0,
+      fin: this.props.fin,
+      debut: this.props.debut
     };
   }
 
@@ -26,15 +29,20 @@ class Stopwatch extends React.Component {
   };
 
   start = () => {
-    if (!this.state.running) {
+    if (!this.state.running && this.props.debut) {
       this.setState({ running: true });
       this.watch = setInterval(() => this.pace(), 10);
+      console.log(this.state.currentTimeMin, this.state.currentTimeSec, this.state.currentTimeMs)
     }
   };
 
   stop = () => {
-    this.setState({ running: false });
-    clearInterval(this.watch);
+    console.log("stop")
+    if (this.state.running) {
+      this.setState({ running: false });
+      clearInterval(this.watch);
+      socket.emit('fin-autoClick', [this.state.currentTimeMin, this.state.currentTimeSec, this.state.currentTimeMs]);
+    }
   };
 
   pace = () => {
@@ -61,8 +69,8 @@ class Stopwatch extends React.Component {
     return (
     <div className="chrono">
         <div className={"stopwatch"}>
-            {this.state.running === false ? this.start() : ''}
-            <StopwatchDisplay onClick={this.start}
+            { this.props.debut && !this.props.fin ? this.start() : this.stop()}
+            <StopwatchDisplay
             ref="display"
             {...this.state}
             formatTime={this.formatTime}

@@ -619,6 +619,11 @@ li{
 
 .ctn-autoC{
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  align-content: space-around;
 }
 
 .displayRandomL{
@@ -645,12 +650,11 @@ li{
 }
 
 .chrono{
-  position: absolute;
   background: #ffffff;
   padding: 20px;
+  margin: 50px;
+  margin-bottom: 100px;
   border-radius: 66px;
-  right: 143px;
-  top: 126px;
   font-family: 'Paytone One';
   color: #ef818a;
   border: solid #e84855 5px;
@@ -669,6 +673,7 @@ li{
   width: 100%;
   height: 100vh;
   position: fixed;
+  z-index: 100;
   left: 0;
   top: 0;
   background-color: #000000c4;
@@ -688,6 +693,11 @@ li{
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+}
+
+.stopwatch__display{
+  width: 70%;
+  margin: auto;
 }
 
 .ctn-popin > div{
