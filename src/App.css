@@ -769,6 +769,12 @@ align-items: center;
 justify-content: space-around;
 }
 
+.chrono-right{
+  position: absolute!important;
+  top: 0!important;
+  right: 0!important;
+}
+
 .cubeMoove{
   animation-name: cube;
   animation-duration: 1.3s;

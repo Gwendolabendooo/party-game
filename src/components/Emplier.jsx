@@ -46,7 +46,7 @@ class Empileur extends React.Component {
                 cubemore.style.animationDuration = speed+"s";
     
                 document.querySelector("#root > div > div").insertBefore(cubemore, document.querySelector(".cube"))
-                
+
                 if (document.querySelectorAll(".cube").length >= 11) {
                     this.setState({fin: true})
                 }
@@ -62,7 +62,9 @@ class Empileur extends React.Component {
         return (
             <div className="ctn-autoC ctn-empileur apparition-game">
                 <Transition  title={"L'empileur"}/>
-                <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
+                <div className="chrono-right">
+                    <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
+                </div>
                 <div className='cube cubeMoove'></div>                
                 <div className='cube cube1'></div>
             </div>
