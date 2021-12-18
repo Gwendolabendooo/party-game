@@ -46,13 +46,13 @@ class Empileur extends React.Component {
                 cubemore.style.animationDuration = speed+"s";
     
                 document.querySelector("#root > div > div").insertBefore(cubemore, document.querySelector(".cube"))
+                
+                if (document.querySelectorAll(".cube").length >= 11) {
+                    this.setState({fin: true})
+                }
             }   
         }else{
             console.log(current - timeout)
-            if (document.querySelectorAll(".cube").length >= 11) {
-                console.log("fin")
-                this.setState({fin: true})
-            }
         }
     }
 
