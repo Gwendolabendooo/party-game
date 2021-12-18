@@ -20,6 +20,7 @@ import Jeux from './views/select-jeux';
 import Transition from './components/transition';
 import CreLobby from './components/creLobby';
 import Stopwatch from './components/Stopwatch';
+import Empileur from './components/Emplier';
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
             </Route>
             <Route path="/auto-click">
                 <div className="mini-games">
-                    <AutoClickers />
+                    <Empileur />
                 </div>
             </Route>
             <Route path="/">

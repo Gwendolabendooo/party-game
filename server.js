@@ -53,6 +53,11 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
         io.to(Array.from(socket.rooms)).emit('paire-fin', tab);
     })
 
+    //Fin Empileur
+    socket.on('empile-fin', (tab) => {
+      io.to(Array.from(socket.rooms)).emit('empile-fin', tab);
+    })
+
     //Tour suivant
     socket.on('tour-suivant', (room) => {
       io.to(Array.from(socket.rooms)).emit('tour-suivant', room);

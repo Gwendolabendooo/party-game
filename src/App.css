@@ -679,6 +679,21 @@ li{
   background-color: #000000c4;
 }
 
+.ctn-empileur{
+  width: 1000px;
+  height: 800px;
+  background-color: #98989829;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cube{
+  width: 80px;
+  height: 80px;
+  background-color: rgb(196, 14, 60);
+  border: solid 5px rgb(116, 2, 2);
+}
+
 .ctn-score{
   font-family: 'Paytone One', sans-serif;
   background-color: #0041ad;
@@ -754,6 +769,14 @@ align-items: center;
 justify-content: space-around;
 }
 
+.cubeMoove{
+  animation-name: cube;
+  animation-duration: 1.3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: steps(5, end);
+}
+
 @keyframes slidein {
 from {
 transform: rotate3d(13, 5, 0, 
@@ -773,5 +796,17 @@ transform: rotate3d(13, 5, 0,
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes cube {
+  from{ 
+    margin-right: 400px
+  }
+  50%{
+    margin-right: 0;
+  }
+  to{ 
+    margin-right: -480px
   }
 }
