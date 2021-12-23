@@ -109,7 +109,7 @@ class AutoClicker extends React.Component {
         return (
             <div className="ctn-autoC apparition-game">
                 <Transition  title={"Auto clicker"}/>
-                {this.state.afficheScore ? <Score  listej={this.state.listeJ}/> : ''}
+                {this.state.afficheScore ? <Score jeu={"autoclick"} listej={this.state.listeJ}/> : ''}
                 <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
                 {this.state.randomeL === null ? '' : <div className='displayRandomL'><span>{this.state.randomeL}</span></div>}
                 <div className="auto-progress mb-3 mt-3">

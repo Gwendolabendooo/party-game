@@ -19,6 +19,36 @@ class Empileur extends React.Component {
             speed: 1.3,
             time: 0
         }; 
+
+        
+        var tabPoints = this.props.listej
+        tabPoints.forEach(element => {
+            element[2] = 0;
+        });
+
+        socket.on('fin-autoClick', (data) => {
+            console.log(data, this.state.listeJ, "ertrtretretre")
+            var tabMinute = this.props.listej
+            var cptvide = 0
+            
+            tabMinute.forEach(element => {
+                if (element[0] === data[0]) {
+                    element[2] = data[1]
+                }
+                if (element[2] === 0) {
+                    cptvide++
+                }
+            });
+
+            if (cptvide === 0) {
+                let score = this.state.listeJ;
+                console.log(score)
+                score.sort(function(a, b) {
+                    return (a[2][0] * 60000 + a[2][1] * 1000 + a[2][2] * 10) - (b[2][0] * 60000 + b[2][1] * 1000 + b[2][2] * 10) ;
+                })
+                this.setState({ afficheScore: true, listeJ: score })
+            }
+        });
     }
 
     componentDidMount(){
@@ -62,6 +92,7 @@ class Empileur extends React.Component {
         return (
             <div className="ctn-autoC ctn-empileur apparition-game">
                 <Transition  title={"L'empileur"}/>
+                {this.state.afficheScore ? <Score jeu={"empile"} listej={this.state.listeJ}/> : ''}
                 <div className="chrono-right">
                     <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
                 </div>

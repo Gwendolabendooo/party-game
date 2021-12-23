@@ -175,7 +175,7 @@ class paire extends React.Component {
                 <div className="mini-game paires">
                     {this.state.listCard.map((element, i) => <div className="paire-card" id={i} key={i} data-card={element}><div className="paire-card-front" onClick={verifPaire}></div><div className="paire-card-back" style={{backgroundColor: random_bg_color()}}><FontAwesomeIcon className="text-white" icon={['fas', element]} /></div></div> )}
                 </div>
-                {this.state.finPartie ? <Score  listej={this.state.listeJ}/> : this.state.finPartie}
+                {this.state.finPartie ? <Score jeu={"Paire"} listej={this.state.listeJ}/> : this.state.finPartie}
             </div>
         )  
     }

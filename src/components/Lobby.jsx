@@ -12,6 +12,7 @@ import Icone from '../img/12.svg';
 import OrdrePassage from './ordrePassage';
 import Paire from '../components/Paire';
 import Autoclick from '../components/autoClicker';
+import Empiler from '../components/Emplier';
 
 class Lobby extends React.Component  {
     constructor(props) {
@@ -22,9 +23,15 @@ class Lobby extends React.Component  {
             chef: '',
             start: false,
             id: '', 
-            autoclick: false
+            autoclick: false,
+            Jeux: ["Paire", "autoclick", "empiler"]
         }
         socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
+
+        if (this.state.chef === this.state.id) {
+            const Jeux = this.Randomize()
+            Jeux.sort(()=> Math.random() - 0.5);  
+        }
 
         socket.on('arrive', (room) => {
             console.log(room)
@@ -50,9 +57,8 @@ class Lobby extends React.Component  {
             this.setState({start: true})
         });
 
-        socket.on('Jeu-suivant', (start) => {
-            console.log(start);
-            this.setState({autoclick: true})
+        socket.on('Jeu-suivant', (jeu) => {
+            this.setState({autoclick: jeu})
         });
     }
 
@@ -69,6 +75,14 @@ class Lobby extends React.Component  {
         library.add(
             faCrown
         )
+
+        const jeuSuivant = () => {
+        switch (this.state.autoClick) {
+            case "Paire": return <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
+            case "empile": return <Empiler cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
+
+            default:      return <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
+        }}
 
         return (
             this.state.start === false ? 
@@ -91,7 +105,7 @@ class Lobby extends React.Component  {
                     <div className='w-100'>
                         <Autoclick cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
                     </div> : 
-                    <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>}
+                    jeuSuivant()}
                 </div>
         ) 
     } 
