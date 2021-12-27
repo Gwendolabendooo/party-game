@@ -726,6 +726,83 @@ li{
   top: 50%;
 }
 
+.gold-cible{
+  background-color: rgb(95, 185, 11);
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-around;
+  -o-border-radius: 50%;
+}
+
+.recordCible{
+  color: white;
+  font-size: 30px;
+}
+
+.malus-cible{
+  background-color: rgb(185, 37, 11);
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-around;
+  -o-border-radius: 50%;
+}
+
+.cible1{
+  background-color: rgb(15, 102, 233);
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-around;
+  -o-border-radius: 50%;
+}
+.cible1 > div{
+  background-color: red;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.cible1 > div > div{
+  background-color: rgb(218, 231, 26);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
 .ctn-back-transition{
 display: flex;
 align-content: space-between;

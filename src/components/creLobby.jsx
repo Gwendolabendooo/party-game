@@ -4,10 +4,7 @@ import React, { useState, setState } from 'react';
 import {SocketContext, socket} from './socket';
 import Lobby from './Lobby';
 
-import CoupeGoku from '../Skin/Coupe/San goku.svg'
-import Tete from '../Skin/Tete/Tete.svg'
-import Bouche from '../Skin/Bouche/Bouche.svg'
-import Yeux from '../Skin/Yeux/Yeux homme.svg'
+import Mage from '../Skin/SORCIER.svg'
 
 class creLobby extends React.Component  {
     constructor(props) {
@@ -51,10 +48,7 @@ class creLobby extends React.Component  {
                     <form onSubmit={this.handleSubmit}>
                         <div className='ctn-skin'>
                             <div className='skin'>
-                                <img src={Tete} className='tete' alt="" />
-                                <img src={CoupeGoku} className='coupe' alt="" />
-                                <img src={Yeux} className='yeux' alt="" />
-                                <img src={Bouche} className='bouche' alt="" />
+                                <img src={Mage} className='skin' alt="" />
                             </div>
                         </div>
                         <input type="text" name="Pseudo" placeholder='Ex: Jean Dupond' value={this.state.pseudo} onChange={this.updateName} required id="" />

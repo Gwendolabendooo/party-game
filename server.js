@@ -68,7 +68,12 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //Jeu suivant
     socket.on('Jeu-suivant', (room) => {
       io.to(Array.from(socket.rooms)).emit('Jeu-suivant', room);
-      console.log(room, "tsetsetst")
+      console.log(room, "nouveau jeu")
+    });
+
+    //Initiate list games
+    socket.on('JeuDebut', (room) => {
+      io.to(Array.from(socket.rooms)).emit("JeuDebut", room);
     });
 
     //Jeu suivant
@@ -80,6 +85,14 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     socket.on('fin-autoClick', (data) => {
       var retour = [socket.id, data];
       io.to(Array.from(socket.rooms)).emit('fin-autoClick', retour);
+      console.log(retour)
+    });
+
+
+    //Fin cible
+    socket.on('fin-cible', (data) => {
+      var retour = [socket.id, data];
+      io.to(Array.from(socket.rooms)).emit('fin-cible', retour);
       console.log(retour)
     });
 

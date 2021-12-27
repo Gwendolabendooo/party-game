@@ -13,6 +13,7 @@ import OrdrePassage from './ordrePassage';
 import Paire from '../components/Paire';
 import Autoclick from '../components/autoClicker';
 import Empiler from '../components/Emplier';
+import Cible from './cible';
 
 class Lobby extends React.Component  {
     constructor(props) {
@@ -24,14 +25,15 @@ class Lobby extends React.Component  {
             start: false,
             id: '', 
             autoclick: false,
-            Jeux: ["Paire", "autoclick", "empiler"]
+            Jeux: ["Cible"]
+            // "Paire", "Autoclick", "Empile", 
         }
         socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
 
-        if (this.state.chef === this.state.id) {
-            const Jeux = this.Randomize()
-            Jeux.sort(()=> Math.random() - 0.5);  
-        }
+        socket.on('JeuDebut', (room) => {
+            this.setState({Jeux: room})
+            console.log(room)
+        })
 
         socket.on('arrive', (room) => {
             console.log(room)
@@ -53,12 +55,19 @@ class Lobby extends React.Component  {
         });
 
         socket.on('start', (start) => {
-            console.log(start);
+            if (this.state.chef === this.state.id) {
+                var randomeJeu = this.state.Jeux.sort(()=> Math.random() - 0.5);  
+                this.setState({Jeux: randomeJeu})
+                socket.emit('JeuDebut', this.state.Jeux);
+            }
             this.setState({start: true})
         });
 
         socket.on('Jeu-suivant', (jeu) => {
-            this.setState({autoclick: jeu})
+            var randomeGame = this.state.Jeux
+            randomeGame.shift()
+            console.log("jeu d'apres", randomeGame)
+            this.setState({Jeux: randomeGame})
         });
     }
 
@@ -76,12 +85,18 @@ class Lobby extends React.Component  {
             faCrown
         )
 
-        const jeuSuivant = () => {
-        switch (this.state.autoClick) {
-            case "Paire": return <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
-            case "empile": return <Empiler cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
+        const jeuSuivant = (jeu) => {
+            console.log(jeu)
+        switch (this.state.Jeux[0]) {
+            case "Paire": 
+                return <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
+            case "Empile":  
+                return <Empiler cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
+            case "Autoclick": 
+                return  <Autoclick cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
+            case "Cible": 
+                return  <Cible cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
 
-            default:      return <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
         }}
 
         return (
@@ -101,11 +116,7 @@ class Lobby extends React.Component  {
                     <div className="btn-start" onClick={this.start}>Commencer</div>
                 </div>
             :    <div className="d-flex align-items-center align-content-around flex-column ctn-max-jeux justify-content-evenly w-100">
-                    {this.state.autoclick ? 
-                    <div className='w-100'>
-                        <Autoclick cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
-                    </div> : 
-                    jeuSuivant()}
+                    {jeuSuivant(this.state.Jeux)}
                 </div>
         ) 
     } 
