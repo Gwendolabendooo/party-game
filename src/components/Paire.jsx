@@ -78,7 +78,7 @@ class paire extends React.Component {
                         document.querySelectorAll('.rotate')[1].classList.remove("rotate") 
                         document.querySelectorAll('.rotate')[0].classList.remove("rotate")
 
-                        if (document.querySelectorAll('.paired').length === 2) {
+                        if (document.querySelectorAll('.paired').length === 24) {
                             socket.emit('paire-fin', tab);
                         }
                     }else{
@@ -121,7 +121,6 @@ class paire extends React.Component {
                 document.querySelectorAll('.rotate')[1].classList.remove("rotate") 
                 document.querySelectorAll('.rotate')[0].classList.remove("rotate") 
                 
-                // socket emit
                 socket.emit('paire-increment', "paire");
             }else{
                 document.querySelectorAll('.rotate')[1].classList.remove("rotate") 

@@ -5,6 +5,15 @@ ul{
   padding-left: 0!important;
 }
 
+input:-internal-autofill-selected{
+  background: none;
+}
+
+.logo{
+  width: 200px;
+  padding: 30px;
+}
+
 html{
   scroll-behavior: smooth;
 }
@@ -36,6 +45,17 @@ input[type="text"] {
 .desc-jeu{
   width: 500px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 22px;
+  justify-content: flex-start;
+  color: white;
+}
+
+.desc-jeu > div{
+  padding: 40px;
 }
 
 .btn-creLobby{
@@ -55,6 +75,7 @@ input[type="text"] {
 
 .skin{
   height: 300px;
+  padding-bottom: 20px;
   width: 400px;
   position: relative;
   display: flex;
