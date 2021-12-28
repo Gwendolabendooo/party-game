@@ -66,6 +66,7 @@ class paire extends React.Component {
             console.log(score)
             this.setState({finPartie: true, listeJ: score})
         })
+        
 
         socket.on('tour-enemy', (tab) => {
             document.getElementById(tab).classList.toggle("rotate")
