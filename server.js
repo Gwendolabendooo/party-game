@@ -1,5 +1,8 @@
 var app = require('express')();
+var cors = require('cors')
 var http = require('http').createServer(app);
+
+app.use(cors())
 
 const PORT = 8000;
 
