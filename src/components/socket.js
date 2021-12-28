@@ -1,5 +1,5 @@
 import socketio from "socket.io-client";
 import React from "react";
 
-export const socket = socketio.connect("http://localhost:8000");
+export const socket = socketio.connect("https://party-game-ten.vercel.app:8000");
 export const SocketContext = React.createContext();
