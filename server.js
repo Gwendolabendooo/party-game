@@ -1,9 +1,19 @@
+var cors = require('cors');
 var app = require('express')();
+
+app.use(cors())
+
 var http = require('http').createServer(app);
 
 const PORT = 8000;
 
-var io = require('socket.io')(http);
+var io = require('socket.io')(http, { 
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
 
 const Lobbys = [];
 
