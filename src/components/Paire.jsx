@@ -23,7 +23,7 @@ class paire extends React.Component {
             finPartie: false,
         }
 
-        var tabPoints = this.props.listej
+        var tabPoints = this.state.listeJ
         tabPoints.forEach(element => {
             element[2] = 0;
         });

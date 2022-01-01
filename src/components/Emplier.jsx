@@ -20,12 +20,6 @@ class Empileur extends React.Component {
             time: 0
         }; 
 
-        
-        var tabPoints = this.props.listej
-        tabPoints.forEach(element => {
-            element[2] = 0;
-        });
-
         socket.on('fin-autoClick', (data) => {
             console.log(data, this.state.listeJ, "ertrtretretre")
             var tabMinute = this.props.listej
@@ -51,7 +45,16 @@ class Empileur extends React.Component {
         });
     }
 
-    componentDidMount(){
+    componentDidMount() {
+        var tabPoints = this.state.listeJ
+        tabPoints.forEach(element => {
+            element[2] = 0;
+            console.log(element)
+        });
+
+        this.setState({ listeJ: tabPoints })
+        
+        console.log(tabPoints, this.state.listeJ)
     }
     
     keypressED = (e) =>{

@@ -98,12 +98,34 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       console.log(retour)
     });
 
-
     //Fin cible
     socket.on('fin-cible', (data) => {
       var retour = [socket.id, data];
       io.to(Array.from(socket.rooms)).emit('fin-cible', retour);
       console.log(retour)
+    });
+
+    //ValidBac
+    socket.on('valid-bac', (data) => {
+      io.to(Array.from(socket.rooms)).emit('valid-bac', true);
+    });
+
+    //DataBac
+    socket.on('submit-bac', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('submit-bac', [data, socket.id]);
+    });
+
+    //Votebac
+    socket.on('change-check-bac', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('change-check-bac', [data, socket.id]);
+    });
+
+    //Scorebac
+    socket.on('score-bac', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('score-bac', data);
     });
 
     //création lobby

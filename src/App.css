@@ -73,6 +73,36 @@ input[type="text"] {
   justify-content: space-around;
 }
 
+.lettre{
+  text-align: center;
+  font-size: 30px;
+  color: white;
+}
+
+.ctn-input{
+  margin-bottom: 20px;
+}
+
+.ctn-input > input{
+  text-transform: none;
+  padding: 10px;
+  background-color: #ffffff2e;
+  border-color: #24395a;
+}
+
+.ctn-input > label{
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.ptit-bac{
+  font-family: 'Paytone One', sans-serif;
+  width: 80%;
+  margin: auto;
+  color: #3879e2;
+}
+
 .skin{
   height: 300px;
   padding-bottom: 20px;
@@ -206,8 +236,34 @@ li{
   white-space:nowrap;
 }
 
+.ctn-aff-bac{
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.pseudo-bac{
+  width: 220px;
+}
+
+div[data-input="true"]{
+  text-transform: uppercase;
+}
+
+input[type="checkbox"]{
+  width: 30px;
+  height: 30px;
+}
+
+.title-bac{
+  font-size: 35px;
+}
+
 .btn-start{
   font-size: 22px;
+  text-align: center;
+  color: white;
   padding: 15px;
   background-color: #3879e2;
   box-shadow: 0px 0 9px 0px #3879e2;
