@@ -44,8 +44,11 @@ class Lobby extends React.Component  {
 
         socket.on('deco', (room) => {
             room.shift()
-            this.setState({listeJ: room, chef: room[0][0]})
-            console.log(this.state.listeJ)
+            if(room.length > 0){
+                this.setState({chef: room[0][0]})
+                console.log(this.state.listeJ)
+            }
+            this.setState({listeJ: room})
         });
 
         socket.emit('id', "client");
@@ -71,10 +74,6 @@ class Lobby extends React.Component  {
         });
     }
 
-    start(){
-        socket.emit('start', "true");
-    }
-
     scrollHorizontal(event){
             event.preventDefault();
             document.getElementById("scrollHorizontal").scrollLeft += event.deltaY * 2
@@ -85,21 +84,27 @@ class Lobby extends React.Component  {
             faCrown
         )
 
+        const start = () => {
+            if (this.state.id === this.state.chef) {
+                socket.emit('start', "true");
+            }
+        }
+
         const jeuSuivant = (jeu) => {
             console.log(jeu)
-        switch (this.state.Jeux[0]) {
-            case "Paire": 
-                return <Paire cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
-            case "Empile":  
-                return <Empiler cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
-            case "Autoclick": 
-                return  <Autoclick cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
-            case "Cible": 
-                return  <Cible cle={this.state.id} chef={this.state.chef} listej={this.state.listeJ}/>
-            case "PtitBac": 
-                return  <PtitBac cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
-
-        }}
+            switch (this.state.Jeux[0]) {
+                case "Paire": 
+                    return <Paire cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "Empile":  
+                    return <Empiler cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "Autoclick": 
+                    return  <Autoclick cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "Cible": 
+                    return  <Cible cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "PtitBac": 
+                    return  <PtitBac cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+            }    
+        }
 
         return (
             this.state.start === false ? 
@@ -115,7 +120,7 @@ class Lobby extends React.Component  {
                     <div>
                         <Jeux />
                     </div>
-                    <div className="btn-start" onClick={this.start}>Commencer</div>
+                    <div className="btn-start" onClick={start}>Commencer</div>
                 </div>
             :    <div className="d-flex align-items-center align-content-around flex-column ctn-max-jeux justify-content-evenly w-100">
                     {jeuSuivant(this.state.Jeux)}

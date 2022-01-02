@@ -70,7 +70,7 @@ class Empileur extends React.Component {
             if (e.code === "Space" && cube.offsetLeft === cube1) {
                 cube.classList.remove("cubeMoove")
     
-                this.setState({speed: this.state.speed - .15})
+                this.setState({speed: this.state.speed - .13})
                 console.log(this.state.speed)
                 var speed = this.state.speed
     
@@ -95,7 +95,7 @@ class Empileur extends React.Component {
         return (
             <div className="ctn-autoC ctn-empileur apparition-game">
                 <Transition  title={"L'empileur"}/>
-                {this.state.afficheScore ? <Score jeu={"empile"} listej={this.state.listeJ}/> : ''}
+                {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="chrono-right">
                     <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
                 </div>

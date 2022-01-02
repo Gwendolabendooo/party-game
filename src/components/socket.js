@@ -2,7 +2,7 @@ import socketio from "socket.io-client";
 import React from "react";
 
 export const socket = socketio.connect("localhost:8000", {
-    withCredentials: true,
+    withCredentials: false,
     
     transportOptions: {
       polling: {

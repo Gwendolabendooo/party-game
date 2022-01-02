@@ -105,6 +105,11 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       console.log(retour)
     });
 
+    //LetterPtitbac
+    socket.on('send-letter', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('send-letter', data);
+    });
     //ValidBac
     socket.on('valid-bac', (data) => {
       io.to(Array.from(socket.rooms)).emit('valid-bac', true);
@@ -164,8 +169,8 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
             for (let index = 0; index < Lobbys[i].length; index++) {
                 if (Lobbys[i][index][0] === socket.id) {
                     Lobbys[i].splice(index, 1)
-                    console.log(Lobbys[i], "modif")
-                    io.to(Array.from(socket.rooms)).emit("deco", Lobbys[i]);
+                    console.log(Lobbys[i], "modif", socket.rooms)
+                    io.to(Array.from(Lobbys[i])).emit("deco", Lobbys[i]);
                 }    
                 console.log(exist)
             }

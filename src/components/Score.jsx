@@ -15,8 +15,10 @@ class score extends React.Component {
       }
 
     suivant(jeu){
-        socket.emit('Jeu-suivant', jeu);
-        console.log("suivant")
+        if (this.props.chef) {
+            socket.emit('Jeu-suivant', jeu);
+            console.log("suivant")   
+        }
     }
 
     render() {

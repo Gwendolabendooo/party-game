@@ -12,7 +12,7 @@ import {
 
 const Jeux = () => {
 
-        const listJeux = ["Paires", "auto-click", "JeuDeLombre", "word-speed", "Guitare-hero", "Paires", "auto-click", "JeuDeLombre", "word-speed", "Guitare-hero"];
+        const listJeux = ["Jeu des paires", "Autoclick", "L'Empileur", "Dans le mille", "Le PtitBac"];
 
         const [filter, setFilter] = useState("");
 

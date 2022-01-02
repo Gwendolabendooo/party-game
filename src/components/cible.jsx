@@ -158,7 +158,7 @@ class Cible extends React.Component {
                     socket.emit('fin-cible', this.state.record);  
                     this.setState({cptfin: 1})     
                 } 
-            },60000);   
+            },50000);   
     }
 
     newMalusCible = (e) =>{
@@ -192,7 +192,7 @@ class Cible extends React.Component {
         return (
             <div className="ctn-autoC ctn-cible ctn-empileur apparition-game">
                 <Transition  title={"Dans le mille"}/>
-                {this.state.afficheScore ? <Score jeu={"Dans le mille"} listej={this.state.listeJ}/> : ''}
+                {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className='recordCible'>
                     {this.state.record}
                 </div>

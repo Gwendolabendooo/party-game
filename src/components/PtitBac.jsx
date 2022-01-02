@@ -42,9 +42,13 @@ class Cible extends React.Component {
             this.setState({validation: false})    
         });
 
+        socket.on('send-letter', (data) => {
+            console.log("cahnge")
+            this.setState({letter: data})  
+        })
+
         socket.on('change-check-bac', (data) => {
             var input = document.querySelectorAll('input[data-id='+data[0][2]+']');
-            var change = ''
             input.forEach((element, i) => {
                 if (element.name === data[0][1]) {
                     element.checked = data[0][0]
@@ -69,17 +73,30 @@ class Cible extends React.Component {
 
             const listCheck = document.querySelectorAll("input[data-id]");
             listBac.forEach((element, i) => {
-                element.addEventListener("change", function(e) {
+                let chef = false
+                if (this.props.id === this.props.chef) {
+                    chef = true
+                }else{
+                    chef = false
+                }
+                console.log("dsfsd", chef)
+                element.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    if (chef) {
+                        socket.emit('change-check-bac', [e.target.checked, e.target.name, e.target.getAttribute('data-id')]);
+                    }
                     console.log("test", e.target.checked, e.target)
-                    socket.emit('change-check-bac', [e.target.checked, e.target.name, e.target.getAttribute('data-id')]);
                 })
             })
         })
     }
 
     componentDidMount() {
-        const letter = this.state.listLetter[Math.floor(Math.random() * this.state.listLetter.length)];
-        this.setState({ letter: letter })
+        if(this.props.id === this.props.chef){
+            const letter = this.state.listLetter[Math.floor(Math.random() * this.state.listLetter.length)];
+            this.setState({ letter: letter })
+            socket.emit('send-letter', letter);
+        }
         var tabPoints = this.state.listeJ
         tabPoints.forEach(element => {
             element[2] = 0;
@@ -137,7 +154,7 @@ class Cible extends React.Component {
         return (
             <div className="ctn-autoC ctn-empileur apparition-game h-auto">
                 <Transition  title={"Le ptit bac"}/>
-                {this.state.afficheScore ? <Score jeu={"Le ptit bac"} listej={this.state.listeJ}/> : ''}
+                {this.state.afficheScore ? <Score jeu={"Le ptit bac"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className='ptit-bac h-100'>
                     <div className='m-3 lettre'>Lettre: {this.state.letter}</div>
                     {this.state.validation ? 
