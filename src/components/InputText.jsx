@@ -10,7 +10,7 @@ class InputTxt extends React.Component {
         return (
             <div className="ctn-input">
                 <label htmlFor={this.props.id}>{this.props.label}</label>
-                <input type="text" className='m-0' maxLength="30" required placeholder={this.props.letter + "..."} required name={this.props.id} id={this.props.id} autocomplete="off"/>
+                <input type="text" className='m-0' maxLength="30" required placeholder={this.props.letter + "..."} required name={this.props.id} id={this.props.id} autoComplete="off"/>
             </div>
         )  
     }
