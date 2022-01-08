@@ -213,6 +213,9 @@ class TrouvePersonnage extends React.Component {
                     </div>
                     : this.state.afficheTab === false ?
                     <div className='d-flex flex-column' id='ctnVote'>
+                        <div className='text-white text-center label-celebrite mt-3 mb-3'>
+                            Déplace le mot qui correspond en face du personnage
+                        </div>
                         <div className='d-flex flex-row'>
                             <ul>
                                 {listCelebrity}
