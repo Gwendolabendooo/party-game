@@ -519,6 +519,69 @@ input[type="checkbox"]{
   -o-transform: rotateY(180deg)!important;
 }
 
+.card-celebrite{
+  text-align: center;
+  padding: 30px;
+  background-color: #063580;
+  border-radius: 10px;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 25px;
+  box-shadow: 0px 0 9px 0px #0b1931;
+  width: 400px;
+  text-transform: uppercase;
+}
+
+.label-celebrite{
+  text-align: center;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 25px;
+  width: 360px;
+  margin: auto;
+}
+
+.card-celebrite-tab{
+  background-color: #063580;
+  text-align: center;
+  font-family: 'Paytone One', sans-serif;
+  width: 240px;
+  font-size: 15px;
+  color: white;
+  text-transform: uppercase;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.vote{
+  font-size: 38px;
+}
+
+.checkVote{
+  margin: 15px;
+  margin-bottom: 28px;
+}
+
+.ctnvotesup{
+  height: 100%;
+}
+
+.p-top180{
+  margin-top: 80px;
+}
+
+.card-last-tab{
+  background-color: white;
+  text-align: center;
+  font-family: 'Paytone One', sans-serif;
+  width: 240px;
+  font-size: 15px;
+  color: #063580;
+  text-transform: uppercase;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px;
+}
+
 .card-game{
   width: 155px;
   height: 200px;

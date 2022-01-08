@@ -11,7 +11,7 @@ let ciblenorm = 0;
 let ciblegreen = 0;
 let ciblemalus = 0;
 
-class Cible extends React.Component {
+class PtitBac extends React.Component {
     constructor(props) {
         super(props);
     
@@ -48,7 +48,8 @@ class Cible extends React.Component {
         })
 
         socket.on('change-check-bac', (data) => {
-            var input = document.querySelectorAll('input[data-id='+data[0][2]+']');
+            console.log(data[0][2], "data")
+            var input = document.querySelectorAll("input[data-id="+data[0][2]+"]");
             input.forEach((element, i) => {
                 if (element.name === data[0][1]) {
                     element.checked = data[0][0]
@@ -174,4 +175,4 @@ class Cible extends React.Component {
     }
 }
 
-export default Cible;
+export default PtitBac;

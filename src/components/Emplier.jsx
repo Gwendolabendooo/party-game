@@ -52,11 +52,17 @@ class Empileur extends React.Component {
             console.log(element)
         });
 
+        document.addEventListener('keypress', this.keypressED);
+
         this.setState({ listeJ: tabPoints })
         
         console.log(tabPoints, this.state.listeJ)
     }
     
+    componentWillUnmount() {
+        document.removeEventListener('keypress', this.keypressED);
+    }
+
     keypressED = (e) =>{
         var current = Date.now();
         var timeout = this.state.time
@@ -90,8 +96,6 @@ class Empileur extends React.Component {
     }
 
     render() {
-        document.addEventListener('keypress', this.keypressED);
-
         return (
             <div className="ctn-autoC ctn-empileur apparition-game">
                 <Transition  title={"L'empileur"}/>

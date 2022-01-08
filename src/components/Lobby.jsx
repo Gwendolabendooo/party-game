@@ -14,6 +14,7 @@ import Paire from '../components/Paire';
 import Autoclick from '../components/autoClicker';
 import Empiler from '../components/Emplier';
 import Cible from './cible';
+import TrouvePersonnage from './trouvePersonnage';
 import PtitBac from './PtitBac';
 
 class Lobby extends React.Component  {
@@ -26,7 +27,7 @@ class Lobby extends React.Component  {
             start: false,
             id: '', 
             autoclick: false,
-            Jeux: ["Paire", "Autoclick", "Empile", "Cible", "PtitBac"]
+            Jeux: ["TrouvePersonnage"]
         }
         socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
 
@@ -103,6 +104,8 @@ class Lobby extends React.Component  {
                     return  <Cible cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "PtitBac": 
                     return  <PtitBac cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "TrouvePersonnage": 
+                    return  <TrouvePersonnage cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
             }    
         }
 

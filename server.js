@@ -133,6 +133,31 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('score-bac', data);
     });
 
+    //List celebrite
+    socket.on('listCelebrite', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('listCelebrite', data);
+    });
+
+    //mot celebrite
+    socket.on('motCelebre', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('motCelebre', data);
+    });
+
+    //affiche classement devinemot
+    socket.on('affClassement', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('affClassement', data);
+    });
+
+
+    //Ordre vote
+    socket.on('ordreVote', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('ordreVote', [data, socket.id]);
+    });
+
     //création lobby
     socket.on('addRoom', (room) => {
       console.log(room, "addroom", Lobbys)
