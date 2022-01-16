@@ -58,7 +58,7 @@ class PtitBac extends React.Component {
         })
 
         socket.on('submit-bac', (data) => {
-            const listBac = document.getElementById('listBac').querySelectorAll('div[data-input=true]')
+            const listBac = document.getElementById('listBac').querySelectorAll('div[data-input="true"]')
 
             listBac.forEach((element, i) => {
                 let pseudo = ""

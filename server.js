@@ -9,7 +9,7 @@ const PORT = 8000;
 
 var io = require('socket.io')(http, { 
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -148,7 +148,7 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //affiche classement devinemot
     socket.on('affClassement', (data) => {
       console.log(data)
-      io.to(Array.from(socket.rooms)).emit('affClassement', data);
+      io.to(Array.from(socket.rooms)).emit('affClassement', [data, socket.id]);
     });
 
 

@@ -84,7 +84,7 @@ class Empileur extends React.Component {
                 cubemore.classList.add("cubeMoove", "cube")
                 cubemore.style.animationDuration = speed+"s";
       
-                document.querySelector(".ctn-autoC").insertBefore(cubemore, document.querySelector(".cube"))
+                document.querySelector(".ctn-empileur").insertBefore(cubemore, document.querySelector(".cube"))
 
                 if (document.querySelectorAll(".cube").length >= 11) {
                     this.setState({fin: true})

@@ -4,7 +4,7 @@ import React, { useState, setState } from 'react';
 import {SocketContext, socket} from './socket';
 import Lobby from './Lobby';
 
-import logo from '../img/logo.svg'
+import logo from '../img/logo-mG.svg'
 import Mage from '../Skin/SORCIER.svg'
 
 class creLobby extends React.Component  {
@@ -32,12 +32,12 @@ class creLobby extends React.Component  {
 
     updateName(e) {
         console.log(e.target.value)
-        this.setState({pseudo: e.target.value})
+        this.setState({pseudo: e.target.value.toLowerCase()})
     }
 
     updateLobby(e) {
         console.log(e.target.value)
-        this.setState({room: e.target.value})
+        this.setState({room: e.target.value.toLowerCase()})
     }
 
     render() {

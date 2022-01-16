@@ -47,10 +47,13 @@ class TrouvePersonnage extends React.Component {
             bonMot: 0,
             tabFinMot: [],
             ordreVote: [],
-            afficheTab: false
+            afficheTab: false,
+            cptTest: false,
+            motValue: 0
         }; 
 
         socket.on('listCelebrite', (data) => {
+            console.log(data, "ordre")
             this.setState({ listcelebre: data})
         })
 
@@ -70,37 +73,54 @@ class TrouvePersonnage extends React.Component {
         })
 
         socket.on('affClassement', (data) => {
-            let list = this.state.listeJ
-            console.log(list)
-
-            list.forEach((element, i) => {
-                list[i][2] = document.querySelector('div[data-id='+ element[0] +']').querySelectorAll('div[data-vote=bon]').length
-            })  
-            list.sort(function(a, b) {
-                return b[2] - a[2];
-            })
-
-            this.setState({ listeJ: list, afficheScore: true})   
+            if (this.props.chef == data[1]) {
+                let list = this.state.listeJ
+                console.log(list)
+    
+                list.forEach((element, i) => {
+                    list[i][2] = document.querySelector('div[data-id='+ element[0] +']').querySelectorAll('div[data-vote=bon]').length
+                })  
+                list.sort(function(a, b) {
+                    return b[2] - a[2];
+                })
+    
+                this.setState({ listeJ: list, afficheScore: true})      
+            }
         })
 
         socket.on('motCelebre', (data) => {
             let bloc = this.state.blocage
             let listmot = this.state.listMots
             let celebrite = this.state.celebrity
+            console.log(data)
             listmot.push(data)
             bloc++
             this.setState({ blocage: bloc, listMots: listmot})
             
             if (bloc === this.state.listeJ.length) {
                 document.getElementById('subMot').removeAttribute('disabled')
+                document.getElementById('subMot').classList.remove("valide")
                 let reverse = this.state.listMots.reverse()
 
                 celebrite++
 
-                if (this.state.index === this.state.listeJ.length - 1) {
-                    this.setState({ jsuivant: 0})
+                if (!this.state.cptTest) {
+                    console.log("lui")
+                    if (this.state.index === this.state.listeJ.length - 1) {
+                        this.setState({ jsuivant: 0})
+                    }else{
+                        let suivant = this.state.index + 1
+                        this.setState({ jsuivant: suivant})
+                    }   
+                    this.setState({ cptTest: true})
                 }else{
-                    this.setState({ jsuivant: this.state.index + 1})
+                    console.log("non")
+                    if (this.state.jsuivant === this.state.listeJ.length - 1) {
+                        this.setState({ jsuivant: 0})
+                    }else{
+                        let suivant = this.state.jsuivant + 1
+                        this.setState({ jsuivant: suivant})
+                    }   
                 }
 
                 let blocage = 0; 
@@ -114,6 +134,7 @@ class TrouvePersonnage extends React.Component {
                             let lastWord = []
                             for (let i = 0; i < this.state.listeJ.length; i++) {
                                 lastWord.push(this.state.listMots[i])
+                                console.log("test")
                             }
                             console.log(lastWord, 'dernier')
                             this.setState({ tabFinMot: lastWord })
@@ -157,8 +178,15 @@ class TrouvePersonnage extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         document.getElementById('subMot').setAttribute('disabled', true)
+        document.getElementById('subMot').classList.add("valide")
         console.log(event.target)
-        socket.emit('motCelebre', [event.target[0].value, event.target[0].id]);
+        let value2 = 0
+        if (document.getElementById('motdata').getAttribute("data-mot") != "") {
+            value2 = document.getElementById('motdata').getAttribute("data-mot")
+        }else{
+            value2 = event.target[0].id
+        }
+        socket.emit('motCelebre', [event.target[0].value, value2]);
     }
     
     handleVote(event) {
@@ -169,6 +197,8 @@ class TrouvePersonnage extends React.Component {
             console.log(element.getAttribute("data-index"))
             ordre.push(element.getAttribute("data-index"))
         })
+        document.getElementById('validVote').setAttribute('disabled', true)
+        document.getElementById('validVote').classList.add("valide")
         socket.emit('ordreVote', ordre);
     }
 
@@ -180,7 +210,7 @@ class TrouvePersonnage extends React.Component {
 
     affScore (event){
         event.preventDefault();
-            socket.emit('affClassement', "true");
+        socket.emit('affClassement', "true");
     }
 
     render() {
@@ -203,12 +233,15 @@ class TrouvePersonnage extends React.Component {
                         <div className='text-white text-center label-celebrite mt-3 mb-3'>
                             Trouve un mot qui te fais penser à:
                         </div>
-                        <div className='text-white card-celebrite mb-5 mt-3'>
+                        <div className='text-white card-celebrite mb-5 mt-3' id='motdata' data-mot={this.state.celebrity != -1 ? this.state.listMots[this.state.bonMot][1] : ''}>
                             {this.state.celebrity === -1 ? this.state.listcelebre[this.state.index]: this.state.listMots[this.state.bonMot][0]}
                         </div>
                         <form onSubmit={this.handleSubmit}>
                             <InputTxt letter="Acteur" id={this.state.index}/>
-                            <input type="submit" value="Valider" id='subMot' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                            <div className='position-relative'>
+                                <label className='position-absolute restant' htmlFor="subMot">{this.state.blocage}/{this.state.listeJ.length}</label>
+                                <input type="submit" value="Valider" id='subMot' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                            </div>
                         </form>
                     </div>
                     : this.state.afficheTab === false ?
@@ -223,7 +256,10 @@ class TrouvePersonnage extends React.Component {
                             <SortableList items={this.state.tabFinMot} onSortEnd={this.onSortEnd} />
                         </div>
                         <form onSubmit={this.handleVote}>
-                            <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                            <div className='position-relative'>
+                                <label className='position-absolute restant' htmlFor="subMot">{this.state.ordreVote.length}/{this.state.listeJ.length}</label>
+                                <input type="submit" value="Valider" id='validVote' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                            </div>
                         </form>
                     </div>
                     :

@@ -55,6 +55,14 @@ class AutoClicker extends React.Component {
         });
     }
 
+    componentDidMount(){
+        document.addEventListener('keypress', this.keypressED);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener('keypress', this.keypressED);
+    }
+
     compteur = (e) =>{
         this.setState({ debut: true })
         console.log(this.state.debut)
@@ -98,14 +106,12 @@ class AutoClicker extends React.Component {
 
     keypressED = (e) =>{
         console.log(e.key, this.state.randomeL)
-        if (this.state.randomeL === e.key) {
+        if (this.state.randomeL === e.key.toLowerCase()) {
             this.setState({ randomeL: null })
         }
     }
 
     render() {
-
-        document.addEventListener('keypress', this.keypressED);
         return (
             <div className="ctn-autoC apparition-game">
                 <Transition  title={"Auto clicker"}/>

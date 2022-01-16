@@ -569,6 +569,22 @@ input[type="checkbox"]{
   margin-top: 80px;
 }
 
+.valide{
+  background-color: #34d3ab!important;
+  color: #ffffff!important;
+}
+
+.restant{
+  font-family: 'Paytone One', sans-serif;
+  color: #34d3ab;
+  right: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  top: padd;
+  top: 58px;
+  padding: 10px;
+}
+
 .card-last-tab{
   background-color: white;
   text-align: center;
