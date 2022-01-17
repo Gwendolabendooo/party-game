@@ -27,7 +27,7 @@ class Lobby extends React.Component  {
             start: false,
             id: '', 
             autoclick: false,
-            Jeux: ["Paire","Empile","Autoclick","Cible","PtitBac","TrouvePersonnage"]
+            Jeux: ["Paire","Empile","Autoclick","Cible","PtitBac", "TrouvePersonnage"]
         }
         socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
 
@@ -61,6 +61,9 @@ class Lobby extends React.Component  {
         socket.on('start', (start) => {
             if (this.state.chef === this.state.id) {
                 var randomeJeu = this.state.Jeux.sort(()=> Math.random() - 0.5);  
+                var paire = randomeJeu.indexOf("Paire")
+                randomeJeu[paire] = randomeJeu[0]
+                randomeJeu[0] = "Paire"
                 this.setState({Jeux: randomeJeu})
                 socket.emit('JeuDebut', this.state.Jeux);
             }

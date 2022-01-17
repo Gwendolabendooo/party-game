@@ -52,8 +52,8 @@ class creLobby extends React.Component  {
                                 <img src={Mage} className='skin' alt="" />
                             </div>
                         </div>
-                        <input type="text" name="Pseudo" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
-                        <input type="text" name="Lobby" placeholder='Nom du serveur' value={this.state.room} onChange={this.updateLobby} required id="" />
+                        <input type="text" name="Pseudo" maxLength="15" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
+                        <input type="text" name="Lobby" maxLength="15" placeholder='Nom du serveur' value={this.state.room} onChange={this.updateLobby} required id="" />
                         <input type="submit" value="Rejoindre" className='btn-start btn-creLobby' />
                     </form>
                     <span></span>

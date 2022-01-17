@@ -48,8 +48,8 @@ class PtitBac extends React.Component {
         })
 
         socket.on('change-check-bac', (data) => {
-            console.log(data[0][2], "data")
-            var input = document.querySelectorAll("input[data-id="+data[0][2]+"]");
+            var inputConcat = "'"+data[0][2]+"'"
+            var input = document.querySelectorAll("input[data-id="+inputConcat+"]");
             input.forEach((element, i) => {
                 if (element.name === data[0][1]) {
                     element.checked = data[0][0]
@@ -129,7 +129,8 @@ class PtitBac extends React.Component {
 
             tabPoints.forEach(element => {
                 console.log(element[0], event.target)
-                let score = event.target.querySelectorAll("input[data-id="+element[0]+"]");
+                var inputConcat = "'"+element[0]+"'"
+                let score = event.target.querySelectorAll("input[data-id="+inputConcat+"]");
                 let cpt = 0;
     
                 score.forEach(element => {

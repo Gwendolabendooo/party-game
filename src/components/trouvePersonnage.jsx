@@ -78,7 +78,8 @@ class TrouvePersonnage extends React.Component {
                 console.log(list)
     
                 list.forEach((element, i) => {
-                    list[i][2] = document.querySelector('div[data-id='+ element[0] +']').querySelectorAll('div[data-vote=bon]').length
+                    var elem = "'"+element[0]+"'"
+                    list[i][2] = document.querySelector("div[data-id="+ elem +"]").querySelectorAll("div[data-vote='bon']").length
                 })  
                 list.sort(function(a, b) {
                     return b[2] - a[2];
