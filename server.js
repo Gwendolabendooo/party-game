@@ -151,6 +151,30 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('affClassement', [data, socket.id]);
     });
 
+    //affiche classement devinemot
+    socket.on('champVide', (data) => {
+      console.log(data, socket.id)
+      io.to(Array.from(socket.rooms)).emit('champVide', true);
+    });
+
+    //calcul mache suivante
+    socket.on('mancheSuivanteCalcul', (data) => {
+      console.log("mancheSuivante", socket.id)
+      io.to(Array.from(socket.rooms)).emit('mancheSuivanteCalcul', data);
+    });
+
+    //ajoute liste number calcul
+    socket.on('listeNumber', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('listeNumber', data);
+    });
+
+    //Envoie du calcul
+    socket.on('Calcul', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('Calcul', [data, socket.id]);
+    });
+
 
     //Ordre vote
     socket.on('ordreVote', (data) => {

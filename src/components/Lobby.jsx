@@ -16,6 +16,7 @@ import Empiler from '../components/Emplier';
 import Cible from './cible';
 import TrouvePersonnage from './trouvePersonnage';
 import PtitBac from './PtitBac';
+import CalculMental from './CalculMental';
 
 class Lobby extends React.Component  {
     constructor(props) {
@@ -27,7 +28,7 @@ class Lobby extends React.Component  {
             start: false,
             id: '', 
             autoclick: false,
-            Jeux: ["Paire","Empile","Autoclick","Cible","PtitBac", "TrouvePersonnage"]
+            Jeux: ["CalculMental","Paire","Empile","Autoclick","Cible","PtitBac", "TrouvePersonnage"]
         }
         socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
 
@@ -61,9 +62,11 @@ class Lobby extends React.Component  {
         socket.on('start', (start) => {
             if (this.state.chef === this.state.id) {
                 var randomeJeu = this.state.Jeux.sort(()=> Math.random() - 0.5);  
+                //Paires en premier
                 var paire = randomeJeu.indexOf("Paire")
                 randomeJeu[paire] = randomeJeu[0]
                 randomeJeu[0] = "Paire"
+
                 this.setState({Jeux: randomeJeu})
                 socket.emit('JeuDebut', this.state.Jeux);
             }
@@ -109,6 +112,8 @@ class Lobby extends React.Component  {
                     return  <PtitBac cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "TrouvePersonnage": 
                     return  <TrouvePersonnage cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "CalculMental":
+                    return  <CalculMental cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
             }    
         }
 

@@ -97,7 +97,8 @@ class Empileur extends React.Component {
 
     render() {
         return (
-            <div className="ctn-autoC ctn-empileur apparition-game">
+            <div className="ctn-autoC ctn-empileur apparition-game position-relative">
+                <div className='position-absolute back-logo'></div>
                 <Transition  title={"L'empileur"}/>
                 {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="chrono-right">
