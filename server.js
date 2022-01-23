@@ -35,7 +35,7 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
       for (var i = 0; i < Lobbys.length; i++) {
         if (Lobbys[i][0] === room.room) {
-          Lobbys[i].push([socket.id, room.pseudo])
+          Lobbys[i].push([socket.id, room.pseudo, 0, room.config])
           index = i
         }
       }

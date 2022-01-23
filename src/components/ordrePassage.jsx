@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {SocketContext, socket} from './socket';
 
-import Icone from '../img/12.svg';
+import NiceAvatar from 'react-nice-avatar'
 
 class ordrePassage extends React.Component  {
     constructor(props) {
@@ -39,7 +39,7 @@ class ordrePassage extends React.Component  {
             <div className="room-ctn" style={{width: 1000+"px", height: 'auto'}} id="scrollHorizontal" onWheel={this.scrollHorizontal}>
                 <div>
                     {console.log(this.state.listeJ)}
-                    {this.state.listeJ.map(element => <div className="nom-j position-relative" data-second={element[0] !== this.state.listeJ[0][0] ? true : false}><div className="score-liste">{element[2]}</div><img src={Icone}></img><span>{element[1]}</span></div>)}
+                    {this.state.listeJ.map(element => <div className="nom-j position-relative" data-second={element[0] !== this.state.listeJ[0][0] ? true : false}><div className="score-liste">{element[2]}</div><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>)}
                 </div>
             </div>
         ) 

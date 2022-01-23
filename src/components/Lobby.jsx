@@ -18,6 +18,8 @@ import TrouvePersonnage from './trouvePersonnage';
 import PtitBac from './PtitBac';
 import CalculMental from './CalculMental';
 
+import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
+
 class Lobby extends React.Component  {
     constructor(props) {
         super(props);
@@ -28,9 +30,9 @@ class Lobby extends React.Component  {
             start: false,
             id: '', 
             autoclick: false,
-            Jeux: ["CalculMental"]
+            Jeux: ["TrouvePersonnage"]
         }
-        socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
+        socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo, config: this.props.config});
 
         socket.on('JeuDebut', (room) => {
             this.setState({Jeux: room})
@@ -125,7 +127,7 @@ class Lobby extends React.Component  {
                     </div>
                     <div className="room-ctn" id="scrollHorizontal" onWheel={this.scrollHorizontal}>
                         <div>
-                            {this.state.listeJ.map(element => <div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<img src={Icone}></img><span>{element[1]}</span></div>)}
+                            {this.state.listeJ.map((element, i) => <div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>)}
                         </div>
                     </div>
                     <div>

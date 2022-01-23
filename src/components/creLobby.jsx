@@ -7,13 +7,16 @@ import Lobby from './Lobby';
 import logo from '../img/logo-mG.svg'
 import Mage from '../Skin/SORCIER.svg'
 
+import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
+
 class creLobby extends React.Component  {
     constructor(props) {
         super(props);
         this.state = {value: '',
                       joined: true,
                       room: "",
-                      pseudo: ""
+                      pseudo: "",
+                      config: genConfig(AvatarConfig)
                     };
 
         this.joined = true;
@@ -21,6 +24,7 @@ class creLobby extends React.Component  {
         this.updateName = this.updateName.bind(this);
         this.updateLobby = this.updateLobby.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.randomConfig = this.randomConfig.bind(this)
     }
     
     handleSubmit(event) {
@@ -40,7 +44,13 @@ class creLobby extends React.Component  {
         this.setState({room: e.target.value.toLowerCase()})
     }
 
+    randomConfig(){
+        console.log(this.state.config)
+        this.setState({config: genConfig(AvatarConfig)})
+    }
+
     render() {
+        
 
         return (
             <div className="d-flex justify-content-around" style={{height: 100+'%', alignItems: "center", width: 100+"%"}}>
@@ -49,7 +59,10 @@ class creLobby extends React.Component  {
                     <form onSubmit={this.handleSubmit}>
                         <div className='ctn-skin'>
                             <div className='skin'>
-                                <img src={Mage} className='skin' alt="" />
+                                <NiceAvatar style={{ width: '14rem', height: '14rem' }} {...this.state.config} />
+                                <div className='p-3 m-2 rounded btn-random' onClick={this.randomConfig}>
+                                    Aléatoire
+                                </div>
                             </div>
                         </div>
                         <input type="text" name="Pseudo" maxLength="15" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
@@ -64,7 +77,7 @@ class creLobby extends React.Component  {
                         </div>
                     </div>
                 </div>
-                : <Lobby room={this.state.room} pseudo={this.state.pseudo} />}
+                : <Lobby room={this.state.room} pseudo={this.state.pseudo} config={this.state.config} />}
             </div>
         ) 
     } 

@@ -10,7 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAppleAlt, faBacon, faCarrot, faCheckCircle, faCheese, faCrown, faEgg, faFish, faHamburger, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Icone from '../img/12.svg';
+import NiceAvatar from 'react-nice-avatar'
 
 let cpt = 0;
 
@@ -300,9 +300,9 @@ class CalculMental extends React.Component {
             socket.emit('Calcul', parseInt(e.target[0].value));
         }
         
-        const listJoueur = this.state.listeJ.map(element =>  element[2] == '' ? <div className="nom-j position-relative" data-second="false"><img src={Icone}></img><span>{element[1]}</span></div> : <div className="nom-j bg-warning position-relative" data-second="false"><img src={Icone}></img><span>{element[1]}</span></div>)
+        const listJoueur = this.state.listeJ.map(element =>  element[2] == '' ? <div className="nom-j position-relative" data-second="false"><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div> : <div className="nom-j bg-warning position-relative" data-second="false"><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>)
         
-        const scoreJ = this.state.listeJ.map(element => element[2] == true ? <div className="nom-j valide position-relative" data-second="false"><img src={Icone}></img><span>{element[1]}</span></div> : <div className="nom-j position-relative bg-danger" data-second="false"><img src={Icone}></img><span className='position-absolute right-10'>{element[2]}</span><span>{element[1]}</span></div>)
+        const scoreJ = this.state.listeJ.map(element => element[2] == true ? <div className="nom-j valide position-relative" data-second="false"><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div> : <div className="nom-j position-relative bg-danger" data-second="false"><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span className='position-absolute right-10'>{element[2]}</span><span>{element[1]}</span></div>)
         
         return (
             <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex">

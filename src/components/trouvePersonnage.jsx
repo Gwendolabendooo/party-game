@@ -6,7 +6,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAppleAlt, faBacon, faCarrot, faCheckCircle, faCheese, faCrown, faEgg, faFish, faHamburger, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Icone from '../img/12.svg';
 
 import Transition from './transition'
 import Stopwatch from './Stopwatch'
@@ -14,6 +13,8 @@ import {SocketContext, socket} from './socket';
 import Score from './Score'
 import InputTxt from './InputText'
 import { disabled } from 'express/lib/application';
+
+import NiceAvatar from 'react-nice-avatar'
 
 const SortableItem = SortableElement(({value}) =>
   <div className='card-last-tab' data-index={value[1]}>{value[0]}</div>
@@ -223,7 +224,7 @@ class TrouvePersonnage extends React.Component {
 
         const listCelebrity = this.state.listcelebre.map(celebre => <div className='card-celebrite-tab'>{celebre}</div>);
 
-        const listJoueur = this.state.listeJ.map((element, i) => <li className='d-flex flex-column align-items-center'><div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<img src={Icone}></img><span>{element[1]}</span></div>{this.state.ordreVote.map((vote, index) => <div>{vote[1] == element[0] ? <div className='d-flex flex-column' data-id={element[0]}>{this.state.ordreVote[index][0].map((voteId, iterate)=> voteId == iterate ? <div className='checkVote' data-vote="bon"><FontAwesomeIcon className="text-success vote" icon={['fas', 'check-circle']} /></div>  : <div className='checkVote' data-vote="mauvais"><FontAwesomeIcon className="text-danger vote" icon={['fas', 'times-circle']} /></div>)}</div> : ""}</div>)}</li>)
+        const listJoueur = this.state.listeJ.map((element, i) => <li className='d-flex flex-column align-items-center'><div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>{this.state.ordreVote.map((vote, index) => <div>{vote[1] == element[0] ? <div className='d-flex flex-column' data-id={element[0]}>{this.state.ordreVote[index][0].map((voteId, iterate)=> voteId == iterate ? <div className='checkVote' data-vote="bon"><FontAwesomeIcon className="text-success vote" icon={['fas', 'check-circle']} /></div>  : <div className='checkVote' data-vote="mauvais"><FontAwesomeIcon className="text-danger vote" icon={['fas', 'times-circle']} /></div>)}</div> : ""}</div>)}</li>)
         
         return (
             <div className="ctn-autoC ctn-empileur apparition-game h-auto">
