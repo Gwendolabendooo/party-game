@@ -63,9 +63,9 @@ class Lobby extends React.Component  {
             if (this.state.chef === this.state.id) {
                 var randomeJeu = this.state.Jeux.sort(()=> Math.random() - 0.5);  
                 //Paires en premier
-                var paire = randomeJeu.indexOf("Paire")
-                randomeJeu[paire] = randomeJeu[0]
-                randomeJeu[0] = "Paire"
+                // var paire = randomeJeu.indexOf("Paire")
+                // randomeJeu[paire] = randomeJeu[0]
+                // randomeJeu[0] = "Paire"
 
                 this.setState({Jeux: randomeJeu})
                 socket.emit('JeuDebut', this.state.Jeux);

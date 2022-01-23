@@ -29,7 +29,7 @@ a{
 input[type="text"] {
   border-radius: 10px;
   background: none;
-  padding: 20px;
+  padding: 10px;
   margin: 20px;
   border: solid 4px #3879E2;
   background-color: #e9f1ff;
@@ -41,7 +41,7 @@ input[type="text"] {
   -o-border-radius: 10px;
   font-family: 'Paytone One', sans-serif;
   color: #3879e2;
-  font-size: 20px;
+  font-size: 18px;
   text-transform: uppercase;
   box-shadow: 0px 0 9px 0px #3879e2;
   text-align: center;
@@ -87,6 +87,11 @@ input[type="text"] {
   text-align: center;
   font-size: 30px;
   color: white;
+  width: 190px;
+  box-shadow: 0px 0 9px 0px rgba(0, 0, 0, 0.761);
+  padding: 12px;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.761);
 }
 
 .ctn-input{
@@ -111,7 +116,7 @@ input[type="text"] {
 
 .ptit-bac{
   font-family: 'Paytone One', sans-serif;
-  width: 80%;
+  width: 85%;
   margin: auto;
   color: #3879e2;
 }
@@ -152,7 +157,7 @@ input[type="text"] {
   width: 1000px;
   box-shadow: 0px 0 9px 0px #003891;
   height: 700px;
-  background-color: white;
+  background-color: #1dadfb0f;
   display: flex;
   flex-direction: row;
   border-radius: 10px;
@@ -176,6 +181,7 @@ input[type="text"] {
   display: flex;
   background: linear-gradient(-45deg, #e2a9e5
   15%,#2b94e5 100%);
+  background-attachment: fixed;
 }
 
 li{
@@ -259,17 +265,30 @@ li{
   width: 220px;
 }
 
+#data-bac{
+  margin-top: 30px;
+}
+
 div[data-input="true"]{
   text-transform: uppercase;
 }
 
 input[type="checkbox"]{
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 }
 
 .title-bac{
-  font-size: 35px;
+  font-size: 20px;
+  background: white;
+  padding: 7px;
+  border-radius: 5px;
+  box-shadow: 0px 0 5px 0px #ffffff;
+  padding-left: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .btn-start{
@@ -443,14 +462,26 @@ input[type="checkbox"]{
   width: 100px;
   height: 100px;
   cursor: pointer;
-  margin: auto;
   border-radius: 5px;
-  box-shadow: 0px 0 9px 0px #ea6d77;
-  background-color: #E84855;
+  box-shadow: 0px 0 9px 0px #3879e2;
+  background-color: #3879e2;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  transition: all .2s;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+}
+
+.autoClick-btn:active{
+  transform: scale(.9);
+  -webkit-transform: scale(.9);
+  -moz-transform: scale(.9);
+  -ms-transform: scale(.9);
+  -o-transform: scale(.9);
 }
 
 [type = search]{
@@ -490,7 +521,8 @@ input[type="checkbox"]{
 
 .paire-card{
   display: flex;
-  background-color: #011638;
+  background-color: #3879e24f;
+  box-shadow: 0px 0 9px 0px #3879e2;
   width: 150px;
   padding: 20px;
   height: 120px;
@@ -517,10 +549,9 @@ input[type="checkbox"]{
   height: 100%;
   backface-visibility: hidden;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-attachment: fixed;
   background-position: center;
-  background-image: url("./logo.svg");
 }
 
 .paired{
@@ -701,7 +732,6 @@ input[type="checkbox"]{
   width: 1000px;
   box-shadow: 0px 0 9px 0px #3879e2;
   height: 600px;
-  background-color: #1f314f;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -754,7 +784,7 @@ input[type="checkbox"]{
 }
 
 .auto-progress{
-  width: 400px;
+  width: 800px;
   height: 10px;
   background-color: aliceblue;
   position: relative;
@@ -770,7 +800,7 @@ input[type="checkbox"]{
   height: 10px;
   transition: all .2s;
   width: 10px;
-  background-color: red;
+  background-color: #3879e2;
   -webkit-transition: all .2s;
   -moz-transition: all .2s;
   -ms-transition: all .2s;
@@ -795,14 +825,13 @@ input[type="checkbox"]{
 }
 
 .displayRandomL{
-  position: absolute;
-  left: 50%;
   font-variant: all-small-caps;
   color: black;
-  top: -140px;
   font-size: 88px;
+  left: 50%;
   border-radius: 5px;
   width: 100px;
+  position: absolute;
   height: 100px;
   background-color: #ffffff;
   display: flex;
@@ -818,16 +847,19 @@ input[type="checkbox"]{
 }
 
 .chrono{
-  background: #ffffff;
-  padding: 20px;
-  margin: 50px;
+  padding: 5px;
+  margin: 25px;
   margin-bottom: 100px;
-  border-radius: 66px;
+  border-radius: 5px;
   font-family: 'Paytone One';
-  color: #ef818a;
-  border: solid #e84855 5px;
-  font-size: 40px;
-  width: 300px;
+  color: white;
+  font-size: 35px;
+  box-shadow: 0px 0 9px 0px #1656bd;
+  width: 230px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .displayRandomL > span{
@@ -849,10 +881,11 @@ input[type="checkbox"]{
 
 .ctn-empileur{
   width: 1000px;
+  margin: 30px;
   height: 800px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
   display: flex;
   justify-content: flex-end;
+  box-shadow: 0px 0 9px 0px #1656bd;
 }
 
 .ctn-back-logo{
@@ -887,8 +920,10 @@ input[type="checkbox"]{
 .cube{
   width: 80px;
   height: 80px;
-  background-color: rgb(196, 14, 60);
-  border: solid 5px rgb(116, 2, 2);
+  z-index: 10;
+  background: #3879e2;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .ctn-score{
@@ -940,8 +975,21 @@ input[type="checkbox"]{
 }
 
 .recordCible{
-  color: white;
+  color: #3879e2;
+  font-family: 'Paytone One', sans-serif;
+  margin: 20px;
   font-size: 30px;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: white;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .malus-cible{

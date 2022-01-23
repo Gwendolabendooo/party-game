@@ -88,6 +88,7 @@ class Empileur extends React.Component {
 
                 if (document.querySelectorAll(".cube").length >= 11) {
                     this.setState({fin: true})
+                    document.querySelector(".cubeMoove").classList.remove("cubeMoove")
                 }
             }   
         }else{

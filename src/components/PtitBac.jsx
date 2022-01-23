@@ -158,7 +158,7 @@ class PtitBac extends React.Component {
                 <Transition  title={"Le ptit bac"}/>
                 {this.state.afficheScore ? <Score jeu={"Le ptit bac"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className='ptit-bac h-100'>
-                    <div className='m-3 lettre'>Lettre: {this.state.letter}</div>
+                    <div className=' lettre'>Lettre <span className='text-primary font-20'>{this.state.letter}</span></div>
                     {this.state.validation ? 
                         <form id='data-bac' onSubmit={this.dataBac}>
                             {this.state.listInput.map(element => <InputText letter={this.state.letter} id={element} label={element}/> )}
@@ -166,7 +166,7 @@ class PtitBac extends React.Component {
                         </form>
                     : 
                         <form id='listBac' onSubmit={this.resBac}>
-                            {this.state.listInput.map(element => <div data-input="true" id={element}><div className='title-bac'>{element}</div></div> )}
+                            {this.state.listInput.map(element => <div data-input="true" id={element}><div className='title-bac mt-5 mb-3'>{element}</div></div> )}
                             <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
                         </form>
                     }
