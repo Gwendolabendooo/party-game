@@ -157,6 +157,12 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('champVide', true);
     });
 
+    //cumule mental
+    socket.on('cumuleMental', (data) => {
+      console.log("data", socket.id)
+      io.to(Array.from(socket.rooms)).emit('cumuleMental', data);
+    });
+
     //calcul mache suivante
     socket.on('mancheSuivanteCalcul', (data) => {
       console.log("mancheSuivante", socket.id)

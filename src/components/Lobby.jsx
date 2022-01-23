@@ -28,7 +28,7 @@ class Lobby extends React.Component  {
             start: false,
             id: '', 
             autoclick: false,
-            Jeux: ["CalculMental","Paire","Empile","Autoclick","Cible","PtitBac", "TrouvePersonnage"]
+            Jeux: ["CalculMental"]
         }
         socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo});
 

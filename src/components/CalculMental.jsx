@@ -39,7 +39,6 @@ class CalculMental extends React.Component {
 
             let liste = this.state.listeJ;
             liste.forEach(element => {
-                console.log(element[0], "===", data[1])
                 if (element[0] === data[1]) {
                     element[2] = data[0]
                 }
@@ -52,7 +51,6 @@ class CalculMental extends React.Component {
                         element[2] = true
                     }
                 })
-                console.log(this.state.listeJ)
             }
 
             this.setState({ listeJ: liste})
@@ -69,7 +67,6 @@ class CalculMental extends React.Component {
             if (this.state.operator[0] == "+") {
                 result = this.state.calcul[0] + this.state.calcul[1]
             }
-            console.log(result)
             this.setState({ result: result })
         })
 
@@ -77,7 +74,6 @@ class CalculMental extends React.Component {
             if (data != 5) {
                 let step = data
                 step++
-                console.log(step, "step")
 
                 document.getElementById('inputCalcul').value = ""
                 document.getElementById('subMot').removeAttribute('disabled')
@@ -118,10 +114,8 @@ class CalculMental extends React.Component {
                         socket.emit('champVide', true);
                     }, this.state.timer)   
                 }
-                console.log(this.state.scoreCumule, 'eerer', this.state.listeJ)
 
                 this.setState({ step: step, bon: [], listeJ: list, result: result })
-                console.log(this.state.step, this.state.bon.length, this.state.listeJ.length)
             }else{
                 let cumule = this.state.scoreCumule
                 let liste = this.state.listeJ
@@ -141,16 +135,20 @@ class CalculMental extends React.Component {
             }
         })
 
+        socket.on('cumuleMental', (data) => {
+            this.setState({ scoreCumule: data })  
+        })
+
         socket.on('champVide', (data) => {
+            document.getElementById('subMot').setAttribute('disabled', true)
+            document.getElementById('subMot').classList.add("valide")
             if (this.state.step !== 6) {
                 document.getElementById('calcul').innerHTML = this.state.result
                 let liste = this.state.listeJ;
                 let bon = this.state.bon;
     
                 liste.forEach(element => {
-                    console.log(element[2])
                     if(element[2] == ""){
-                        console.log("pas bon")
                         element[2] = "Non renseigné"
                         bon.push(0)
                     }
@@ -162,7 +160,6 @@ class CalculMental extends React.Component {
                             element[2] = true
                         }
                     })
-                    console.log(this.state.listeJ)
                 }
     
                 this.setState({ listeJ: liste})
@@ -171,69 +168,65 @@ class CalculMental extends React.Component {
     
                 let bonMauvais = []
                 bon.forEach((element, i) => {
-                    console.log(element)
                     if ( element[0] == this.state.result ) {
                         bonMauvais.push(element)
-                        console.log("add")
                     }
                 })
-                console.log(bonMauvais, "new version", bonMauvais.length)
-    
-                let cumule = this.state.scoreCumule
-                bonMauvais.forEach((element, i) => {
-                    let verif = false
-                    if (cumule.length !== 0) {
-                        console.log("calcul1")
-                        cumule.forEach((cum, i) => {
-                            if (cum[1] === element[1]) {
-                                verif = true
-                                console.log(cum[1], "avant")
-                                if (i == 0) {
-                                    cum[0] += 5
-                                }else if (i == 1) {
-                                    cum[0] += 3
-                                }else if (i == 2) {
-                                    cum[0] += 2
-                                }else {
-                                    cum[0] += 1
+
+                if (this.props.id == this.props.chef) {
+                    let cumule = this.state.scoreCumule
+                    bonMauvais.forEach((element, i) => {
+                        let verif = false
+                        if (cumule.length !== 0) {
+                            cumule.forEach((cum, i) => {
+                                if (cum[1] === element[1]) {
+                                    verif = true
+                                    let incr = cum[0]
+                                    console.log(cum[0], cum[1], "avant")
+                                    if (i == 0) {
+                                        cum[0] = incr + 5
+                                    }else if (i == 1) {
+                                        cum[0] = incr + 3
+                                    }else if (i == 2) {
+                                        cum[0] = incr + 2
+                                    }else {
+                                        cum[0] = incr + 1
+                                    }
+                                    console.log(cum[0], "apres", cum[1])
                                 }
-                                console.log(cum[0], "apres")
+                            })
+                        }else{
+                            verif = true
+                            cumule.push(element)
+                            if (i == 0) {
+                                cumule[0][0] = 5
+                            }else if (i == 1) {
+                                cumule[0][0] = 3
+                            }else if (i == 2) {
+                                cumule[0][0] = 2
+                            }else {
+                                cumule[0][0] = 1
                             }
-                        })
-                    }else{
-                        console.log("calcul2")
-                        verif = true
-                        cumule.push(element)
-                        if (i == 0) {
-                            cumule[0][0] = 5
-                        }else if (i == 1) {
-                            cumule[0][0] = 3
-                        }else if (i == 2) {
-                            cumule[0][0] = 2
-                        }else {
-                            cumule[0][0] = 1
                         }
-                    }
-    
-                    if (verif == false) {
-                        console.log("calcul3")
-                        cumule.push(element)
-                        if (i == 0) {
-                            cumule[cumule.length - 1][0] = 5
-                        }else if (i == 1) {
-                            cumule[cumule.length - 1][0] = 3
-                        }else if (i == 2) {
-                            cumule[cumule.length - 1][0] = 2
-                        }else {
-                            cumule[cumule.length - 1][0] = 1
+        
+                        if (verif == false) {
+                            cumule.push(element)
+                            if (i == 0) {
+                                cumule[cumule.length - 1][0] = 5
+                            }else if (i == 1) {
+                                cumule[cumule.length - 1][0] = 3
+                            }else if (i == 2) {
+                                cumule[cumule.length - 1][0] = 2
+                            }else {
+                                cumule[cumule.length - 1][0] = 1
+                            }
                         }
-                    }
-                })
+                    })
+        
+                    
+                    socket.emit('cumuleMental', cumule);              
+                }
     
-                console.log("cumulestep", cumule)
-                
-    
-                this.setState({ scoreCumule: cumule })
     
                 const step = this.state.step
                 if (this.props.id === this.props.chef) {
@@ -285,7 +278,6 @@ class CalculMental extends React.Component {
           });
 
           setTimeout(function(){
-              console.log("alalalaalala")
             socket.emit('champVide', true);
           }, this.state.timer)
     }
