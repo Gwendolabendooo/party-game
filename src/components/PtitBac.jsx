@@ -93,6 +93,7 @@ class PtitBac extends React.Component {
     }
 
     componentDidMount() {
+        console.log("test")
         if(this.props.id === this.props.chef){
             const letter = this.state.listLetter[Math.floor(Math.random() * this.state.listLetter.length)];
             this.setState({ letter: letter })

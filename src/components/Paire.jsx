@@ -174,7 +174,7 @@ class paire extends React.Component {
                 <Transition  title={"Jeu des paires"}/> 
                 <input type="hidden" id="joueur1" name={this.state.listeJ[0][0]} value={this.state.id} />
                 <div className="mini-game paires">
-                    {this.state.listCard.map((element, i) => <div className="paire-card" id={i} key={i} data-card={element}><div className="paire-card-front" onClick={verifPaire}></div><div className="paire-card-back" style={{backgroundColor: random_bg_color()}}><FontAwesomeIcon className="text-white" icon={['fas', element]} /></div></div> )}
+                    {this.state.listCard.map((element, i) => <div className="paire-card" id={i} key={i} data-card={element}><div className="paire-card-front" onClick={verifPaire}></div><div className="paire-card-back"><FontAwesomeIcon className="text-white" icon={['fas', element]} /></div></div> )}
                 </div>
                 {this.state.finPartie ? <Score jeu={"Paire"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : this.state.finPartie}
             </div>

@@ -21,6 +21,13 @@ class score extends React.Component {
         }
     }
 
+    componentDidMount(){
+        if (this.props.chef) {
+            socket.emit('scoreFinal', this.props.listej);
+            console.log("suivant")   
+        }
+    }
+
     render() {
         return (
             <div className="ctn-popin">

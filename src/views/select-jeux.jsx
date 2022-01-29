@@ -1,36 +1,40 @@
-import React, { useState, setState } from 'react';
-
 import Jeu from '../components/Jeux';
 import SearchBox from '../components/search-box';
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+import React, { useState, setState } from 'react';
 
-const Jeux = () => {
+class Jeux extends React.Component  {
+    constructor(props) {
+        super(props);
+        this.state = {
+            listeJ: this.props.liste,
+            filter: "",
+        }
+        // this.filterChef = this.filterChef.bind(this)
+    }
 
-        const listJeux = ["Jeu des paires", "Autoclick", "L'Empileur", "Dans le mille", "Le PtitBac"];
+    // filterChef(){
+    //     if (this.props.id === this.props.chef) {
+    //         document.addEventListener('filter', function({ detail }) {
+    //             this.setState({filter: detail})
+    //             console.log("oui")
+    //         });   
+    //     }
+    // }
 
-        const [filter, setFilter] = useState("");
-
-        document.addEventListener('filter', function({ detail }) {
-            setFilter(detail)
-        });
-
-        console.log()
-
+    render() {
         return (
             <div className="ctn-search-jeu">
-                <SearchBox />
+                {/* <SearchBox /> */}
+                {/* {this.filterChef} */}
+                {console.log(this.state.listeJ)}
                 <div className="ctn-jeux">
-                    {listJeux.filter(name => name.includes(filter)).map((jeu) => <Jeu name={jeu} />)}
+                    {this.state.listeJ.map((jeu) => <Jeu name={jeu.name} chef={this.props.chef} id={this.props.id} selected={jeu.selected} />)}
                 </div>
             </div>
             
         )
+    }
 
 }
 

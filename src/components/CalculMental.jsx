@@ -232,7 +232,7 @@ class CalculMental extends React.Component {
                 if (this.props.id === this.props.chef) {
                     setTimeout(function(){
                         socket.emit('mancheSuivanteCalcul', step);
-                      }, 5000)   
+                      }, 3000)   
                 }   
             }
         })

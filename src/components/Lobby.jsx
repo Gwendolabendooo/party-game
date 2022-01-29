@@ -17,6 +17,7 @@ import Cible from './cible';
 import TrouvePersonnage from './trouvePersonnage';
 import PtitBac from './PtitBac';
 import CalculMental from './CalculMental';
+import Leaderboard from './leaderboard';
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
 
@@ -29,10 +30,54 @@ class Lobby extends React.Component  {
             chef: '',
             start: false,
             id: '', 
+            scoreFinal: [],
             autoclick: false,
-            Jeux: ["TrouvePersonnage"]
+            listeJselected: [],
+            Jeux: [
+                {
+                    name: "Jeu des Paires",
+                    selected: true
+                },
+                {
+                    name: "Empileur",
+                    selected: true
+                },
+                {
+                    name: "Autoclick",
+                    selected: true
+                },
+                {
+                    name: "Dans le mille",
+                    selected: true
+                },
+                {
+                    name: "PtitBac",
+                    selected: true
+                },
+                {
+                    name: "Trouve le Personnage",
+                    selected: true
+                },
+                {
+                    name: "CalculMental",
+                    selected: true
+                }
+            ]
         }
         socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo, config: this.props.config});
+
+        socket.on('selectJeu', (room) => {
+            var jeux = this.state.Jeux
+
+            jeux.forEach(element => {
+                if (element.name == room) {
+                    element.selected = !element.selected
+                }
+            });
+
+            this.setState({Jeux: jeux})
+            console.log(room)
+        })
 
         socket.on('JeuDebut', (room) => {
             this.setState({Jeux: room})
@@ -40,6 +85,7 @@ class Lobby extends React.Component  {
         })
 
         socket.on('arrive', (room) => {
+            //TO DO GERER ENVOIE DES JEUX SELECTIONN2S
             console.log(room)
             room.shift()
             this.setState({listeJ: room, chef: room[0][0]})
@@ -62,17 +108,57 @@ class Lobby extends React.Component  {
         });
 
         socket.on('start', (start) => {
+            var games = this.state.Jeux
+            console.log(games, games[games.length - 1].name)
+
             if (this.state.chef === this.state.id) {
                 var randomeJeu = this.state.Jeux.sort(()=> Math.random() - 0.5);  
-                //Paires en premier
-                // var paire = randomeJeu.indexOf("Paire")
-                // randomeJeu[paire] = randomeJeu[0]
-                // randomeJeu[0] = "Paire"
 
-                this.setState({Jeux: randomeJeu})
+                randomeJeu[randomeJeu.length] = {
+                    name: "Tableau des scores",
+                    selected: true
+                }
+
+                var selectedGames = []
+                randomeJeu.forEach(game => {
+                    if (game.selected == true) {
+                        selectedGames.push(game)
+                    }
+                })
+
+                //Paires en premier
+                var ishere = -1
+
+                selectedGames.forEach((gameid, i) => {
+                    if (gameid.name == "Jeu des Paires" ) {
+                        ishere = i
+                    }
+                })
+
+                if (ishere != -1) {
+                    selectedGames[ishere] = selectedGames[0]
+                    selectedGames[0] = {
+                        name: "Jeu des Paires",
+                        selected: true
+                    }   
+                }
+
+                this.setState({Jeux: selectedGames})
                 socket.emit('JeuDebut', this.state.Jeux);
             }
-            this.setState({start: true})
+            //Init score final
+            var scoreFin = this.state.scoreFinal
+            this.state.listeJ.forEach(player => {
+                scoreFin.push([player[0], 0, player[1], player[3]])
+            })
+
+            this.setState({start: true, scoreFinal: scoreFin})
+
+            if (games[games.length - 1].name == "Tableau des scores") {
+                games.pop()
+            }
+
+            this.setState({listeJselected: games})
         });
 
         socket.on('Jeu-suivant', (jeu) => {
@@ -80,6 +166,28 @@ class Lobby extends React.Component  {
             randomeGame.shift()
             console.log("jeu d'apres", randomeGame)
             this.setState({Jeux: randomeGame})
+        });
+
+        socket.on('scoreFinal', (classement) => {
+            console.log(classement, 'le classmeent')
+            var scoreFin = this.state.scoreFinal
+            scoreFin.forEach(score => {
+                classement.forEach((pos, index) => {
+                    if (score[0] == pos[0]) {
+                        if (index == 0) {
+                            score[1] += 5
+                        }else if (index == 1) {
+                            score[1] += 3
+                        }else if (index == 2) {
+                            score[1] += 2
+                        }else{
+                            score[1] += 1
+                        }
+                    }
+                })
+            })
+            this.setState({scoreFinal: scoreFin})
+            console.log("scoreFin ", this.state.scoreFinal)
         });
     }
 
@@ -100,23 +208,42 @@ class Lobby extends React.Component  {
         }
 
         const jeuSuivant = (jeu) => {
-            console.log(jeu)
-            switch (this.state.Jeux[0]) {
-                case "Paire": 
-                    return <Paire cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
-                case "Empile":  
-                    return <Empiler cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+            console.log("iyiyiyii")
+            var game = "t"
+            if (this.state.Jeux.length == 0) {
+                game = "aucun"
+            }else{
+                game = this.state.Jeux[0].name
+            }
+
+            let id = () => {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+              }
+
+            switch (game) {
+                case "Jeu des Paires": 
+                    return <Paire key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "Empileur":  
+                    return <Empiler key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "Autoclick": 
-                    return  <Autoclick cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
-                case "Cible": 
-                    return  <Cible cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return  <Autoclick key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "Dans le mille": 
+                    return  <Cible key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "PtitBac": 
-                    return  <PtitBac cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
-                case "TrouvePersonnage": 
-                    return  <TrouvePersonnage cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return  <PtitBac key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "Trouve le Personnage": 
+                    return  <TrouvePersonnage key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "CalculMental":
-                    return  <CalculMental cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
-            }    
+                    return  <CalculMental key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "Tableau des scores":
+                    return <Leaderboard key={id} score={this.state.scoreFinal}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+
+                default:
+                    var lsit= this.state.listeJselected
+                    this.setState({start: false, Jeux: lsit, scoreFinal: []})
+            }
         }
 
         return (
@@ -131,7 +258,7 @@ class Lobby extends React.Component  {
                         </div>
                     </div>
                     <div>
-                        <Jeux />
+                        <Jeux  liste={this.state.Jeux} id={this.state.id} chef={this.state.chef}/>
                     </div>
                     <div className="btn-start" onClick={start}>Commencer</div>
                 </div>

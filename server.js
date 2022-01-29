@@ -181,6 +181,17 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('Calcul', [data, socket.id]);
     });
 
+    //Ordre vote
+    socket.on('selectJeu', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('selectJeu', data);
+    });
+
+    //INCR SCORE FINAL
+    socket.on('scoreFinal', (data) => {
+      console.log("scorefinal", data)
+      io.to(Array.from(socket.rooms)).emit('scoreFinal', data);
+    });
 
     //Ordre vote
     socket.on('ordreVote', (data) => {

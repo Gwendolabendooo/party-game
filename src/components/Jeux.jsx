@@ -3,11 +3,21 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAppleAlt, faBacon, faCarrot, faCheese, faEgg, faFish, faHamburger, faHandPointer, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import {SocketContext, socket} from './socket';
+
 import Exemple from "../img/exemple.jpg"
 
 class jeu extends React.Component {
     constructor(props) {
         super(props);
+        this.selectCard = this.selectCard.bind(this)
+    }
+
+    selectCard(e){
+        if (this.props.id === this.props.chef) {
+            socket.emit('selectJeu', this.props.name);
+        }
+        
     }
 
     render() {
@@ -25,12 +35,8 @@ class jeu extends React.Component {
             faHandPointer
         )
 
-        function selectCard(e){
-            console.log(e.target.classList.toggle("card-select"))
-        }
-
         return (
-            <div className="card-game" onClick={selectCard}>
+            <div className={this.props.selected ? "card-game" : "card-game card-select"} onClick={this.selectCard}>
                 <FontAwesomeIcon className="text-white pointer" icon={['fas', 'hand-pointer']} />
                 <div className="card-title">
                     {this.props.name}
