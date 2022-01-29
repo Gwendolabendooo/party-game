@@ -443,6 +443,21 @@ input[type="checkbox"]{
   box-shadow: 0px 0 5px 0px #f7da02;
 }
 
+.nb-j{
+  color: white;
+  background: #0000001a;
+  padding-left: 6px;
+  padding-right: 6px;
+  right: 20px;
+  top: 20px;
+  box-shadow: 0px 0 5px 0px #d6d6d6;
+}
+
+.fontAdd{
+  font-family: 'Paytone One';
+  text-transform: uppercase;
+}
+
 .third{
   background: rgb(181 111 5);
 }

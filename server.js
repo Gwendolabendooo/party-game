@@ -187,6 +187,12 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('selectJeu', data);
     });
 
+    //        
+    socket.on('listeJoeursco', (nbrJ) => {
+      console.log(io.engine.clientsCount, 'long')
+      io.emit('listeJoeursco', io.engine.clientsCount);
+    })
+
     //INCR SCORE FINAL
     socket.on('scoreFinal', (data) => {
       console.log("scorefinal", data)

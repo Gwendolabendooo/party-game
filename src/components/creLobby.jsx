@@ -19,6 +19,7 @@ class creLobby extends React.Component  {
                       joined: true,
                       room: "",
                       pseudo: "",
+                      nbrPlayer: 0,
                       config: genConfig(AvatarConfig),
                       earSize: ["small", "big"],
                       hairStyle: ["normal", "thick", "mohawk", "womanLong", "womanShort"],
@@ -40,6 +41,13 @@ class creLobby extends React.Component  {
         this.ear = this.ear.bind(this);
         this.customSkin = this.customSkin.bind(this);
         this.changeColor = this.changeColor.bind(this);
+
+        socket.emit('listeJoeursco', "co");
+
+        socket.on('listeJoeursco', (nbrJ) => {
+            console.log(nbrJ, "enw")
+            this.setState({nbrPlayer: nbrJ})
+        })
     }
     
     handleSubmit(event) {
@@ -117,7 +125,15 @@ class creLobby extends React.Component  {
         return (
             <div className="d-flex justify-content-around" style={{height: 100+'%', alignItems: "center", width: 100+"%"}}>
                 {this.state.joined === true ? 
-                <div className="ctn-creLobby">
+                <div className="ctn-creLobby position-relative">
+                    <div className='d-flex align-items-center position-absolute rounded nb-j'>
+                        <div className='m-2 fontAdd'>
+                            {this.state.nbrPlayer}
+                        </div>
+                        <div>
+                            Joueurs
+                        </div>
+                    </div>
                     <form onSubmit={this.handleSubmit}>
                         <div className='ctn-skin'>
                             <div className='skin'>
