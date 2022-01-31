@@ -644,7 +644,7 @@ input[type="checkbox"]{
 
 .ctn-lobby{
   width: 1000px;
-  height: 770px;
+  height: 680px;
   font-family: 'Paytone One';
   font-size: 30px;
   color: white;
@@ -977,7 +977,7 @@ input[type="checkbox"]{
 
 .card-game{
   width: 155px;
-  height: 200px;
+  height: 130px;
   transition: filter .3s;
   color: white;
   border: solid #2c75ed 4px;
@@ -1010,7 +1010,7 @@ input[type="checkbox"]{
 .ctn-jeux{
   display: flex;
   width: 800px;
-  height: 380px;
+  height: 300px;
   overflow: auto;
   margin: auto;
   flex-direction: row;
@@ -1028,6 +1028,7 @@ input[type="checkbox"]{
 }
 
 .card-title{
+  text-align: center;
   display: flex;
   font-family: 'Paytone One', sans-serif;
   height: 20%;

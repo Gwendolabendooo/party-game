@@ -98,7 +98,7 @@ class Cible extends React.Component {
             setInterval(()=>{
                 if(!this.state.afficheScore){
                     var pos1 = Math.floor(Math.random()*880)
-                    var pos2 = Math.floor(Math.random()*680)
+                    var pos2 = Math.floor(Math.random()*580)
     
                     var cible = document.createElement("div");
                     var cible2 = document.createElement("div");
@@ -131,7 +131,7 @@ class Cible extends React.Component {
             setInterval(()=>{
                 if(!this.state.afficheScore){
                     var pos1 = Math.floor(Math.random()*880)
-                    var pos2 = Math.floor(Math.random()*680)
+                    var pos2 = Math.floor(Math.random()*580)
         
                     var cible = document.createElement("div");
         
@@ -167,7 +167,7 @@ class Cible extends React.Component {
             setInterval(()=>{
                 if(!this.state.afficheScore){
                     var pos1 = Math.floor(Math.random()*880)
-                    var pos2 = Math.floor(Math.random()*680)
+                    var pos2 = Math.floor(Math.random()*580)
         
                     var cible = document.createElement("div");
         

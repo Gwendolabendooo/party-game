@@ -60,7 +60,7 @@ class Lobby extends React.Component  {
                     selected: true
                 },
                 {
-                    name: "CalculMental",
+                    name: "Calcul Mental",
                     selected: true
                 },
                 {
