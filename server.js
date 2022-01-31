@@ -187,6 +187,30 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('selectJeu', data);
     });
 
+    //Click-memory-color
+    socket.on('Click-memory-color', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('Click-memory-color', data);
+    });
+
+    //Click-memory-color
+    socket.on('retire-vie-memory', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('retire-vie-memory', data);
+    });
+
+    //Jsuivant-memory
+    socket.on('Jsuivant-memory', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('Jsuivant-memory', data);
+    });
+
+    //liste memorycolor
+    socket.on('listMemo', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('listMemo', data);
+    });
+
     //        
     socket.on('listeJoeursco', (nbrJ) => {
       console.log(io.engine.clientsCount, 'long')

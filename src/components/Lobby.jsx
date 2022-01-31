@@ -18,6 +18,7 @@ import TrouvePersonnage from './trouvePersonnage';
 import PtitBac from './PtitBac';
 import CalculMental from './CalculMental';
 import Leaderboard from './leaderboard';
+import ColorMemory from './colorMemory';
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
 
@@ -60,6 +61,10 @@ class Lobby extends React.Component  {
                 },
                 {
                     name: "CalculMental",
+                    selected: true
+                },
+                {
+                    name: "Color Memory",
                     selected: true
                 }
             ]
@@ -216,30 +221,26 @@ class Lobby extends React.Component  {
                 game = this.state.Jeux[0].name
             }
 
-            let id = () => {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-              }
-
             switch (game) {
                 case "Jeu des Paires": 
-                    return <Paire key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return <Paire cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "Empileur":  
-                    return <Empiler key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return <Empiler cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "Autoclick": 
-                    return  <Autoclick key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return  <Autoclick cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "Dans le mille": 
-                    return  <Cible key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return  <Cible cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "PtitBac": 
-                    return  <PtitBac key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return  <PtitBac cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "Trouve le Personnage": 
-                    return  <TrouvePersonnage key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
-                case "CalculMental":
-                    return  <CalculMental key={id} cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return  <TrouvePersonnage cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                case "Calcul Mental":
+                    return  <CalculMental cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "Tableau des scores":
-                    return <Leaderboard key={id} score={this.state.scoreFinal}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
-
+                    return <Leaderboard score={this.state.scoreFinal}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                case "Color Memory":
+                    return <ColorMemory score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                
                 default:
                     var lsit= this.state.listeJselected
                     this.setState({start: false, Jeux: lsit, scoreFinal: []})

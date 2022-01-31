@@ -443,6 +443,127 @@ input[type="checkbox"]{
   box-shadow: 0px 0 5px 0px #f7da02;
 }
 
+.simon-part{
+  width: 200px;
+  cursor: pointer;
+  height: 200px;
+  transition: all .2s;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+}
+
+.ctn-simon{
+  height: 420px;
+  width: 440px;
+}
+
+.rotate-1{
+  margin-left: 10px;
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+}
+
+.simon-part > path{
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+}
+
+.rotate-0:hover{
+  filter: drop-shadow(10px 10px 20px rgba(45, 232, 8, 0.7));
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(45, 232, 8, 0.7));
+}
+
+.rotate-0:hover > path{
+  fill: rgba(45, 232, 8, 0.7)!important;
+}
+
+.Calque_1Actif{
+  filter: drop-shadow(10px 10px 20px rgba(45, 232, 8, 0.7));
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(45, 232, 8, 0.7));
+}
+
+.Calque_1Actif > path{
+  fill: rgba(45, 232, 8, 0.7)!important;
+}
+
+.rotate-1:hover{
+  filter: drop-shadow(10px 10px 20px rgba(255, 46, 46, 0.7));
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(255, 46, 46, 0.7));
+}
+
+.rotate-1:hover > path{
+  fill: rgba(255, 46, 46, 0.7)!important;
+}
+
+.Calque_2Actif{
+  filter: drop-shadow(10px 10px 20px rgba(255, 46, 46, 0.7));
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(255, 46, 46, 0.7));
+}
+
+.Calque_2Actif > path{
+  fill: rgba(255, 46, 46, 0.7)!important;
+}
+
+.rotate-2:hover{
+  filter: drop-shadow(10px 10px 20px rgba(252, 255, 54, 0.7));
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(252, 255, 54, 0.7));
+}
+
+.rotate-2:hover > path{
+  fill: rgba(252, 255, 54, 0.7)!important;
+}
+
+.Calque_3Actif{
+  filter: drop-shadow(10px 10px 20px rgba(252, 255, 54, 0.7));
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(252, 255, 54, 0.7));
+}
+
+.Calque_3Actif > path{
+  fill: rgba(252, 255, 54, 0.7)!important;
+}
+
+.rotate-3:hover{
+  filter: drop-shadow(10px 10px 20px rgba(40, 178, 252, 0.7));
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(40, 178, 252, 0.7));
+}
+
+.rotate-3:hover > path{
+  fill: rgba(40, 178, 252, 0.7)!important;
+}
+
+.Calque_4Actif{
+  filter: drop-shadow(10px 10px 20px rgba(40, 178, 252, 0.7));
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(40, 178, 252, 0.7));
+}
+
+.Calque_4Actif > path{
+  fill: rgba(40, 178, 252, 0.7)!important;
+}
+
+.rotate-2{
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+}
+.rotate-3{
+  margin-left: 10px;
+  transform: rotate(-180deg);
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+}
+
 .nb-j{
   color: white;
   background: #0000001a;
@@ -821,6 +942,15 @@ input[type="checkbox"]{
   color: #ffffff!important;
 }
 
+.dead{
+  filter: grayscale(1);
+}
+
+.lvl{
+  font-family: 'Paytone One', sans-serif;
+  font-size: 25px;
+}
+
 .restant{
   font-family: 'Paytone One', sans-serif;
   color: #34d3ab;
@@ -1086,7 +1216,7 @@ input[type="checkbox"]{
 .ctn-empileur{
   width: 1000px;
   margin: 30px;
-  height: 800px;
+  height: 680px;
   display: flex;
   justify-content: flex-end;
   box-shadow: 0px 0 9px 0px #1656bd;
@@ -1095,7 +1225,7 @@ input[type="checkbox"]{
 .ctn-back-logo{
   width: 1000px;
   box-shadow: 0px 0 9px 0px #1656bd;
-  height: 800px;
+  height: 680px;
   display: flex;
   justify-content: flex-end;
 }
