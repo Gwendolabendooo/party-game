@@ -172,6 +172,7 @@ class CalculMental extends React.Component {
                         bonMauvais.push(element)
                     }
                 })
+                console.log("bonmauvais",bonMauvais )
 
                 if (this.props.id == this.props.chef) {
                     let cumule = this.state.scoreCumule
@@ -182,7 +183,6 @@ class CalculMental extends React.Component {
                                 if (cum[1] === element[1]) {
                                     verif = true
                                     let incr = cum[0]
-                                    console.log(cum[0], cum[1], "avant")
                                     if (i == 0) {
                                         cum[0] = incr + 5
                                     }else if (i == 1) {
@@ -192,7 +192,6 @@ class CalculMental extends React.Component {
                                     }else {
                                         cum[0] = incr + 1
                                     }
-                                    console.log(cum[0], "apres", cum[1])
                                 }
                             })
                         }else{
@@ -221,6 +220,7 @@ class CalculMental extends React.Component {
                                 cumule[cumule.length - 1][0] = 1
                             }
                         }
+                        console.log(cumule, "avant")
                     })
         
                     
@@ -305,26 +305,28 @@ class CalculMental extends React.Component {
         const scoreJ = this.state.listeJ.map(element => element[2] == true ? <div className="nom-j valide position-relative" data-second="false"><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div> : <div className="nom-j position-relative bg-danger" data-second="false"><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span className='position-absolute right-10'>{element[2]}</span><span>{element[1]}</span></div>)
         
         return (
-            <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex">
-                <div className='position-absolute back-logo'></div>
+            <div className='h-100 w-100 d-flex align-items-center justify-content-evenly'>
                 <Transition  title={"Calcul mental"}/>
                 {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <div className='d-flex p-3 mw-100'>
-                    {this.state.bon.length === this.state.listeJ.length ? scoreJ : listJoueur }
-                </div>
-                <span id='loader' className='loader'></span>
-                <div className='z-index-2 d-flex flex-column align-items-center justify-content-around h-100 text-white w-50'>
-                    <div className='h3 col-12 text-center'>
-                        Etape
-                        <span>
-                            <span id='step'> {this.state.step} </span> / 5
-                        </span>
+                <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex">
+                    <div className='position-absolute back-logo'></div>
+                    <div className='d-flex p-3 mw-100'>
+                        {this.state.bon.length === this.state.listeJ.length ? scoreJ : listJoueur }
                     </div>
-                    <div className='h1 p-3 rounded col-12 text-center calcul' id='calcul'>9 * 7 + 4</div>
-                    <form className='col-12' onSubmit={(e) => resultat(e)}>
-                        <InputTxt letter="48" col="col-12" id="inputCalcul"/>
-                        <input type="submit" value="Valider" id='subMot' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
-                    </form>
+                    <span id='loader' className='loader'></span>
+                    <div className='z-index-2 d-flex flex-column align-items-center justify-content-around h-100 text-white w-50'>
+                        <div className='h3 col-12 text-center'>
+                            Etape
+                            <span>
+                                <span id='step'> {this.state.step} </span> / 5
+                            </span>
+                        </div>
+                        <div className='h1 p-3 rounded col-12 text-center calcul' id='calcul'>9 * 7 + 4</div>
+                        <form className='col-12' onSubmit={(e) => resultat(e)}>
+                            <InputTxt letter="48" col="col-12" id="inputCalcul"/>
+                            <input type="submit" value="Valider" id='subMot' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                        </form>
+                    </div>
                 </div>
             </div>
         )  

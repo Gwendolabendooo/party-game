@@ -158,7 +158,7 @@ class Cible extends React.Component {
                     socket.emit('fin-cible', this.state.record);  
                     this.setState({cptfin: 1})     
                 } 
-            },50000);   
+            },40000);   
     }
 
     newMalusCible = (e) =>{

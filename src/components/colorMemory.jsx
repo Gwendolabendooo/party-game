@@ -3,6 +3,7 @@ import React, { useState, setState } from 'react';
 import Transition from './transition'
 import {SocketContext, socket} from './socket';
 import Score from './Score'
+import Tuto from './tutorial'
 
 import Jeudusimon from '../img/jeuxSimon.svg'
 
@@ -17,7 +18,8 @@ class ColorMemory extends React.Component {
             niveau: [],
             afficheScore : false,
             memoryUser: [],
-            memory: []
+            memory: [],
+            tuto: true
         }; 
 
         socket.on('retire-vie-memory', (data) => {
@@ -115,6 +117,11 @@ class ColorMemory extends React.Component {
             this.setState({ memory: data, niveau: [data[0]] })  
         })
 
+        socket.on('startGame', (data) => {
+            this.setState({ tuto: false })  
+            this.start()
+        })
+
         this.seeCombi = this.seeCombi.bind(this)
         this.start = this.start.bind(this)
         this.handleLvl = this.handleLvl.bind(this)
@@ -157,18 +164,25 @@ class ColorMemory extends React.Component {
     }
 
     addClass(color, addedClass){
-        document.getElementById(color).classList.add(addedClass)
+        if(document.getElementById("Calque_1") != null){
+            document.getElementById(color).classList.add(addedClass)
+        }
     }
 
     handleLvl(){
-        document.getElementById("Calque_1").style.pointerEvents = "";
-        document.getElementById("Calque_2").style.pointerEvents = "";
-        document.getElementById("Calque_3").style.pointerEvents = "";
-        document.getElementById("Calque_4").style.pointerEvents = "";
+        if(document.getElementById("Calque_1") != null){
+            document.getElementById("Calque_1").style.pointerEvents = "";
+            document.getElementById("Calque_2").style.pointerEvents = "";
+            document.getElementById("Calque_3").style.pointerEvents = "";
+            document.getElementById("Calque_4").style.pointerEvents = "";
+            document.querySelector(".ctn-back-logo").classList.remove("focus")
+        }
     }
 
     removeClass(color, addedClass){
-        document.getElementById(color).classList.remove(addedClass)
+        if(document.getElementById("Calque_1") != null){
+            document.getElementById(color).classList.remove(addedClass)
+        }
     }
 
     start(){
@@ -223,6 +237,8 @@ class ColorMemory extends React.Component {
         document.getElementById("Calque_2").style.pointerEvents = "none";
         document.getElementById("Calque_3").style.pointerEvents = "none";
         document.getElementById("Calque_4").style.pointerEvents = "none";
+
+        document.querySelector(".ctn-back-logo").classList.add("focus")
         
         var addedClass = ""
 
@@ -252,58 +268,62 @@ class ColorMemory extends React.Component {
 
     render() {        
         return (
-            <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex justify-content-around">
+            <div className='h-100 w-100 d-flex align-items-center justify-content-evenly'>
+                {console.log(this.props.chef)}
+                {this.state.tuto ? <Tuto chef={this.props.chef} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 <Transition  title={"Memory Color"}/>
-                <div className='d-flex flex-row'>
-                    {this.state.listeJ.map((item, index) => {
-                        if (index == 0) {
-                            return (
-                                <div className={item[4] == 3 ? "nom-j position-relative valide" : item[4] == 2 ? "nom-j position-relative bg-warning" : item[4] == 1 ? "nom-j position-relative bg-danger" : "nom-j position-relative dead"}>
-                                    <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
-                                    <span className='m-auto text-center'>
-                                        {item[1]}
-                                    </span>
-                                </div>
-                            );  
-                        }else{
-                            return (
-                                <div className={item[4] == 3 ? "nom-j position-relative valide opacity-25" : item[4] == 2 ? "nom-j position-relative bg-warning opacity-25" : item[4] == 1 ? "nom-j position-relative bg-danger opacity-25" : "nom-j position-relative dead opacity-25"}>
-                                    <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
-                                    <span className='m-auto text-center'>
-                                        {item[1]}
-                                    </span>
-                                </div>
-                            );  
-                        } 
-                    })}
-                </div>
-                {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <span id='loader' className='loader'></span>
-                <span className='text-white lvl'>Niveau <span className='text-warning'>{this.state.niveau.length}</span></span>
-                <div className='d-flex flex-column ctn-simon'>
-                    <div className='m-auto'>
-                        <svg id="Calque_1" onClick={() => this.memoUser("Calque_1")} className='simon-part rotate-0' data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.46 158.26">
-                            <path style={{fill: "rgb(20 156 14)"}} d="M144.63,99.5" transform="translate(-1.54 -2.74)"/>
-                            <path style={{fill: "rgb(20 156 14)"}} d="M188.65,99.5" transform="translate(-1.54 -2.74)"/>
-                            <path style={{fill: "rgb(20 156 14)"}} d="M76.4,151.64c8.48-36.35,38.65-64.89,76.88-72.58A12.22,12.22,0,0,0,163,67v-52A12.28,12.28,0,0,0,149,2.86C72.58,13.88,12.26,72.79,1.66,147.09A12.26,12.26,0,0,0,13.85,161H64.46A12.23,12.23,0,0,0,76.4,151.64Z" transform="translate(-1.54 -2.74)"/>
-                        </svg>
-                        <svg id="Calque_2" onClick={() => this.memoUser("Calque_2")} className='simon-part rotate-1' data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.46 158.26">
-                            <path style={{fill: "#cc0505"}} d="M144.63,99.5" transform="translate(-1.54 -2.74)"/>
-                            <path style={{fill: "#cc0505"}} d="M188.65,99.5" transform="translate(-1.54 -2.74)"/>
-                            <path style={{fill: "#cc0505"}} d="M76.4,151.64c8.48-36.35,38.65-64.89,76.88-72.58A12.22,12.22,0,0,0,163,67v-52A12.28,12.28,0,0,0,149,2.86C72.58,13.88,12.26,72.79,1.66,147.09A12.26,12.26,0,0,0,13.85,161H64.46A12.23,12.23,0,0,0,76.4,151.64Z" transform="translate(-1.54 -2.74)"/>
-                        </svg>
+                {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef} listej={this.state.listeJ}/> : ''}
+                <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex justify-content-around">
+                    <div className='d-flex flex-row'>
+                        {this.state.listeJ.map((item, index) => {
+                            if (index == 0) {
+                                return (
+                                    <div className={item[4] == 3 ? "nom-j position-relative valide" : item[4] == 2 ? "nom-j position-relative bg-warning" : item[4] == 1 ? "nom-j position-relative bg-danger" : "nom-j position-relative dead"}>
+                                        <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
+                                        <span className='m-auto text-center'>
+                                            {item[1]}
+                                        </span>
+                                    </div>
+                                );  
+                            }else{
+                                return (
+                                    <div className={item[4] == 3 ? "nom-j position-relative valide opacity-25" : item[4] == 2 ? "nom-j position-relative bg-warning opacity-25" : item[4] == 1 ? "nom-j position-relative bg-danger opacity-25" : "nom-j position-relative dead opacity-25"}>
+                                        <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
+                                        <span className='m-auto text-center'>
+                                            {item[1]}
+                                        </span>
+                                    </div>
+                                );  
+                            } 
+                        })}
                     </div>
-                    <div className='m-auto'>
-                        <svg id="Calque_3" onClick={() => this.memoUser("Calque_3")} className='simon-part rotate-2' data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.46 158.26">
-                            <path style={{fill: "rgb(204 193 13)"}} d="M144.63,99.5" transform="translate(-1.54 -2.74)"/>
-                            <path style={{fill: "rgb(204 193 13)"}} d="M188.65,99.5" transform="translate(-1.54 -2.74)"/>
-                            <path style={{fill: "rgb(204 193 13)"}} d="M76.4,151.64c8.48-36.35,38.65-64.89,76.88-72.58A12.22,12.22,0,0,0,163,67v-52A12.28,12.28,0,0,0,149,2.86C72.58,13.88,12.26,72.79,1.66,147.09A12.26,12.26,0,0,0,13.85,161H64.46A12.23,12.23,0,0,0,76.4,151.64Z" transform="translate(-1.54 -2.74)"/>
-                        </svg>
-                        <svg id="Calque_4" onClick={() => this.memoUser("Calque_4")} className='simon-part rotate-3' data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.46 158.26">
-                            <path style={{fill: "rgb(2, 97, 202)"}} d="M144.63,99.5" transform="translate(-1.54 -2.74)"/>
-                            <path style={{fill: "rgb(2, 97, 202)"}} d="M188.65,99.5" transform="translate(-1.54 -2.74)"/>
-                            <path style={{fill: "rgb(2, 97, 202)"}} d="M76.4,151.64c8.48-36.35,38.65-64.89,76.88-72.58A12.22,12.22,0,0,0,163,67v-52A12.28,12.28,0,0,0,149,2.86C72.58,13.88,12.26,72.79,1.66,147.09A12.26,12.26,0,0,0,13.85,161H64.46A12.23,12.23,0,0,0,76.4,151.64Z" transform="translate(-1.54 -2.74)"/>
-                        </svg>
+                    <span id='loader' className='loader'></span>
+                    <span className='text-white lvl'>Niveau <span className='text-warning'>{this.state.niveau.length}</span></span>
+                    <div className='d-flex flex-column ctn-simon'>
+                        <div className='m-auto'>
+                            <svg id="Calque_1" onClick={() => this.memoUser("Calque_1")} className='simon-part rotate-0' data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.46 158.26">
+                                <path style={{fill: "rgb(20 156 14)"}} d="M144.63,99.5" transform="translate(-1.54 -2.74)"/>
+                                <path style={{fill: "rgb(20 156 14)"}} d="M188.65,99.5" transform="translate(-1.54 -2.74)"/>
+                                <path style={{fill: "rgb(20 156 14)"}} d="M76.4,151.64c8.48-36.35,38.65-64.89,76.88-72.58A12.22,12.22,0,0,0,163,67v-52A12.28,12.28,0,0,0,149,2.86C72.58,13.88,12.26,72.79,1.66,147.09A12.26,12.26,0,0,0,13.85,161H64.46A12.23,12.23,0,0,0,76.4,151.64Z" transform="translate(-1.54 -2.74)"/>
+                            </svg>
+                            <svg id="Calque_2" onClick={() => this.memoUser("Calque_2")} className='simon-part rotate-1' data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.46 158.26">
+                                <path style={{fill: "#cc0505"}} d="M144.63,99.5" transform="translate(-1.54 -2.74)"/>
+                                <path style={{fill: "#cc0505"}} d="M188.65,99.5" transform="translate(-1.54 -2.74)"/>
+                                <path style={{fill: "#cc0505"}} d="M76.4,151.64c8.48-36.35,38.65-64.89,76.88-72.58A12.22,12.22,0,0,0,163,67v-52A12.28,12.28,0,0,0,149,2.86C72.58,13.88,12.26,72.79,1.66,147.09A12.26,12.26,0,0,0,13.85,161H64.46A12.23,12.23,0,0,0,76.4,151.64Z" transform="translate(-1.54 -2.74)"/>
+                            </svg>
+                        </div>
+                        <div className='m-auto'>
+                            <svg id="Calque_3" onClick={() => this.memoUser("Calque_3")} className='simon-part rotate-2' data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.46 158.26">
+                                <path style={{fill: "rgb(204 193 13)"}} d="M144.63,99.5" transform="translate(-1.54 -2.74)"/>
+                                <path style={{fill: "rgb(204 193 13)"}} d="M188.65,99.5" transform="translate(-1.54 -2.74)"/>
+                                <path style={{fill: "rgb(204 193 13)"}} d="M76.4,151.64c8.48-36.35,38.65-64.89,76.88-72.58A12.22,12.22,0,0,0,163,67v-52A12.28,12.28,0,0,0,149,2.86C72.58,13.88,12.26,72.79,1.66,147.09A12.26,12.26,0,0,0,13.85,161H64.46A12.23,12.23,0,0,0,76.4,151.64Z" transform="translate(-1.54 -2.74)"/>
+                            </svg>
+                            <svg id="Calque_4" onClick={() => this.memoUser("Calque_4")} className='simon-part rotate-3' data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.46 158.26">
+                                <path style={{fill: "rgb(2, 97, 202)"}} d="M144.63,99.5" transform="translate(-1.54 -2.74)"/>
+                                <path style={{fill: "rgb(2, 97, 202)"}} d="M188.65,99.5" transform="translate(-1.54 -2.74)"/>
+                                <path style={{fill: "rgb(2, 97, 202)"}} d="M76.4,151.64c8.48-36.35,38.65-64.89,76.88-72.58A12.22,12.22,0,0,0,163,67v-52A12.28,12.28,0,0,0,149,2.86C72.58,13.88,12.26,72.79,1.66,147.09A12.26,12.26,0,0,0,13.85,161H64.46A12.23,12.23,0,0,0,76.4,151.64Z" transform="translate(-1.54 -2.74)"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>

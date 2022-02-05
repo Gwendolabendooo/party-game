@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Score from './Score';
 import OrdrePassage from './ordrePassage';
+import Tuto from './tutorial'
 
 import {SocketContext, socket} from './socket';
 
@@ -170,9 +171,10 @@ class paire extends React.Component {
 
         return (
             <div className="d-flex align-center justify-content-evenly align-center flex-column ctn-skin apparition-game" style={{width: 100 +'%', height: 100 + '%'}}>
+                {/* <Tuto chef={this.props.chef === this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> */}
                 <OrdrePassage listej={this.state.listeJ}/>
                 <Transition  title={"Jeu des paires"}/> 
-                <input type="hidden" id="joueur1" name={this.state.listeJ[0][0]} value={this.state.id} />
+                <input type="hidden" id="joueur1" name={this.state.listeJ[0][0]} value={this.state.id}  />
                 <div className="mini-game paires">
                     {this.state.listCard.map((element, i) => <div className="paire-card" id={i} key={i} data-card={element}><div className="paire-card-front" onClick={verifPaire}></div><div className="paire-card-back"><FontAwesomeIcon className="text-white" icon={['fas', element]} /></div></div> )}
                 </div>

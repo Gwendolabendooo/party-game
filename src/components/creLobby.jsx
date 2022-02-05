@@ -3,11 +3,14 @@ import React, { useState, setState } from 'react';
 
 import {SocketContext, socket} from './socket';
 import Lobby from './Lobby';
+import MoovingBG from './mooving-bg';
 
-import logo from '../img/logo-mG.svg'
+import logo from '../img/logo-mG.svg';
+import Puzzle from '../img/puzzle.svg';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAssistiveListeningSystems, faEye, faGlasses, faHatCowboy, faTooth, faTshirt, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faDiscord, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
@@ -118,12 +121,16 @@ class creLobby extends React.Component  {
             faTshirt,
             faHatCowboy,
             faTooth,
-            faUser
+            faUser,
+            faDiscord,
+            faInstagram,
+            faTwitter
         )
         
 
         return (
             <div className="d-flex justify-content-around" style={{height: 100+'%', alignItems: "center", width: 100+"%"}}>
+                <MoovingBG></MoovingBG>
                 {this.state.joined === true ? 
                 <div className="ctn-creLobby position-relative">
                     <div className='d-flex align-items-center position-absolute rounded nb-j'>
@@ -139,28 +146,28 @@ class creLobby extends React.Component  {
                             <div className='skin'>
                                 <div className='position-relative ctn-wheel'>
                                     <div className='partSkin' onClick={this.ear}>
-                                        <FontAwesomeIcon className="text-warning" icon={['fas', 'assistive-listening-systems']} />
+                                        <FontAwesomeIcon className="text-white" icon={['fas', 'assistive-listening-systems']} />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.hairStyle, 'hairStyle')}>
-                                        <FontAwesomeIcon className="text-warning" icon={['fas', 'assistive-listening-systems']} />
+                                        <FontAwesomeIcon className="text-white" icon={['fas', 'assistive-listening-systems']} />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.hatStyle, 'hatStyle')}>
-                                        <FontAwesomeIcon className="text-warning" icon={['fas', 'hat-cowboy']} />
+                                        <FontAwesomeIcon className="text-white" icon={['fas', 'hat-cowboy']} />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.eyeStyle, 'eyeStyle')}>
-                                        <FontAwesomeIcon className="text-warning" icon={['fas', 'eye']} />
+                                        <FontAwesomeIcon className="text-white" icon={['fas', 'eye']} />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.glassesStyle, 'glassesStyle')}>
-                                        <FontAwesomeIcon className="text-warning" icon={['fas', 'glasses']} />
+                                        <FontAwesomeIcon className="text-white" icon={['fas', 'glasses']} />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.noseStyle, 'noseStyle')}>
-                                        <FontAwesomeIcon className="text-warning" icon={['fas', 'assistive-listening-systems']} />
+                                        <FontAwesomeIcon className="text-white" icon={['fas', 'assistive-listening-systems']} />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.mouthStyle, 'mouthStyle')}>
-                                        <FontAwesomeIcon className="text-warning" icon={['fas', 'assistive-listening-systems']} />
+                                        <FontAwesomeIcon className="text-white" icon={['fas', 'assistive-listening-systems']} />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.shirtStyle, 'shirtStyle')}>
-                                        <FontAwesomeIcon className="text-warning" icon={['fas', 'tshirt']} />
+                                        <FontAwesomeIcon className="text-white" icon={['fas', 'tshirt']} />
                                     </div>
                                     <div className='partSkin'>
                                         <input type="color" value={this.state.config.faceColor} onChange={(e) => this.changeFace(e)} name="" />
@@ -169,21 +176,36 @@ class creLobby extends React.Component  {
                                         <input type="color" value={this.state.config.bgColor} onChange={(e) => this.changeColor(e)} name="" />
                                     </div>
                                 </div>
-                                <NiceAvatar style={{ width: '200px', height: '200px' }} {...this.state.config} />
+                                <NiceAvatar style={{ width: '150px', height: '150px' }} {...this.state.config} />
                             </div>
                         </div>
-                        <div className='btn-random btn-start p-2 mb-4' onClick={this.randomConfig}>
+                        <div className='btn-random btn-start little-marg' onClick={this.randomConfig}>
                             Aléatoire
                         </div>
                         <input type="text" name="Pseudo" maxLength="15" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
                         <input type="text" name="Lobby" maxLength="15" placeholder='Nom du serveur' value={this.state.room} onChange={this.updateLobby} required id="" />
                         <input type="submit" value="Rejoindre" className='btn-start btn-creLobby' />
+                        <div className='d-flex align-items-center network justify-content-evenly mt-3'>
+                            <FontAwesomeIcon className="text-white" icon={['fab', 'instagram']} />
+                            <FontAwesomeIcon className="text-white" icon={['fab', 'discord']} />
+                            <FontAwesomeIcon className="text-white" icon={['fab', 'twitter']} />
+                        </div>
                     </form>
-                    <span></span>
-                    <div className='desc-jeu'>
-                        <img src={logo} className='logo' alt="" />
-                        <div>
-                            Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10. <br></br><br></br>Tous les jeux sont simple et rapide à comprendre, il n'y a donc pas d'explications. <br></br><br></br>Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre.
+                    <div className='desc-jeu pt-4'>
+                        <div class="d-flex align-items-center w-75 justify-content-evenly pb-0">
+                            <img src={logo} className='logo' alt="" />
+                            <div className='h2 titre'>Micro Games</div>
+                        </div>
+                        <div className='d-flex flex-column p-0 justify-content-lg-around align-items-center'>
+                            <div className='p-4'>
+                                Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.<br></br><br></br>Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre.
+                            </div>
+                            <div className='position-relative'>
+                                <img src={Puzzle} style={{ height: '350px' }} alt="" />
+                                <div class="Bubble-three position-absolute puzzle-bubble" style={{ width: 80+"px", height: 80+"px", left: -30+"px", bottom: 70+"px" }}></div>
+                                <div class="Bubble-three position-absolute puzzle-bubble2" style={{ width: 40+"px", height: 40+"px", left: -10+"px", bottom: 300+"px" }}></div>
+                                <div class="Bubble-three position-absolute puzzle-bubble2" style={{ width: 60+"px", height: 60+"px", right: 0+"px", bottom: 40+"px" }}></div>
+                            </div>
                         </div>
                     </div>
                 </div>

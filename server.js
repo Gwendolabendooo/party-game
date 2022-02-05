@@ -154,6 +154,7 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //affiche classement devinemot
     socket.on('champVide', (data) => {
       console.log(data, socket.id)
+      console.log("calcul")
       io.to(Array.from(socket.rooms)).emit('champVide', true);
     });
 
@@ -203,6 +204,12 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     socket.on('Jsuivant-memory', (data) => {
       console.log(data)
       io.to(Array.from(socket.rooms)).emit('Jsuivant-memory', data);
+    });
+
+    //Close Tutorial
+    socket.on('startGame', (data) => {
+      console.log(data, 'pressed')
+      io.to(Array.from(socket.rooms)).emit('startGame', "data");
     });
 
     //liste memorycolor

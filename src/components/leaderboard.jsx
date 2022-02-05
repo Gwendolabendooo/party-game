@@ -36,7 +36,7 @@ class Leaderboard extends React.Component {
     componentDidMount() {
         let score = this.props.score 
         score.sort(function(a, b) {
-            return b[2] - a[2];
+            return b[1] - a[1];
         })
 
         this.setState({ score: score })
