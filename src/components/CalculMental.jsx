@@ -5,6 +5,7 @@ import Stopwatch from './Stopwatch'
 import {SocketContext, socket} from './socket';
 import Score from './Score'
 import InputTxt from './InputText'
+import Tuto from './tutorial'
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAppleAlt, faBacon, faCarrot, faCheckCircle, faCheese, faCrown, faEgg, faFish, faHamburger, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +22,7 @@ class CalculMental extends React.Component {
         this.state = {
             debut: false,
             fin: false,
+            tuto: true,
             scoreCumule: [],
             listeJ: this.props.listej,
             afficheScore : false,
@@ -31,6 +33,10 @@ class CalculMental extends React.Component {
             step: 1,
             timer: 20000
         }; 
+
+        socket.on('startGame', (data) => {
+            this.setState({ tuto: false })  
+        })
 
         socket.on('Calcul', (data) => {
             let bon = this.state.bon
@@ -172,14 +178,14 @@ class CalculMental extends React.Component {
                         bonMauvais.push(element)
                     }
                 })
-                console.log("bonmauvais",bonMauvais )
 
                 if (this.props.id == this.props.chef) {
                     let cumule = this.state.scoreCumule
                     bonMauvais.forEach((element, i) => {
+                        console.log(element)
                         let verif = false
                         if (cumule.length !== 0) {
-                            cumule.forEach((cum, i) => {
+                            cumule.forEach((cum) => {
                                 if (cum[1] === element[1]) {
                                     verif = true
                                     let incr = cum[0]
@@ -220,20 +226,17 @@ class CalculMental extends React.Component {
                                 cumule[cumule.length - 1][0] = 1
                             }
                         }
-                        console.log(cumule, "avant")
                     })
-        
-                    
-                    socket.emit('cumuleMental', cumule);              
-                }
-    
-    
-                const step = this.state.step
-                if (this.props.id === this.props.chef) {
+
+                    socket.emit('cumuleMental', cumule);    
+                    console.log(cumule) 
+
+                    const step = this.state.step
+
                     setTimeout(function(){
                         socket.emit('mancheSuivanteCalcul', step);
-                      }, 3000)   
-                }   
+                    }, 3000)  
+                } 
             }
         })
     }
@@ -277,9 +280,11 @@ class CalculMental extends React.Component {
             iterations: 1
           });
 
+        if (this.props.id === this.props.chef) {
           setTimeout(function(){
             socket.emit('champVide', true);
           }, this.state.timer)
+        }
     }
     
     componentWillUnmount() {
@@ -307,6 +312,7 @@ class CalculMental extends React.Component {
         return (
             <div className='h-100 w-100 d-flex align-items-center justify-content-evenly'>
                 <Transition  title={"Calcul mental"}/>
+                {this.state.tuto ? <Tuto chef={this.props.chef === this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex">
                     <div className='position-absolute back-logo'></div>

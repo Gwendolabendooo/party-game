@@ -11,10 +11,9 @@ class transition extends React.Component {
     }
 
     componentDidMount(){
-        var load = document.querySelectorAll(".load");
+        var bubble = document.querySelectorAll(".bubble");
         var title = document.querySelector(".title");
         var ctn_transition = document.querySelector(".ctn-back-transition");
-        console.log(load, title, ctn_transition)
 
         ctn_transition.animate([
             // keyframes
@@ -22,7 +21,7 @@ class transition extends React.Component {
             { left: 0 + "%" }
           ], {
             // timing options
-            duration: 400,
+            duration: 0,
             iterations: 1
           })
 
@@ -47,7 +46,7 @@ class transition extends React.Component {
             iterations: 1
           })
           
-          load.forEach(stick =>{
+          bubble.forEach(stick =>{
             console.log(stick)
             stick.style.top = Math.random() * 100 + "%";
             stick.animate([
@@ -79,27 +78,25 @@ class transition extends React.Component {
         )
 
         return (
-            <div className='ctn-back-transition position-fixed z3' style={{zIndex: 100}}>
+            <div className='ctn-back-transition position-fixed' style={{zIndex: 1000, background: "linear-gradient(296.31deg, #8B19DB 4.33%, #4677ED 40.01%, #CEDFF5 88.47%)"}}>
                 <div className="ctn-transition">
                     <h2 className="title">
                         {this.props.title}
                     </h2>
                 </div>
-                <span className="load load-1"></span>
-                <span className="load load-2"></span>
-                <span className="load load-1"></span>
-                <span className="load load-2"></span>
-                <span className="load load-2"></span>
-                <span className="load load-1"></span>
-                <span className="load load-2"></span>
-                <span className="load load-1"></span>
-                <span className="load load-2"></span>
-                <span className="load load-2"></span>
-                <span className="load load-1"></span>
-                <span className="load load-2"></span>
-                <span className="load load-1"></span>
-                <span className="load load-1"></span>
-                <span className="load load-1"></span>
+                <div class="bubble Bubble-first position-absolute"  style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div class="bubble Bubble-first position-absolute" style={{ width: 40+"px", height: 40+"px" }}></div>
+                <div class="bubble Bubble-three position-absolute" style={{ width: 180+"px", height: 180+"px" }}></div>
+                <div class="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div class="bubble Bubble-three position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div class="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div class="bubble Bubble-four position-absolute" style={{ width: 240+"px", height: 240+"px" }}></div>
+                <div class="bubble Bubble-five position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div class="bubble Bubble-second position-absolute" style={{ width: 70+"px", height: 70+"px" }}></div>
+                <div class="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div class="bubble Bubble-four position-absolute" style={{ width: 200+"px", height: 200+"px" }}></div>
+                <div class="bubble Bubble-five position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div class="bubble Bubble-second position-absolute" style={{ width: 70+"px", height: 70+"px" }}></div>
             </div>
         )  
     }

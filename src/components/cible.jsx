@@ -4,6 +4,7 @@ import Transition from './transition'
 import Stopwatch from './Stopwatch'
 import {SocketContext, socket} from './socket';
 import Score from './Score'
+import Tuto from './tutorial'
 
 let cpt = 0;
 let ciblenorm = 0;
@@ -17,6 +18,7 @@ class Cible extends React.Component {
         this.state = {
             debut: false,
             fin: false,
+            tuto: true,
             listeJ: this.props.listej,
             afficheScore : false,
             speed: 1.3,
@@ -24,6 +26,15 @@ class Cible extends React.Component {
             cptfin: 0,
             record: 0
         }; 
+
+        
+        socket.on('startGame', (data) => {
+            this.setState({ tuto: false })  
+            {this.newCible()}
+            {this.newGoldCible()}
+            {this.newMalusCible()}
+            {this.finPartie()}
+        })
 
         socket.on('fin-cible', (data) => {
             console.log(data, this.state.listeJ, "ertrtretretre")
@@ -153,6 +164,16 @@ class Cible extends React.Component {
     }
 
     finPartie = () =>{
+            document.getElementById('loader').animate([
+                // keyframes
+                { width: '100%' },
+                { width: '0' }
+            ], {
+                // timing options
+                duration: 40000,
+                iterations: 1
+            });
+
             setTimeout(()=>{
                 if (this.state.cptfin === 0) {
                     socket.emit('fin-cible', this.state.record);  
@@ -190,16 +211,16 @@ class Cible extends React.Component {
 
     render() {
         return (
-            <div className="ctn-autoC ctn-cible ctn-empileur apparition-game">
+            <div className='h-100 w-100 d-flex align-items-center justify-content-evenly'>
+                {this.state.tuto ? <Tuto chef={this.props.chef === this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 <Transition  title={"Dans le mille"}/>
-                {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <div className='recordCible'>
-                    {this.state.record}
+                <div className="ctn-autoC ctn-cible ctn-empileur apparition-game">
+                    {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
+                    <span id='loader' className='loader position-absolute'></span>
+                    <div className='recordCible'>
+                        {this.state.record}
+                    </div>
                 </div>
-                {this.newCible()}
-                {this.newGoldCible()}
-                {this.newMalusCible()}
-                {this.finPartie()}
             </div>
         )  
     }
