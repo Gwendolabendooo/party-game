@@ -119,7 +119,9 @@ class ColorMemory extends React.Component {
 
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
-            this.start()
+            if(document.getElementById("Calque_1") != null){
+                this.start()
+            }
         })
 
         this.seeCombi = this.seeCombi.bind(this)
@@ -269,7 +271,6 @@ class ColorMemory extends React.Component {
     render() {        
         return (
             <div className='h-100 w-100 d-flex align-items-center justify-content-evenly'>
-                {console.log(this.props.chef)}
                 {this.state.tuto ? <Tuto chef={this.props.chef} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 <Transition  title={"Memory Color"}/>
                 {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef} listej={this.state.listeJ}/> : ''}

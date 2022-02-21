@@ -5,11 +5,7 @@ import Stopwatch from './Stopwatch'
 import {SocketContext, socket} from './socket';
 import Score from './Score'
 import InputText from './input-text'
-
-let cpt = 0;
-let ciblenorm = 0;
-let ciblegreen = 0;
-let ciblemalus = 0;
+import Tuto from './tutorial'
 
 class PtitBac extends React.Component {
     constructor(props) {
@@ -21,12 +17,17 @@ class PtitBac extends React.Component {
             cptfin: 0,
             listLetter: ["A", "B", "C", "D", "E", "F", "G", "J", "L", "M", "N", "O", "P", "U", "R", "S", "T"],
             validation: true,
+            tuto: true,
             letter: "",
             listInput: ["Prenom", "Celebrite", "animal", "fruit", "metier", "Objet", "Pays"]
         }; 
 
         socket.on('score-bac', (data) => {
             this.setState({listeJ: data, afficheScore: true}) 
+        })
+
+        socket.on('startGame', (data) => {
+            this.setState({ tuto: false })  
         })
 
         socket.on('valid-bac', () => {
@@ -43,7 +44,6 @@ class PtitBac extends React.Component {
         });
 
         socket.on('send-letter', (data) => {
-            console.log("cahnge")
             this.setState({letter: data})  
         })
 
@@ -68,8 +68,9 @@ class PtitBac extends React.Component {
                         pseudo = element[1]
                     }
                 })
+                console.log(typeof data[0][i], "data")
 
-                element.insertAdjacentHTML('beforeend', '<div class="d-flex ctn-aff-bac" data-id='+data[1]+'><div class="pseudo-bac">'+pseudo+'</div><input type="text" disabled name="" id="" value='+data[0][i]+' /><input type="checkbox" name='+this.state.listInput[i]+' id="" data-id='+data[1]+' checked=true /></div>')
+                element.insertAdjacentHTML('beforeend', '<div class="d-flex ctn-aff-bac" data-id='+data[1]+'><div class="pseudo-bac">'+pseudo+'</div><input type="text" disabled name="" id="" value="'+ data[0][i] +'" /><input type="checkbox" name='+this.state.listInput[i]+' id="" data-id='+data[1]+' checked=true /></div>')
             })
 
             const listCheck = document.querySelectorAll("input[data-id]");
@@ -155,22 +156,25 @@ class PtitBac extends React.Component {
 
     render() {
         return (
-            <div className="ctn-autoC ctn-empileur apparition-game h-auto">
+            <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 <Transition  title={"Le ptit bac"}/>
                 {this.state.afficheScore ? <Score jeu={"Le ptit bac"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <div className='ptit-bac h-100'>
-                    <div className=' lettre'>Lettre <span className='text-primary font-20'>{this.state.letter}</span></div>
-                    {this.state.validation ? 
-                        <form id='data-bac' onSubmit={this.dataBac}>
-                            {this.state.listInput.map(element => <InputText letter={this.state.letter} id={element} label={element}/> )}
-                            <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
-                        </form>
-                    : 
-                        <form id='listBac' onSubmit={this.resBac}>
-                            {this.state.listInput.map(element => <div data-input="true" id={element}><div className='title-bac mt-5 mb-3'>{element}</div></div> )}
-                            <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
-                        </form>
-                    }
+                <div className="ctn-autoC ctn-empileur apparition-game h-auto">
+                    <div className='ptit-bac h-100'>
+                        <div className=' lettre'>Lettre <span className='text-primary font-20'>{this.state.letter}</span></div>
+                        {this.state.validation ? 
+                            <form id='data-bac' onSubmit={this.dataBac}>
+                                {this.state.listInput.map(element => <InputText letter={this.state.letter} id={element} label={element} /> )}
+                                <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                            </form>
+                        : 
+                            <form id='listBac' onSubmit={this.resBac}>
+                                {this.state.listInput.map(element => <div data-input="true" id={element}><div className='title-bac mt-5 mb-3'>{element}</div></div> )}
+                                <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                            </form>
+                        }
+                    </div>
                 </div>
             </div>
         )  

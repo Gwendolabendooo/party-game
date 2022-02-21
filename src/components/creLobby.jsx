@@ -8,6 +8,15 @@ import MoovingBG from './mooving-bg';
 import logo from '../img/logo-mG.svg';
 import Puzzle from '../img/puzzle.svg';
 
+import DetectiveHat from '../img/Detective Hat.svg';
+import Eye from '../img/Eye.svg';
+import Glasses from '../img/Glasses.svg';
+import Hearing from '../img/Hearing.svg';
+import Lips from '../img/Lips.svg';
+import Smelling from '../img/Smelling.svg';
+import Tshirt from '../img/TShirt.svg';
+import WomanHair from '../img/WomanHair.svg';
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAssistiveListeningSystems, faEye, faGlasses, faHatCowboy, faTooth, faTshirt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -146,34 +155,38 @@ class creLobby extends React.Component  {
                             <div className='skin'>
                                 <div className='position-relative ctn-wheel'>
                                     <div className='partSkin' onClick={this.ear}>
-                                        <FontAwesomeIcon className="text-white" icon={['fas', 'assistive-listening-systems']} />
+                                        <img src={Hearing} alt="" />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.hairStyle, 'hairStyle')}>
-                                        <FontAwesomeIcon className="text-white" icon={['fas', 'assistive-listening-systems']} />
+                                        <img src={WomanHair} alt="" />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.hatStyle, 'hatStyle')}>
-                                        <FontAwesomeIcon className="text-white" icon={['fas', 'hat-cowboy']} />
+                                        <img src={DetectiveHat} alt="" />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.eyeStyle, 'eyeStyle')}>
-                                        <FontAwesomeIcon className="text-white" icon={['fas', 'eye']} />
+                                        <img src={Eye} alt="" />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.glassesStyle, 'glassesStyle')}>
-                                        <FontAwesomeIcon className="text-white" icon={['fas', 'glasses']} />
+                                        <img src={Glasses} alt="" />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.noseStyle, 'noseStyle')}>
-                                        <FontAwesomeIcon className="text-white" icon={['fas', 'assistive-listening-systems']} />
+                                        <img src={Smelling} alt="" />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.mouthStyle, 'mouthStyle')}>
-                                        <FontAwesomeIcon className="text-white" icon={['fas', 'assistive-listening-systems']} />
+                                        <img src={Lips} alt="" />
                                     </div>
                                     <div className='partSkin' onClick={() => this.customSkin(this.state.shirtStyle, 'shirtStyle')}>
-                                        <FontAwesomeIcon className="text-white" icon={['fas', 'tshirt']} />
+                                        <img src={Tshirt} alt="" />
                                     </div>
                                     <div className='partSkin'>
-                                        <input type="color" value={this.state.config.faceColor} onChange={(e) => this.changeFace(e)} name="" />
+                                        <div>
+                                            <input type="color" value={this.state.config.faceColor} onChange={(e) => this.changeFace(e)} name="" />
+                                        </div>
                                     </div>
                                     <div className='partSkin'>
-                                        <input type="color" value={this.state.config.bgColor} onChange={(e) => this.changeColor(e)} name="" />
+                                        <div>
+                                            <input type="color" value={this.state.config.bgColor} onChange={(e) => this.changeColor(e)} name="" />
+                                        </div>
                                     </div>
                                 </div>
                                 <NiceAvatar style={{ width: '150px', height: '150px' }} {...this.state.config} />
@@ -198,7 +211,7 @@ class creLobby extends React.Component  {
                         </div>
                         <div className='d-flex flex-column p-0 justify-content-lg-around align-items-center'>
                             <div className='p-4'>
-                                Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.<br></br><br></br>Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre.
+                                Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10 joueurs.<br></br><br></br>Pour jouer c'est simple, tout d'abord renseigne ton nom, puis renseigne le code du groupe que tu souhaites rejoindre.
                             </div>
                             <div className='position-relative'>
                                 <img src={Puzzle} style={{ height: '350px' }} alt="" />

@@ -22,6 +22,7 @@ class paire extends React.Component {
             listCard: [],
             points: 0,
             finPartie: false,
+            tuto: true
         }
 
         console.log(this.props.listej, this.props.chef, "ici")
@@ -30,6 +31,10 @@ class paire extends React.Component {
         tabPoints.forEach(element => {
             element[2] = 0;
         });
+
+        socket.on('startGame', (data) => {
+            this.setState({ tuto: false })  
+        })
 
         if (this.state.chef === this.state.id) {
             const tab = this.Randomize()
@@ -170,8 +175,8 @@ class paire extends React.Component {
         });
 
         return (
-            <div className="d-flex align-center justify-content-evenly align-center flex-column ctn-skin apparition-game" style={{width: 100 +'%', height: 100 + '%'}}>
-                {/* <Tuto chef={this.props.chef === this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> */}
+            <div className="d-flex align-center justify-content-evenly align-center flex-column ctn-skin" style={{width: 100 +'%', height: 100 + '%'}}>
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 <OrdrePassage listej={this.state.listeJ}/>
                 <Transition  title={"Jeu des paires"}/> 
                 <input type="hidden" id="joueur1" name={this.state.listeJ[0][0]} value={this.state.id}  />

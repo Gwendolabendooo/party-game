@@ -13,6 +13,7 @@ import {SocketContext, socket} from './socket';
 import Score from './Score'
 import InputTxt from './InputText'
 import { disabled } from 'express/lib/application';
+import Tuto from './tutorial'
 
 import NiceAvatar from 'react-nice-avatar'
 
@@ -46,6 +47,7 @@ class TrouvePersonnage extends React.Component {
             celebrity: -1,
             jsuivant: 0,
             bonMot: 0,
+            tuto: true,
             tabFinMot: [],
             ordreVote: [],
             afficheTab: false,
@@ -71,6 +73,10 @@ class TrouvePersonnage extends React.Component {
                 this.setState({ afficheTab: true})
             }
             console.log(ordre)
+        })
+
+        socket.on('startGame', (data) => {
+            this.setState({ tuto: false })  
         })
 
         socket.on('affClassement', (data) => {
@@ -227,58 +233,61 @@ class TrouvePersonnage extends React.Component {
         const listJoueur = this.state.listeJ.map((element, i) => <li className='d-flex flex-column align-items-center'><div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>{this.state.ordreVote.map((vote, index) => <div>{vote[1] == element[0] ? <div className='d-flex flex-column' data-id={element[0]}>{this.state.ordreVote[index][0].map((voteId, iterate)=> voteId == iterate ? <div className='checkVote' data-vote="bon"><FontAwesomeIcon className="text-success vote" icon={['fas', 'check-circle']} /></div>  : <div className='checkVote' data-vote="mauvais"><FontAwesomeIcon className="text-danger vote" icon={['fas', 'times-circle']} /></div>)}</div> : ""}</div>)}</li>)
         
         return (
-            <div className="ctn-autoC ctn-empileur apparition-game h-auto">
+            <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 <Transition  title={"Trouve le personnage"}/>
                 {this.state.afficheScore ? <Score jeu={"Trouve le personnage"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                {this.state.celebrity != 3 ?
-                    <div className='trouvePersonnage h-100'>
-                        <div className='text-white text-center label-celebrite mt-3 mb-3'>
-                            Trouve un mot qui te fais penser à:
-                        </div>
-                        <div className='text-white card-celebrite mb-5 mt-3' id='motdata' data-mot={this.state.celebrity != -1 ? this.state.listMots[this.state.bonMot][1] : ''}>
-                            {this.state.celebrity === -1 ? this.state.listcelebre[this.state.index]: this.state.listMots[this.state.bonMot][0]}
-                        </div>
-                        <form onSubmit={this.handleSubmit}>
-                            <InputTxt letter="Acteur" id={this.state.index}/>
-                            <div className='position-relative'>
-                                <label className='position-absolute restant' htmlFor="subMot">{this.state.blocage}/{this.state.listeJ.length}</label>
-                                <input type="submit" value="Valider" id='subMot' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                <div className="ctn-autoC ctn-empileur apparition-game h-auto">
+                    {this.state.celebrity != 3 ?
+                        <div className='trouvePersonnage h-100'>
+                            <div className='text-white text-center label-celebrite mt-3 mb-3'>
+                                Trouve un mot qui te fais penser à:
                             </div>
-                        </form>
-                    </div>
-                    : this.state.afficheTab === false ?
-                    <div className='d-flex flex-column' id='ctnVote'>
-                        <div className='text-white text-center label-celebrite mt-3 mb-3'>
-                            Déplace le mot qui correspond en face du personnage
-                        </div>
-                        <div className='d-flex flex-row'>
-                            <ul>
-                                {listCelebrity}
-                            </ul>
-                            <SortableList items={this.state.tabFinMot} onSortEnd={this.onSortEnd} />
-                        </div>
-                        <form onSubmit={this.handleVote}>
-                            <div className='position-relative'>
-                                <label className='position-absolute restant' htmlFor="subMot">{this.state.ordreVote.length}/{this.state.listeJ.length}</label>
-                                <input type="submit" value="Valider" id='validVote' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                            <div className='text-white card-celebrite mb-5 mt-3' id='motdata' data-mot={this.state.celebrity != -1 ? this.state.listMots[this.state.bonMot][1] : ''}>
+                                {this.state.celebrity === -1 ? this.state.listcelebre[this.state.index]: this.state.listMots[this.state.bonMot][0]}
                             </div>
-                        </form>
-                    </div>
-                    :
-                    <div className='d-flex flex-column'>
-                        <div className='d-flex'>
-                            <ul className='p-top180'>
-                                {listCelebrity}
-                            </ul>
-                            <ul className='d-flex'>
-                                {listJoueur}
-                            </ul>
+                            <form onSubmit={this.handleSubmit}>
+                                <InputTxt letter="Acteur" id={this.state.index}/>
+                                <div className='position-relative'>
+                                    <label className='position-absolute restant' htmlFor="subMot">{this.state.blocage}/{this.state.listeJ.length}</label>
+                                    <input type="submit" value="Valider" id='subMot' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                                </div>
+                            </form>
                         </div>
-                        <form onSubmit={this.affScore}>
-                            <input type="submit" value="Classement" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
-                        </form>
-                    </div>
-                }
+                        : this.state.afficheTab === false ?
+                        <div className='d-flex flex-column' id='ctnVote'>
+                            <div className='text-white text-center label-celebrite mt-3 mb-3'>
+                                Déplace le mot qui correspond en face du personnage
+                            </div>
+                            <div className='d-flex flex-row'>
+                                <ul>
+                                    {listCelebrity}
+                                </ul>
+                                <SortableList items={this.state.tabFinMot} onSortEnd={this.onSortEnd} />
+                            </div>
+                            <form onSubmit={this.handleVote}>
+                                <div className='position-relative'>
+                                    <label className='position-absolute restant' htmlFor="subMot">{this.state.ordreVote.length}/{this.state.listeJ.length}</label>
+                                    <input type="submit" value="Valider" id='validVote' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                                </div>
+                            </form>
+                        </div>
+                        :
+                        <div className='d-flex flex-column'>
+                            <div className='d-flex'>
+                                <ul className='p-top180'>
+                                    {listCelebrity}
+                                </ul>
+                                <ul className='d-flex'>
+                                    {listJoueur}
+                                </ul>
+                            </div>
+                            <form onSubmit={this.affScore}>
+                                <input type="submit" value="Classement" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                            </form>
+                        </div>
+                    }
+                </div>
             </div>
         )  
     }

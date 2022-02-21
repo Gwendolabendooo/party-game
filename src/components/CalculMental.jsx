@@ -35,7 +35,24 @@ class CalculMental extends React.Component {
         }; 
 
         socket.on('startGame', (data) => {
-            this.setState({ tuto: false })  
+            this.setState({ tuto: false })
+            if(document.querySelector("#calcul") != null){
+                document.getElementById('loader').animate([
+                    // keyframes
+                    { width: '100%' },
+                    { width: '0' }
+                  ], {
+                    // timing options
+                    duration: this.state.timer,
+                    iterations: 1
+                  });
+        
+                if (this.props.id === this.props.chef) {
+                  setTimeout(function(){
+                    socket.emit('champVide', true);
+                  }, this.state.timer)
+                } 
+            } 
         })
 
         socket.on('Calcul', (data) => {
@@ -268,22 +285,6 @@ class CalculMental extends React.Component {
             }
     
             socket.emit('listeNumber', randomNumber);
-        }
-
-        document.getElementById('loader').animate([
-            // keyframes
-            { width: '100%' },
-            { width: '0' }
-          ], {
-            // timing options
-            duration: this.state.timer,
-            iterations: 1
-          });
-
-        if (this.props.id === this.props.chef) {
-          setTimeout(function(){
-            socket.emit('champVide', true);
-          }, this.state.timer)
         }
     }
     

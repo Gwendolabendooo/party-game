@@ -13,6 +13,7 @@ class InputText extends React.Component {
 
     updateInput(e) {
         if (e.target.value[0] === this.props.letter || e.target.value[0] === this.props.letter.toLowerCase() || e.target.value[0] === undefined) {
+            console.log(e.target.value)
             this.setState({input: e.target.value})   
         }
     }

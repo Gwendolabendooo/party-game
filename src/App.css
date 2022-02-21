@@ -33,6 +33,10 @@ input[type="submit"]:active{
   -o-transform: scale(.95);
 }
 
+input:-internal-autofill-selected{
+  color: #3879e2!important;
+}
+
 input[type="text"] {
   border: none;
   background: linear-gradient(180deg, #FFFFFF 0%, #E3E3E3 100%);
@@ -101,10 +105,10 @@ input[type="text"]::placeholder {
   font-size: 30px;
   color: white;
   width: 190px;
+  background-image: linear-gradient(rgb(139, 236, 255) 0%, rgb(146, 0, 255) 168.42%);
   box-shadow: 0px 0 9px 0px rgba(0, 0, 0, 0.761);
   padding: 12px;
   margin: auto;
-  background: rgba(0, 0, 0, 0.761);
 }
 
 .back-tuto{
@@ -138,9 +142,40 @@ input[type="text"]::placeholder {
 }
 
 .title-tuto{
-  background-color: #9200FF;
+  background: linear-gradient(to bottom, #8BECFF 0%, #b153f8 70.42%, #8BECFF 0%, #b153f8 80.42%);
+  background-size: 100% 200%;
   text-align: center;
   padding: 12px;
+  font-size: 20px;
+}
+
+.ctn-player{
+  width: 700px;
+  height: 300px;
+}
+
+.ctn-player > div{
+  padding: 0!important;
+  width: 100%;
+  height: 100%;
+}
+
+.ctn-player > div > video{
+  width: 100%;
+  height: 100%;
+}
+
+.ctn-player > div > div{
+  display: none;
+}
+
+.ctn-player > div > button{
+  display: none;
+}
+
+.bg-desc-tuto{
+  background-color: #ffffff29;
+  border-radius: 10px;
   font-size: 20px;
 }
 
@@ -226,7 +261,7 @@ input[type="text"]::placeholder {
   left: 16px;
 }
 
-.partSkin > svg{
+.partSkin > img{
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
@@ -241,9 +276,13 @@ input[type="text"]::placeholder {
 input[type="color"] {
 	-webkit-appearance: none;
 	border: none;
-	width: 32px;
+	width: 50px;
   background: none;
-	height: 32px;
+	height: 50px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
 }
 input[type="color"]::-webkit-color-swatch-wrapper {
 	padding: 0;
@@ -252,7 +291,7 @@ input[type="color"]::-webkit-color-swatch {
 	border: none;
 }
 
-.partSkin > input{
+.partSkin > div{
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
@@ -489,7 +528,7 @@ li{
   font-family: 'Paytone One';
   margin: 10px;
   box-shadow: 0px 0 5px 0px #000000;
-  background: linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%);
+  background-color: #3199f2;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -504,6 +543,8 @@ li{
   -ms-transition: all .4s;
   -o-transition: all .4s;
 }
+
+
 
 .nom-j > img{
   height: 58px;
@@ -1036,7 +1077,7 @@ input[type="checkbox"]{
 }
 
 .valide{
-  background-color: #34d3ab!important;
+  background: #34d3ab!important;
   color: #ffffff!important;
 }
 
@@ -1078,12 +1119,11 @@ input[type="checkbox"]{
   height: 130px;
   transition: filter .3s;
   color: white;
-  border: solid #2c75ed 4px;
-  background-color: #2c75ed;
   position: relative;
   display: flex;
   margin: 20px;
-  box-shadow: 0px 0 9px 0px #3879e2;
+  background-color: #6057e5;
+  box-shadow: 0px 0 9px 0px #6057e5;
   animation-duration: .5s;
   animation-name: apparition;
   -webkit-transition: filter .3s;
@@ -1318,6 +1358,7 @@ input[type="checkbox"]{
   width: 1000px;
   margin: 30px;
   height: 680px;
+  backdrop-filter: blur(14px);
   display: flex;
   justify-content: flex-end;
   background: rgba(255, 255, 255, 0.31);
@@ -1362,6 +1403,7 @@ input[type="checkbox"]{
 .cube{
   width: 80px;
   height: 80px;
+  border: solid 4px #ffffff82;
   z-index: 10;
   background: #3879e2;
   background-repeat: no-repeat;

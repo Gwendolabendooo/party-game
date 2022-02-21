@@ -5,6 +5,8 @@ import Stopwatch from './Stopwatch'
 import {SocketContext, socket} from './socket';
 import Score from './Score'
 
+import Tuto from './tutorial'
+
 let cpt = 0;
 
 class Empileur extends React.Component {
@@ -17,8 +19,16 @@ class Empileur extends React.Component {
             listeJ: this.props.listej,
             afficheScore : false,
             speed: 1.3,
-            time: 0
+            time: 0,
+            tuto: true
         }; 
+
+        socket.on('startGame', (data) => {
+            this.setState({ tuto: false })  
+            if(document.querySelector("#root > div > div > div.d-flex.align-items-center.align-content-around.flex-column.ctn-max-jeux.justify-content-evenly.w-100 > div > div.cube.cube1") != null){
+                document.addEventListener('keypress', this.keypressED);
+            }
+        })
 
         socket.on('fin-autoClick', (data) => {
             console.log(data, this.state.listeJ, "ertrtretretre")
@@ -51,8 +61,6 @@ class Empileur extends React.Component {
             element[2] = 0;
             console.log(element)
         });
-
-        document.addEventListener('keypress', this.keypressED);
 
         this.setState({ listeJ: tabPoints })
         
@@ -98,15 +106,17 @@ class Empileur extends React.Component {
 
     render() {
         return (
-            <div className="ctn-autoC ctn-empileur apparition-game position-relative">
-                <div className='position-absolute back-logo'></div>
+            <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 <Transition  title={"L'empileur"}/>
                 {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <div className="chrono-right">
-                    <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
+                <div className="ctn-autoC ctn-empileur apparition-game position-relative mini-game paires">
+                    <div className="chrono-right">
+                        <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
+                    </div>
+                    <div className='cube cubeMoove'></div>                
+                    <div className='cube cube1'></div>
                 </div>
-                <div className='cube cubeMoove'></div>                
-                <div className='cube cube1'></div>
             </div>
         )  
     }

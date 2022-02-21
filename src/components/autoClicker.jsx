@@ -4,6 +4,7 @@ import Transition from './transition'
 import Stopwatch from './Stopwatch'
 import {SocketContext, socket} from './socket';
 import Score from './Score'
+import Tuto from './tutorial'
 
 let cpt = 0;
 
@@ -22,6 +23,7 @@ class AutoClicker extends React.Component {
             fin: false,
             listeJ: this.props.listej,
             afficheScore : false,
+            tuto: true,
             alphabet: ["a", "b", "c", "d", "e", "f","g", "h", "i","j", "k", "l","m", "n", "o","p", "q", "r","s", "t"]
         };
 
@@ -29,6 +31,10 @@ class AutoClicker extends React.Component {
         tabPoints.forEach(element => {
             element[2] = 0;
         });
+
+        socket.on('startGame', (data) => {
+            this.setState({ tuto: false })  
+        })
 
         socket.on('fin-autoClick', (data) => {
             console.log(data, this.state.listeJ, "ertrtretretre")
@@ -113,18 +119,21 @@ class AutoClicker extends React.Component {
 
     render() {
         return (
-            <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly">
+            <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
                 <Transition  title={"Auto clicker"}/>
                 {this.state.afficheScore ? <Score jeu={"autoclick"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
-                {this.state.randomeL === null ? '' : <div className='displayRandomL'><span>{this.state.randomeL}</span></div>}
-                <div className="auto-progress mb-3 mt-3">
-                    <div style={{width: this.state.click + '%'}}>
+                <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly">
+                    <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
+                    {this.state.randomeL === null ? '' : <div className='displayRandomL'><span>{this.state.randomeL}</span></div>}
+                    <div className="auto-progress mb-3 mt-3">
+                        <div style={{width: this.state.click + '%'}}>
 
+                        </div>
                     </div>
-                </div>
-                <div className="autoClick-btn" data-click={this.state.click} onClick={this.compteur}>
-                    <div className="ctn-randomL">
+                    <div className="autoClick-btn" data-click={this.state.click} onClick={this.compteur}>
+                        <div className="ctn-randomL">
+                        </div>
                     </div>
                 </div>
             </div>
