@@ -157,7 +157,7 @@ class PtitBac extends React.Component {
     render() {
         return (
             <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Le ptit bac' desc="Trouve des mots correspondants à la demande qui commencent par la lettre indiquée. La partie prends fin lorsque 1 joueur à terminer."></Tuto> : ""}
                 <Transition  title={"Le ptit bac"}/>
                 {this.state.afficheScore ? <Score jeu={"Le ptit bac"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC ctn-empileur apparition-game h-auto">
@@ -171,7 +171,10 @@ class PtitBac extends React.Component {
                         : 
                             <form id='listBac' onSubmit={this.resBac}>
                                 {this.state.listInput.map(element => <div data-input="true" id={element}><div className='title-bac mt-5 mb-3'>{element}</div></div> )}
-                                <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                                {this.props.chef === this.props.id ?
+                                    <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />:
+                                    <input type="submit" value="Valider" title="Tu n'es pas le chef de groupe" style={{filter: "opacity(0.5)"}}  className='btn-start btn-creLobby m-0 mt-5 mb-5'  disabled/>
+                                    }
                             </form>
                         }
                     </div>

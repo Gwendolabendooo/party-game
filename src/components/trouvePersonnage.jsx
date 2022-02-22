@@ -234,7 +234,7 @@ class TrouvePersonnage extends React.Component {
         
         return (
             <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Trouve le personnage' desc="Chaque joueur reçoit un personnage qu’il garde secret et écrit un mot qui lui fait penser à ce dernier. Ce mot passera de main en main, et changera petit à petit. A la fin de la partie, tous les personnages seront révélés. Les joueurs devront retrouver sans communiquer quel personnage correspond à chaque mot."></Tuto> : ""}
                 <Transition  title={"Trouve le personnage"}/>
                 {this.state.afficheScore ? <Score jeu={"Trouve le personnage"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC ctn-empileur apparition-game h-auto">
@@ -283,7 +283,11 @@ class TrouvePersonnage extends React.Component {
                                 </ul>
                             </div>
                             <form onSubmit={this.affScore}>
-                                <input type="submit" value="Classement" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                                {this.props.id === this.props.chef ?
+                                    <input type="submit" value="Classement" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
+                                    :
+                                    <input type="submit" value="Classement" title="Tu n'es pas le chef de groupe" className='btn-start btn-creLobby m-0 mt-5 mb-5' style={{filter: "opacity(0.5)"}} disabled/>
+                                    }
                             </form>
                         </div>
                     }

@@ -71,7 +71,6 @@ input[type="text"]::placeholder {
 .desc-jeu{
   width: 500px;
   height: 100%;
-  backdrop-filter: opacity(0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,9 +125,19 @@ input[type="text"]::placeholder {
   width: 900px;
   color: white;
   height: 600px;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+  border-radius: 8px;
   overflow: hidden;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.bg-tuto-sde{
+  color: #ffffff;
+  font-family: sans-serif;
+  font-weight: 700;
+  background: none!important;
 }
 
 .ctn-tutorial{
@@ -1141,6 +1150,33 @@ input[type="checkbox"]{
   -o-border-radius: 10px;
 }
 
+.delay-toaster{
+  height: 3px;
+  width: 100%;
+  left: 0;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-name: largeur;
+}
+
+.notif-toaster{
+  background-image: linear-gradient(rgb(139, 236, 255) 0%, rgb(146, 0, 255) 168.42%);
+  width: 200px;
+  position: absolute!important;
+  top: 27px;
+  right: 36px;
+  font-family: 'Paytone One', sans-serif;
+  text-align: center;
+  color:#ffffff;
+  animation-duration: .5s;
+  animation-timing-function: linear;
+  animation-name: toaster;
+  font-size: 18px;
+  padding: 15px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
 .pointer{
   font-size: 70px;
 }
@@ -1619,6 +1655,18 @@ transform: rotate3d(13, 5, 0,
 }
 }
 
+@keyframes toaster {
+  from {
+    margin-top: -40px;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
 @keyframes apparition {
   from {
     opacity: 0;
@@ -1626,6 +1674,16 @@ transform: rotate3d(13, 5, 0,
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes largeur {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
   }
 }
 

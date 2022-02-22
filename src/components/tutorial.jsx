@@ -33,7 +33,7 @@ class Tuto extends React.Component {
                             {this.props.game}
                         </div>
                         <div className='p-3 d-flex align-items-center flex-column justify-content-around ctn-tutorial'>
-                            <div className='text-center p-3 bg-desc-tuto'>
+                            <div className='text-center p-3 bg-desc-tuto bg-tuto-sde'>
                                 {this.props.desc}
                             </div>
                             <div className='ctn-player'>
@@ -45,7 +45,10 @@ class Tuto extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <input type="submit" onClick={() => this.start()} value="Rejoindre" className='btn-start btn-creLobby m-0 mt-5' />
+                    { this.props.chef == true ? 
+                        <input type="submit" onClick={() => this.start()} value="C'est parti" className='btn-start btn-creLobby m-0 mt-5' />:
+                        <input type="submit" value="C'est parti" title="Tu n'es pas le chef de groupe" className='btn-start btn-creLobby m-0 mt-5' style={{filter: "opacity(0.5)"}} disabled/>
+                    }
                 </div>
             </div>
         )  

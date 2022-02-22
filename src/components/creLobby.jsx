@@ -18,7 +18,7 @@ import Tshirt from '../img/TShirt.svg';
 import WomanHair from '../img/WomanHair.svg';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAssistiveListeningSystems, faEye, faGlasses, faHatCowboy, faTooth, faTshirt, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faAssistiveListeningSystems, faCross, faEye, faGlasses, faHatCowboy, faTimesCircle, faTooth, faTshirt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -133,7 +133,8 @@ class creLobby extends React.Component  {
             faUser,
             faDiscord,
             faInstagram,
-            faTwitter
+            faTwitter,
+            faTimesCircle
         )
         
 
@@ -210,14 +211,14 @@ class creLobby extends React.Component  {
                             <div className='h2 titre'>Micro Games</div>
                         </div>
                         <div className='d-flex flex-column p-0 justify-content-lg-around align-items-center'>
-                            <div className='p-4'>
+                            <div className='p-3 pl-3 pr-3 bg-desc-tuto m-3'>
                                 Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10 joueurs.<br></br><br></br>Pour jouer c'est simple, tout d'abord renseigne ton nom, puis renseigne le code du groupe que tu souhaites rejoindre.
                             </div>
                             <div className='position-relative'>
-                                <img src={Puzzle} style={{ height: '350px' }} alt="" />
-                                <div class="Bubble-three position-absolute puzzle-bubble" style={{ width: 80+"px", height: 80+"px", left: -30+"px", bottom: 70+"px" }}></div>
-                                <div class="Bubble-three position-absolute puzzle-bubble2" style={{ width: 40+"px", height: 40+"px", left: -10+"px", bottom: 300+"px" }}></div>
-                                <div class="Bubble-three position-absolute puzzle-bubble2" style={{ width: 60+"px", height: 60+"px", right: 0+"px", bottom: 40+"px" }}></div>
+                                <img src={Puzzle} style={{ height: '330px' }} alt="" />
+                                <div class="Bubble-second position-absolute" style={{ width: 80+"px", height: 80+"px", left: -30+"px", bottom: 70+"px" }}></div>
+                                <div class="Bubble-five position-absolute" style={{ width: 40+"px", height: 40+"px", left: -10+"px", bottom: 270+"px" }}></div>
+                                <div class="Bubble-five position-absolute" style={{ width: 60+"px", height: 60+"px", right: 0+"px", bottom: 40+"px" }}></div>
                             </div>
                         </div>
                     </div>

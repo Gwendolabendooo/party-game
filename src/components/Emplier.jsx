@@ -25,7 +25,7 @@ class Empileur extends React.Component {
 
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
-            if(document.querySelector("#root > div > div > div.d-flex.align-items-center.align-content-around.flex-column.ctn-max-jeux.justify-content-evenly.w-100 > div > div.cube.cube1") != null){
+            if(document.querySelector("#root > div > div > div.d-flex.align-items-center.align-content-around.flex-column.ctn-max-jeux.justify-content-evenly.w-100 > div > div.ctn-autoC.ctn-empileur.apparition-game.position-relative.mini-game.paires.flex-nowrap") != null){
                 document.addEventListener('keypress', this.keypressED);
             }
         })
@@ -107,10 +107,10 @@ class Empileur extends React.Component {
     render() {
         return (
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
-                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game="L'empileur" desc="A l'aide de la touche 'ESPACE' appuie lorsque le cube qui se déplace est juste au dessus du précédent. La partie s'arrète lorsque tous les joueurs ont fini d'empiler"></Tuto> : ""}
                 <Transition  title={"L'empileur"}/>
                 {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <div className="ctn-autoC ctn-empileur apparition-game position-relative mini-game paires">
+                <div className="ctn-autoC ctn-empileur apparition-game position-relative mini-game paires flex-nowrap">
                     <div className="chrono-right">
                         <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
                     </div>

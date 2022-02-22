@@ -271,7 +271,7 @@ class ColorMemory extends React.Component {
     render() {        
         return (
             <div className='h-100 w-100 d-flex align-items-center justify-content-evenly'>
-                {this.state.tuto ? <Tuto chef={this.props.chef} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef} game='Memory Color' desc="Une combinaison de couleur s'affiche (pendant que le fond est sombre) lorsque c'est ton tour reproduit cette dernière en cliquant sur les couleurs correspondante. A chaque fois qu'un joueur reproduit la combinaison, une couleur supplémentaite est ajoutée à la combinaison. Chaque joueurs dispose de 3 vies, la partie s'arrète lorsqu'il de reste aucun joueur"></Tuto> : ""}
                 <Transition  title={"Memory Color"}/>
                 {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex justify-content-around">

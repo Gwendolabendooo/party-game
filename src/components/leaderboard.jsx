@@ -111,7 +111,11 @@ class Leaderboard extends React.Component {
                             }
                         })}
                     </div>
-                    <input type="submit" value="Retour lobby" onClick={this.retourLobby} className='btn-start btn-creLobby m-0 mt-5' />
+                    {this.props.chef == true ?
+                        <input type="submit" value="Retour lobby" onClick={this.retourLobby} className='btn-start btn-creLobby m-0 mt-5' />
+                        :
+                        <input type="submit" value="Retour lobby" title="Tu n'es pas le chef de groupe" style={{filter: "opacity(0.5)"}} className='btn-start btn-creLobby m-0 mt-5' disabled/>
+                    }
                 </div>
             </div>
         )  

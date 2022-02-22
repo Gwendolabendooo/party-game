@@ -120,7 +120,7 @@ class AutoClicker extends React.Component {
     render() {
         return (
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
-                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Auto clicker' desc="Appuie le plus vite possible sur le carré bleue. Attention, une lettre peut apparaître de temps en temps, il faudrat que tu appuie sur la touche de ton clavier correspondante pour continuer d'avancer. La partie prends fin lorsque tous les joueurs ont remplit la barre entièrement"></Tuto> : ""}
                 <Transition  title={"Auto clicker"}/>
                 {this.state.afficheScore ? <Score jeu={"autoclick"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly">

@@ -176,7 +176,7 @@ class paire extends React.Component {
 
         return (
             <div className="d-flex align-center justify-content-evenly align-center flex-column ctn-skin" style={{width: 100 +'%', height: 100 + '%'}}>
-                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Jeu des paires' desc="Tu dois découvrir deux cartes identiques pour former une paire. Si les cartes découvertes ne forment pas une paire elle sont de nouveau couvertes et c'est au joueur suivant de jouer. Le jeu se poursuit ainsi jusqu'à ce que toutes les paires soient découvertes."></Tuto> : ""}
                 <OrdrePassage listej={this.state.listeJ}/>
                 <Transition  title={"Jeu des paires"}/> 
                 <input type="hidden" id="joueur1" name={this.state.listeJ[0][0]} value={this.state.id}  />

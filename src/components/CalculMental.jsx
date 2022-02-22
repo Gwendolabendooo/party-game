@@ -313,7 +313,7 @@ class CalculMental extends React.Component {
         return (
             <div className='h-100 w-100 d-flex align-items-center justify-content-evenly'>
                 <Transition  title={"Calcul mental"}/>
-                {this.state.tuto ? <Tuto chef={this.props.chef === this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef === this.props.id} game='Calcul mental' desc="Un calcul s'affiche, à toi de le résoudre avant que la barre verte ne se vide complètement. La partie s'arrète après le 5eme calcul."></Tuto> : ""}
                 {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex">
                     <div className='position-absolute back-logo'></div>

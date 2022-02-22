@@ -212,7 +212,7 @@ class Cible extends React.Component {
     render() {
         return (
             <div className='h-100 w-100 d-flex align-items-center justify-content-evenly'>
-                {this.state.tuto ? <Tuto chef={this.props.chef === this.props.id} game='Jeu des paires' desc="Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.Pour jouer avec tes amis c'est simple, tout d'abord renseigne ton nom, puis renseigne le groupe que tu souhaite rejoindre."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef === this.props.id} game='Dans le mille' desc="Des cibles apparaisse aléatoirement sur ton écran, appuie le plus vite possible sur ces dernières (le plus au centre possible). Attention, les cibles rouges sont des maluces tandis que les cibles vertes te donnent beaucoup de points. La partie prends fin lorsque la barre verte est vide."></Tuto> : ""}
                 <Transition  title={"Dans le mille"}/>
                 <div className="ctn-autoC ctn-cible ctn-empileur apparition-game">
                     {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}

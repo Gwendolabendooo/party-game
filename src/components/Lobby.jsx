@@ -213,7 +213,6 @@ class Lobby extends React.Component  {
         }
 
         const jeuSuivant = (jeu) => {
-            console.log("iyiyiyii")
             var game = "t"
             if (this.state.Jeux.length == 0) {
                 game = "aucun"
@@ -261,7 +260,11 @@ class Lobby extends React.Component  {
                     <div>
                         <Jeux  liste={this.state.Jeux} id={this.state.id} chef={this.state.chef}/>
                     </div>
-                    <div className="btn-start" onClick={start}>Commencer</div>
+                    { this.state.id == this.state.chef ? 
+                        <div className="btn-start" onClick={start}>Commencer</div> 
+                        : 
+                        <div className="btn-start" style={{filter: "opacity(0.5)"}} title="Tu n'es pas le chef de groupe" disabled="true">Commencer</div> }
+
                 </div>
             :    <div className="d-flex align-items-center align-content-around flex-column ctn-max-jeux justify-content-evenly w-100">
                     {jeuSuivant(this.state.Jeux)}
