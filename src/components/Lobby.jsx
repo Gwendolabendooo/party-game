@@ -19,6 +19,7 @@ import PtitBac from './PtitBac';
 import CalculMental from './CalculMental';
 import Leaderboard from './leaderboard';
 import ColorMemory from './colorMemory';
+import SpeedWord from './Games/SpeedWordRelay';
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
 
@@ -65,6 +66,10 @@ class Lobby extends React.Component  {
                 },
                 {
                     name: "Color Memory",
+                    selected: true
+                },
+                {
+                    name: "Speed Word",
                     selected: true
                 }
             ]
@@ -239,7 +244,9 @@ class Lobby extends React.Component  {
                     return <Leaderboard score={this.state.scoreFinal}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
                 case "Color Memory":
                     return <ColorMemory score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
-                
+                case "Speed Word":
+                    return <SpeedWord score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+
                 default:
                     var lsit= this.state.listeJselected
                     this.setState({start: false, Jeux: lsit, scoreFinal: []})
