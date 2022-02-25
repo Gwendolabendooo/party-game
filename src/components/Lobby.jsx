@@ -179,23 +179,40 @@ class Lobby extends React.Component  {
         });
 
         socket.on('scoreFinal', (classement) => {
-            console.log(classement, 'le classmeent')
+            console.log(classement, 'le classmeent', classement[0][0].length)
             var scoreFin = this.state.scoreFinal
-            scoreFin.forEach(score => {
-                classement.forEach((pos, index) => {
-                    if (score[0] == pos[0]) {
-                        if (index == 0) {
-                            score[1] += 5
-                        }else if (index == 1) {
-                            score[1] += 3
-                        }else if (index == 2) {
-                            score[1] += 2
-                        }else{
-                            score[1] += 1
+            if (classement[0][0][0].length == 1) {
+                console.log("cas 1")
+                scoreFin.forEach(score => {
+                    classement.forEach((pos, index) => {
+                        if (score[0] == pos[0]) {
+                            if (index == 0) {
+                                score[1] += 5
+                            }else if (index == 1) {
+                                score[1] += 3
+                            }else if (index == 2) {
+                                score[1] += 2
+                            }else{
+                                score[1] += 1
+                            }
                         }
-                    }
+                    })
                 })
-            })
+            }else{
+                console.log("cas 2")
+                scoreFin.forEach(score => {
+                    classement[0].forEach((pos, index) => {
+                        if (score[0] == pos[0]) {
+                            score[1] += 3
+                        }
+                    })
+                    classement[1].forEach((pos, index) => {
+                        if (score[0] == pos[0]) {
+                            score[1] += 0
+                        }
+                    })
+                })      
+            }
             this.setState({scoreFinal: scoreFin})
             console.log("scoreFin ", this.state.scoreFinal)
         });

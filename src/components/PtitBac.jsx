@@ -157,7 +157,7 @@ class PtitBac extends React.Component {
     render() {
         return (
             <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Le ptit bac' desc="Trouve des mots correspondants à la demande qui commencent par la lettre indiquée. La partie prends fin lorsque 1 joueur à terminer."></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Le ptit bac' desc="Le principe est basé sur celui du petit bac classique. Une catégorie vous sera proposée (Nom, fruit, pays,...) ainsi qu'une lettre de l'alphabet.Le but du jeu est de trouver un mot appartenant à la catégorie proposée et commençant par la lettre demandée."></Tuto> : ""}
                 <Transition  title={"Le ptit bac"}/>
                 {this.state.afficheScore ? <Score jeu={"Le ptit bac"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC ctn-empileur apparition-game h-auto">

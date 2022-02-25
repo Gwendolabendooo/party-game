@@ -182,6 +182,35 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('Calcul', [data, socket.id]);
     });
 
+    //Speed word
+    //Blue win
+    socket.on('blueWin', () => {
+      io.to(Array.from(socket.rooms)).emit('blueWin');
+    });
+
+    //red win
+    socket.on('redWin', () => {
+      io.to(Array.from(socket.rooms)).emit('redWin');
+    });
+
+    //red word
+    socket.on('redWord', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('redWord', data);
+    });
+
+    //red word
+    socket.on('sentenceSpeedWord', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('sentenceSpeedWord', data);
+    });
+
+    //blue word
+    socket.on('blueWord', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('blueWord', data);
+    });
+
     //Ordre vote
     socket.on('selectJeu', (data) => {
       console.log(data)

@@ -15,6 +15,7 @@ class SpeedWord extends React.Component {
             listeJ: this.props.listej,
             afficheScore : false,
             tuto: true,
+            equipeWin: [],
             red: [],
             blue: [],
             redInput: "",
@@ -42,12 +43,86 @@ class SpeedWord extends React.Component {
                 {
                     number: 4,
                     words: []
+                },
+                {
+                    number: 5,
+                    words: []
                 }
             ]
         };
 
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
+        })
+
+        socket.on('sentenceSpeedWord', (data) => {
+            this.setState({ sentence: data })  
+        })
+
+        socket.on('blueWin', () => {
+            console.log("bluewin")
+            this.setState({ afficheScore: true, equipeWin: [this.state.blue, this.state.red] }) 
+        })
+
+        socket.on('redWin', () => {
+            console.log("redwin")
+            this.setState({ afficheScore: true, equipeWin: [this.state.red, this.state.blue] }) 
+        })
+
+        socket.on('blueWord', (data) => {
+            document.getElementById("inputBlue").value = data
+
+            //fin
+            if(document.getElementById("blueTeam").innerHTML.length == document.getElementById("inputBlue").value.length){
+                var lvlUp = this.state.blueTeamlvl + 1
+
+                if (lvlUp > 6 && this.props.chef == true) {
+                    socket.emit('blueWin');
+                }
+
+                this.setState({ blueTeamlvl: lvlUp })
+
+                var blueteam = this.state.blue;
+                blueteam.push(blueteam[0])
+                blueteam.shift()
+                this.setState({ blue: blueteam })
+
+                if (blueteam[0][0] == this.props.id) {
+                    document.getElementById("inputBlue").removeAttribute('disabled')
+                }else{
+                    document.getElementById("inputBlue").setAttribute('disabled', true)
+                }
+                this.setState({ blueInput: "" })
+            }
+        })
+
+        socket.on('redWord', (data) => {
+            document.getElementById("inputRed").value = data
+            
+            //fin
+            if(document.getElementById("redTeam").innerHTML.length == document.getElementById("inputRed").value.length){
+                var lvlUp = this.state.redTeamlvl + 1
+
+                if (lvlUp > 6 && this.props.chef) {
+                    socket.emit('redWin');
+                }
+
+                this.setState({ redTeamlvl: lvlUp })
+
+                var blueteam = this.state.red;
+                var lastBlue = this.state.red[this.state.red.length - 1]
+                blueteam.push(blueteam[0])
+                blueteam.shift()
+
+                this.setState({ red: blueteam })
+
+                if (blueteam[0][0] == this.props.id) {
+                    document.getElementById("inputRed").removeAttribute('disabled')
+                }else{
+                    document.getElementById("inputRed").setAttribute('disabled', true)
+                }
+                this.setState({ redInput: "" })
+            }
         })
     }
 
@@ -82,23 +157,25 @@ class SpeedWord extends React.Component {
             }
         }
 
-        //randome words
-        this.state.words.sort(()=> Math.random() - 0.5)
+        if (this.props.chef) {
+            //randome words
+            this.state.words.sort(()=> Math.random() - 0.5)
 
-        var i = 0
-        var sentence = this.state.sentence;
-        //nombre de phrases
-        while (i < 5) {
-            i++
-            var motcpt = 0;
-            //nombre de mots
-            while (motcpt < 5) {
-                motcpt++
-                console.log(i , motcpt)
-                sentence[i-1].words.push(this.state.words[((i-1)*5) +motcpt])
+            var i = 0
+            var sentence = this.state.sentence;
+            //nombre de phrases
+            while (i < 6) {
+                i++
+                var motcpt = 0;
+                //nombre de mots
+                while (motcpt < 5) {
+                    motcpt++
+                    console.log(i , motcpt)
+                    sentence[i-1].words.push(this.state.words[((i-1)*6) +motcpt])
+                }
             }
+            socket.emit('sentenceSpeedWord', sentence);
         }
-        this.setState({ sentence: sentence })
     }
 
     verifMot(e, team){
@@ -108,26 +185,7 @@ class SpeedWord extends React.Component {
         //comparaison
         if (equipe == e.target.value) {
             this.setState({ redInput: e.target.value })
-
-            //fin
-            if(document.getElementById(team).innerHTML.length == e.target.value.length){
-                var lvlUp = this.state.redTeamlvl + 1
-                this.setState({ redTeamlvl: lvlUp })
-                this.setState({ redInput: "" })
-
-                var blueteam = this.state.red;
-                var lastBlue = this.state.red[this.state.red.length - 1]
-                blueteam[this.state.red.length - 1] = blueteam[0]
-                blueteam[0] = lastBlue
-
-                this.setState({ red: blueteam })
-
-                if (blueteam[0][0] == this.props.id) {
-                    document.getElementById("inputRed").removeAttribute('disabled')
-                }else{
-                    document.getElementById("inputRed").setAttribute('disabled', true)
-                }
-            }
+            socket.emit('redWord', e.target.value);
         }
     }
 
@@ -138,26 +196,7 @@ class SpeedWord extends React.Component {
         //comparaison
         if (equipe == e.target.value) {
             this.setState({ blueInput: e.target.value })
-
-            //fin
-            if(document.getElementById(team).innerHTML.length == e.target.value.length){
-                var lvlUp = this.state.blueTeamlvl + 1
-                this.setState({ blueTeamlvl: lvlUp })
-                this.setState({ blueInput: "" })
-
-                var blueteam = this.state.blue;
-                var lastBlue = this.state.blue[this.state.blue.length - 1]
-                blueteam[this.state.blue.length - 1] = blueteam[0]
-                blueteam[0] = lastBlue
-
-                this.setState({ blue: blueteam })
-
-                if (blueteam[0][0] == this.props.id) {
-                    document.getElementById("inputBlue").removeAttribute('disabled')
-                }else{
-                    document.getElementById("inputBlue").setAttribute('disabled', true)
-                }
-            }
+            socket.emit('blueWord', e.target.value);
         }
     }
 
@@ -169,38 +208,44 @@ class SpeedWord extends React.Component {
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
                 {this.state.tuto ? <Tuto chef={this.props.chef == true} game='Speed Word' desc="Appuie le plus vite possible sur le carré bleue. Attention, une lettre peut apparaître de temps en temps, il faudrat que tu appuie sur la touche de ton clavier correspondante pour continuer d'avancer. La partie prends fin lorsque tous les joueurs ont remplit la barre entièrement"></Tuto> : ""}
                 <Transition  title={"SpeedWord"}/>
-                {this.state.afficheScore ? <Score jeu={"SpeedWord"} chef={this.props.chef == true} listej={this.state.listeJ}/> : ''}
+                {this.state.afficheScore ? <Score jeu={"SpeedWord"} chef={this.props.chef == true} listej={this.state.equipeWin}/> : ''}
                 <div className="justify-content-evenly ctn-autoC ctn-empileur rounded overflow-hidden">
                     <div className='h-50 d-flex flex-column align-items-center justify-content-around redteam'>
                         <OrdrePassage listej={this.state.red} hidebg={true}/>
                         <div className='w-100 text-center font-paytone' id='redTeam'>
-                            {this.state.sentence[this.state.redTeamlvl - 1].words.map((word, i) =>{
-                                if (i !== 4) {
-                                    return (word + " ");
-                                } else {
-                                    return (word);
-                                }
-                            })}
+                            {this.state.redTeamlvl < 7 ? 
+                                this.state.sentence[this.state.redTeamlvl - 1].words.map((word, i) =>{
+                                    if (i !== 4) {
+                                        return (word + " ");
+                                    } else {
+                                        return (word);
+                                    }
+                                }):
+                                ""
+                            }
                         </div>
                         <input type="text" id='inputRed' value={this.state.redInput} onChange={(e) => this.verifMot(e, "redTeam")} className='w-75 text-center' name="" disabled/>
                         <div className='cpt-Words'>
-                            {this.state.redTeamlvl} / 5
+                            {this.state.redTeamlvl} / 6
                         </div>
                     </div>
                     <div className='h-50 d-flex flex-column align-items-center justify-content-around blueteam'>
                         <OrdrePassage listej={this.state.blue} hidebg={true}/>
                         <div className='w-100 text-center font-paytone' id='blueTeam'>
-                            {this.state.sentence[this.state.blueTeamlvl - 1].words.map((word, i) =>{
-                                if (i !== 4) {
-                                    return (word + " ");
-                                } else {
-                                    return (word);
-                                }
-                            })}
+                            {this.state.blueTeamlvl < 7 ? 
+                                this.state.sentence[this.state.blueTeamlvl - 1].words.map((word, i) =>{
+                                    if (i !== 4) {
+                                        return (word + " ");
+                                    } else {
+                                        return (word);
+                                    }
+                                }):
+                                ""
+                            }
                         </div>
                         <input type="text" id='inputBlue' value={this.state.blueInput} onChange={(e) => this.verifMotBlue(e, "blueTeam")} className='w-75 text-center' name="" disabled/>
                         <div className='cpt-Words'>
-                            {this.state.blueTeamlvl} / 5
+                            {this.state.blueTeamlvl} / 6
                         </div>
                     </div>
                 </div>
