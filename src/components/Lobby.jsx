@@ -20,6 +20,7 @@ import CalculMental from './CalculMental';
 import Leaderboard from './leaderboard';
 import ColorMemory from './colorMemory';
 import SpeedWord from './Games/SpeedWordRelay';
+import TirCorde from './Games/TirCorde';
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
 
@@ -70,6 +71,10 @@ class Lobby extends React.Component  {
                 },
                 {
                     name: "Speed Word",
+                    selected: true
+                },
+                {
+                    name: "Tir a la corde",
                     selected: true
                 }
             ]
@@ -263,6 +268,8 @@ class Lobby extends React.Component  {
                     return <ColorMemory score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
                 case "Speed Word":
                     return <SpeedWord score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                case "Tir a la corde":
+                    return <TirCorde score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
 
                 default:
                     var lsit= this.state.listeJselected

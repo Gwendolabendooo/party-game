@@ -1834,3 +1834,59 @@ svg * {
 .puzzle-bubble2{
   background: radial-gradient(88.26% 88.26% at 64.77% 26.07%, #ffffff 0%, #c4c4c4 33.46%, #747171 100%);
 }
+
+.ctn-corde{
+  width: 10px;
+  background-color: #01a6ff;
+}
+
+.ligne-corde{
+  left: 50%;
+  top: 20%;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100px;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.ctn-touch{
+  width: 60px;
+  height: 60px;
+  transition: all .4s;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+}
+
+.ligne-corde2{
+  left: 50%;
+  top: 80%;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100px;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.ctn-blue-corde{
+  height: 50%;
+  background-color: #ff0063;
+  transition: all .4s;
+  width: 100%;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+}
+
+#redTeam, #blueTeam{
+  user-select: none;
+}

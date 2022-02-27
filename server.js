@@ -212,6 +212,16 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     });
 
     //Ordre vote
+    socket.on('cordeWin', (data) => {
+      io.to(Array.from(socket.rooms)).emit('cordeWin', data);
+    });
+
+    //Ordre vote
+    socket.on('clickCorde', (data) => {
+      io.to(Array.from(socket.rooms)).emit('clickCorde', data);
+    });
+
+    //Ordre vote
     socket.on('selectJeu', (data) => {
       console.log(data)
       io.to(Array.from(socket.rooms)).emit('selectJeu', data);

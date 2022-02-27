@@ -110,7 +110,6 @@ class SpeedWord extends React.Component {
                 this.setState({ redTeamlvl: lvlUp })
 
                 var blueteam = this.state.red;
-                var lastBlue = this.state.red[this.state.red.length - 1]
                 blueteam.push(blueteam[0])
                 blueteam.shift()
 
@@ -224,7 +223,7 @@ class SpeedWord extends React.Component {
                                 ""
                             }
                         </div>
-                        <input type="text" id='inputRed' value={this.state.redInput} onChange={(e) => this.verifMot(e, "redTeam")} className='w-75 text-center' name="" disabled/>
+                        <input type="text" id='inputRed' value={this.state.redInput} onChange={(e) => this.verifMot(e, "redTeam")} className='w-75 text-center' autocomplete="off" name="" disabled/>
                         <div className='cpt-Words'>
                             {this.state.redTeamlvl} / 6
                         </div>
@@ -243,7 +242,7 @@ class SpeedWord extends React.Component {
                                 ""
                             }
                         </div>
-                        <input type="text" id='inputBlue' value={this.state.blueInput} onChange={(e) => this.verifMotBlue(e, "blueTeam")} className='w-75 text-center' name="" disabled/>
+                        <input type="text" id='inputBlue' value={this.state.blueInput} onChange={(e) => this.verifMotBlue(e, "blueTeam")} className='w-75 text-center' autocomplete="off" name="" disabled/>
                         <div className='cpt-Words'>
                             {this.state.blueTeamlvl} / 6
                         </div>
