@@ -130,12 +130,6 @@ class TirCorde extends React.Component {
                             <FontAwesomeIcon icon={['fas', "angle-right"]} />
                         </div>
                     </div>
-                    <div>
-                        {this.state.blueclick}
-                    </div>
-                    <div>
-                        {this.state.redclick}
-                    </div>
                     <OrdrePassage listej={this.state.red} hidebg={true}/>
                     <div className='h-75 ctn-corde position-relative'>
                         <div className='ctn-blue-corde' id='cordelette'></div>
