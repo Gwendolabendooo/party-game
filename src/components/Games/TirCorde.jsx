@@ -130,7 +130,7 @@ class TirCorde extends React.Component {
                             <FontAwesomeIcon icon={['fas', "angle-right"]} />
                         </div>
                     </div>
-                    <OrdrePassage listej={this.state.red} hidebg={true}/>
+                    <OrdrePassage listej={this.state.red} showSecond={true} hidebg={true}/>
                     <div className='h-75 ctn-corde position-relative'>
                         <div className='ctn-blue-corde' id='cordelette'></div>
                         <div className='position-absolute ligne-corde text-center'>- - - - - - -</div>
