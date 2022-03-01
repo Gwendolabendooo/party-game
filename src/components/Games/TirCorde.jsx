@@ -136,7 +136,7 @@ class TirCorde extends React.Component {
                         <div className='position-absolute ligne-corde text-center'>- - - - - - -</div>
                         <div className='position-absolute ligne-corde2 text-center'>- - - - - - -</div>
                     </div>
-                    <OrdrePassage listej={this.state.blue} hidebg={true}/>
+                    <OrdrePassage listej={this.state.blue} showSecond={true} hidebg={true}/>
                 </div>
             </div>
         )  

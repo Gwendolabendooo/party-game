@@ -70,10 +70,11 @@ class SpeedWord extends React.Component {
         })
 
         socket.on('blueWord', (data) => {
-            document.getElementById("inputBlue").value = data
+            this.setState({ blueInput: data })
 
+            console.log(document.getElementById("blueTeam").innerHTML, "==" ,document.getElementById("inputBlue").value)
             //fin
-            if(document.getElementById("blueTeam").innerHTML.length == document.getElementById("inputBlue").value.length){
+            if(document.getElementById("blueTeam").innerHTML == document.getElementById("inputBlue").value){
                 var lvlUp = this.state.blueTeamlvl + 1
 
                 if (lvlUp > 6 && this.props.chef == true) {
@@ -97,10 +98,11 @@ class SpeedWord extends React.Component {
         })
 
         socket.on('redWord', (data) => {
-            document.getElementById("inputRed").value = data
+            this.setState({ redInput: data })
             
+            console.log(document.getElementById("redTeam").innerHTML, "==" ,document.getElementById("inputRed").value)
             //fin
-            if(document.getElementById("redTeam").innerHTML.length == document.getElementById("inputRed").value.length){
+            if(document.getElementById("redTeam").innerHTML == document.getElementById("inputRed").value){
                 var lvlUp = this.state.redTeamlvl + 1
 
                 if (lvlUp > 6 && this.props.chef) {
@@ -179,24 +181,23 @@ class SpeedWord extends React.Component {
 
     verifMot(e, team){
         e.preventDefault()
-        const length = e.target.value.length
-        const equipe = document.getElementById(team).innerHTML.substr(0, length)
-        //comparaison
-        if (equipe == e.target.value) {
-            this.setState({ redInput: e.target.value })
-            socket.emit('redWord', e.target.value);
-        }
+        // const length = e.target.value.length
+        // const equipe = document.getElementById(team).innerHTML.substr(0, length)
+        // //comparaison
+        // if (equipe == e.target.value) {
+        socket.emit('redWord', e.target.value);
+        // }
     }
 
     verifMotBlue(e, team){
         e.preventDefault()
-        const length = e.target.value.length
-        const equipe = document.getElementById(team).innerHTML.substr(0, length)
-        //comparaison
-        if (equipe == e.target.value) {
-            this.setState({ blueInput: e.target.value })
-            socket.emit('blueWord', e.target.value);
-        }
+        // const length = e.target.value.length
+        // const equipe = document.getElementById(team).innerHTML.substr(0, length)
+        // //comparaison
+        // if (equipe == e.target.value) {
+        //     this.setState({ blueInput: e.target.value })
+        socket.emit('blueWord', e.target.value);
+        // }
     }
 
     componentWillUnmount(){

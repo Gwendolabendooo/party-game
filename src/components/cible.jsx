@@ -29,11 +29,13 @@ class Cible extends React.Component {
 
         
         socket.on('startGame', (data) => {
-            this.setState({ tuto: false })  
-            {this.newCible()}
-            {this.newGoldCible()}
-            {this.newMalusCible()}
-            {this.finPartie()}
+            this.setState({ tuto: false })
+            if (document.getElementById("cibleCadre")) {
+                this.newCible()
+                this.newGoldCible()
+                this.newMalusCible()
+                this.finPartie() 
+            }  
         })
 
         socket.on('fin-cible', (data) => {
@@ -217,7 +219,7 @@ class Cible extends React.Component {
                 <div className="ctn-autoC ctn-cible ctn-empileur apparition-game">
                     {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                     <span id='loader' className='loader position-absolute'></span>
-                    <div className='recordCible'>
+                    <div className='recordCible' id='cibleCadre'>
                         {this.state.record}
                     </div>
                 </div>

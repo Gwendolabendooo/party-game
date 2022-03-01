@@ -41,12 +41,10 @@ class ColorMemory extends React.Component {
                     finPartie = false
                 }
             })
-            console.log(mort, 'morts')
 
             if (finPartie) {
                 this.setState({ afficheScore: true })
             }
-            console.log(liste)
             this.setState({ listeJ: liste })
         })
 
@@ -90,9 +88,7 @@ class ColorMemory extends React.Component {
             }else{
                 var verif = true
                 memoUsr.forEach((lvl, i) => {
-                    if (lvl == user[i]) {
-                        console.log(lvl)
-                    }else{
+                    if (lvl !== user[i]) {
                         verif = false
                     }
                 })
@@ -206,21 +202,20 @@ class ColorMemory extends React.Component {
         })
 
         if (cpt != player.length -1) {
-            player.shift()
             player.push(player0)
+            player.shift()
     
             player.forEach((play, i)=> {
                 if (play[4] <= 0) {
+                    console.log(play)
                     mort.push([play, i])
-                    cpt++
                 }
             })
     
-            mort.forEach(dead => {
-                player.splice(dead[1], 1)
+            mort.forEach((dead, i) => {
+                player.splice((dead[1] - i), 1)
                 player.push(dead[0])
-                console.log(dead)
-            })   
+            })    
         }
 
         console.log("player updated next", player)
