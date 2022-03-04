@@ -84,7 +84,6 @@ class TirCorde extends React.Component {
             }
         })
 
-        console.log(red)
         this.setState({ red: red, blue: blue })
     }
 

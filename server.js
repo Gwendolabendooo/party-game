@@ -193,6 +193,11 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('redWin');
     });
 
+    //team corde chef
+    socket.on('teamCorde', (data) => {
+      io.to(Array.from(socket.rooms)).emit('teamCorde', data);
+    });
+
     //red word
     socket.on('redWord', (data) => {
       console.log(data)

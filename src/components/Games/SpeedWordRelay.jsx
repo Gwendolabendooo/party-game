@@ -101,7 +101,7 @@ class SpeedWord extends React.Component {
 
         socket.on('redWord', (data) => {
             if (this.props.id !== data[1]) {
-                this.setState({ blueInput: data[0] })   
+                this.setState({ redInput: data[0] })   
             }
             
             console.log(document.getElementById("redTeam").innerHTML, "==" ,document.getElementById("inputRed").value)
