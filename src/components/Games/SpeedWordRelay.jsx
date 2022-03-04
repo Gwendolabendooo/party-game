@@ -70,7 +70,9 @@ class SpeedWord extends React.Component {
         })
 
         socket.on('blueWord', (data) => {
-            this.setState({ blueInput: data })
+            if (this.props.id !== data[1]) {
+                this.setState({ blueInput: data[0] })   
+            }
 
             console.log(document.getElementById("blueTeam").innerHTML, "==" ,document.getElementById("inputBlue").value)
             //fin
@@ -98,7 +100,9 @@ class SpeedWord extends React.Component {
         })
 
         socket.on('redWord', (data) => {
-            this.setState({ redInput: data })
+            if (this.props.id !== data[1]) {
+                this.setState({ blueInput: data[0] })   
+            }
             
             console.log(document.getElementById("redTeam").innerHTML, "==" ,document.getElementById("inputRed").value)
             //fin
@@ -185,6 +189,7 @@ class SpeedWord extends React.Component {
         // const equipe = document.getElementById(team).innerHTML.substr(0, length)
         // //comparaison
         // if (equipe == e.target.value) {
+        this.setState({ blueInput: e.target.value })
         socket.emit('redWord', e.target.value);
         // }
     }
@@ -195,7 +200,7 @@ class SpeedWord extends React.Component {
         // const equipe = document.getElementById(team).innerHTML.substr(0, length)
         // //comparaison
         // if (equipe == e.target.value) {
-        //     this.setState({ blueInput: e.target.value })
+        this.setState({ blueInput: e.target.value })
         socket.emit('blueWord', e.target.value);
         // }
     }

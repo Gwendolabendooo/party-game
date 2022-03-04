@@ -196,7 +196,7 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //red word
     socket.on('redWord', (data) => {
       console.log(data)
-      io.to(Array.from(socket.rooms)).emit('redWord', data);
+      io.to(Array.from(socket.rooms)).emit('redWord', [data, socket.id]);
     });
 
     //red word
@@ -208,7 +208,7 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //blue word
     socket.on('blueWord', (data) => {
       console.log(data)
-      io.to(Array.from(socket.rooms)).emit('blueWord', data);
+      io.to(Array.from(socket.rooms)).emit('blueWord', [data, socket.id]);
     });
 
     //Ordre vote
