@@ -1,13 +1,19 @@
 var cors = require('cors');
 var app = require('express')();
+var fs = require('fs');
 
 app.use(cors())
 
-var http = require('http').createServer(app);
+const opts = {
+  key: fs.readFileSync('./id_rsa.pub'),
+  cert: fs.readFileSync('/etc/letsencrypt/cert.pem')
+}
+
+var https = require('https').createServer(opts, app);
 
 const PORT = 8000;
 
-var io = require('socket.io')(http, { 
+var io = require('socket.io')(https, { 
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -17,7 +23,7 @@ var io = require('socket.io')(http, {
 
 const Lobbys = [];
 
-http.listen(PORT, () => {
+https.listen(PORT, () => {
     console.log(`listening on *:${PORT}`);
 });
 
