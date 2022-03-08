@@ -1,15 +1,15 @@
 var cors = require('cors');
 var app = require('express')();
-var fs = require('fs');
+// var fs = require('fs');
 
 app.use(cors())
 
-const opts = {
-  key: fs.readFileSync('./id_rsa.pub'),
-  cert: fs.readFileSync('/etc/letsencrypt/cert.pem')
-}
+// const opts = {
+//   key: fs.readFileSync('./id_rsa.pub'),
+//   cert: fs.readFileSync('/etc/letsencrypt/cert.pem')
+// }
 
-var https = require('https').createServer(opts, app);
+var https = require('http').createServer(app);
 
 const PORT = 8000;
 
