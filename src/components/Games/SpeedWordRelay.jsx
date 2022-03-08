@@ -74,9 +74,8 @@ class SpeedWord extends React.Component {
                 this.setState({ blueInput: data[0] })   
             }
 
-            console.log(document.getElementById("blueTeam").innerHTML, "==" ,document.getElementById("inputBlue").value)
             //fin
-            if(document.getElementById("blueTeam").innerHTML == document.getElementById("inputBlue").value){
+            if(document.getElementById("blueTeam").innerHTML.toLowerCase() == document.getElementById("inputBlue").value.toLowerCase()){
                 var lvlUp = this.state.blueTeamlvl + 1
 
                 if (lvlUp > 6 && this.props.chef == true) {
@@ -104,9 +103,8 @@ class SpeedWord extends React.Component {
                 this.setState({ redInput: data[0] })   
             }
             
-            console.log(document.getElementById("redTeam").innerHTML, "==" ,document.getElementById("inputRed").value)
             //fin
-            if(document.getElementById("redTeam").innerHTML == document.getElementById("inputRed").value){
+            if(document.getElementById("redTeam").innerHTML.toLowerCase() == document.getElementById("inputRed").value.toLowerCase()){
                 var lvlUp = this.state.redTeamlvl + 1
 
                 if (lvlUp > 6 && this.props.chef) {
@@ -189,7 +187,7 @@ class SpeedWord extends React.Component {
         // const equipe = document.getElementById(team).innerHTML.substr(0, length)
         // //comparaison
         // if (equipe == e.target.value) {
-        this.setState({ blueInput: e.target.value })
+        this.setState({ redInput: e.target.value })
         socket.emit('redWord', e.target.value);
         // }
     }

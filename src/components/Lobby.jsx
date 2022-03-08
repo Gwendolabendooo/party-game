@@ -21,6 +21,8 @@ import Leaderboard from './leaderboard';
 import ColorMemory from './colorMemory';
 import SpeedWord from './Games/SpeedWordRelay';
 import TirCorde from './Games/TirCorde';
+import RelayEscalade from './Games/RelayEscalade';
+import ChaisesMusicales from './Games/ChaisesMusicale';
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
 
@@ -75,6 +77,14 @@ class Lobby extends React.Component  {
                 },
                 {
                     name: "Tir a la corde",
+                    selected: true
+                },
+                {
+                    name: "Escalade en relais",
+                    selected: true
+                },
+                {
+                    name: "Chaises Musicales",
                     selected: true
                 }
             ]
@@ -270,6 +280,10 @@ class Lobby extends React.Component  {
                     return <SpeedWord score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
                 case "Tir a la corde":
                     return <TirCorde score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                case "Escalade en relais":
+                    return <RelayEscalade score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                case "Chaises Musicales":
+                    return <ChaisesMusicales name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
 
                 default:
                     var lsit= this.state.listeJselected

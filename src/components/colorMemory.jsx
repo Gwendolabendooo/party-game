@@ -274,7 +274,7 @@ class ColorMemory extends React.Component {
                         {this.state.listeJ.map((item, index) => {
                             if (index == 0) {
                                 return (
-                                    <div className={item[4] == 3 ? "nom-j position-relative valide" : item[4] == 2 ? "nom-j position-relative bg-warning" : item[4] == 1 ? "nom-j position-relative bg-danger" : "nom-j position-relative dead"}>
+                                    <div className={item[4] == 3 ? "nom-j position-relative valide" : item[4] == 2 ? "nom-j position-relative bg-warning" : item[4] == 1 ? "nom-j position-relative valide" : "nom-j position-relative dead"}>
                                         <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
                                         <span className='m-auto text-center'>
                                             {item[1]}
@@ -283,7 +283,7 @@ class ColorMemory extends React.Component {
                                 );  
                             }else{
                                 return (
-                                    <div className={item[4] == 3 ? "nom-j position-relative valide opacity-25" : item[4] == 2 ? "nom-j position-relative bg-warning opacity-25" : item[4] == 1 ? "nom-j position-relative bg-danger opacity-25" : "nom-j position-relative dead opacity-25"}>
+                                    <div className={item[4] == 3 ? "nom-j position-relative valide opacity-25" : item[4] == 2 ? "nom-j position-relative bg-warning opacity-25" : item[4] == 1 ? "nom-j position-relative valide opacity-25" : "nom-j position-relative dead opacity-25"}>
                                         <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
                                         <span className='m-auto text-center'>
                                             {item[1]}

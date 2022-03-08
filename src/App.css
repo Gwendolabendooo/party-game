@@ -866,8 +866,8 @@ input[type="checkbox"]{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
   align-content: space-around;
+  justify-content: flex-start;
   overflow-y: hidden;
   background-color: #ffffff82;
   border-radius: 5px;
@@ -1889,4 +1889,56 @@ svg * {
 
 #redTeam, #blueTeam{
   user-select: none;
+}
+
+/**Escalade**/
+.letterRelay{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 22px;
+}
+
+.loadEscalade{
+  height: 200px;
+  width: 10px;
+  background: #ffffff73;
+  border-radius: 20px;
+  right: 50px;
+}
+
+.loadEscalade > div{
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+}
+
+.no-transition{
+  transition: none;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+}
+
+.z1{
+  z-index: 1;
+}
+
+.z3{
+  z-index: 3;
+}
+
+.qualifie{
+  background-color: #1cd248;
+}
+
+.looserChaise{
+  filter: brightness(.5);
+  -webkit-filter: brightness(.5);
 }

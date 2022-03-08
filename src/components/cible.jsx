@@ -39,7 +39,6 @@ class Cible extends React.Component {
         })
 
         socket.on('fin-cible', (data) => {
-            console.log(data, this.state.listeJ, "ertrtretretre")
             var tabMinute = this.state.listeJ
             var cptvide = 0
             

@@ -228,43 +228,71 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
     //Ordre vote
     socket.on('selectJeu', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('selectJeu', data);
+    });
+
+    //FinChaise
+    socket.on('FinChaise', () => {
+      io.to(Array.from(socket.rooms)).emit('FinChaise');
     });
 
     //Click-memory-color
     socket.on('Click-memory-color', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('Click-memory-color', data);
+    });
+
+    //Liste lettres RELAY ESCALADE
+    socket.on('lettreEscalade', (data) => {
+      io.to(Array.from(socket.rooms)).emit('lettreEscalade', data);
+    });
+
+    //redEscaladePress
+    socket.on('redEscaladePress', (data) => {
+      io.to(Array.from(socket.rooms)).emit('redEscaladePress', data);
+    });
+
+    //blueEscaladePress
+    socket.on('blueEscaladePress', (data) => {
+      io.to(Array.from(socket.rooms)).emit('blueEscaladePress', data);
+    });
+
+    //Chaises musicale
+    socket.on('posChaises', (data) => {
+      io.to(Array.from(socket.rooms)).emit('posChaises', data);
+    });
+
+    //randome chaise pose
+    socket.on('randomChair', (data) => {
+      io.to(Array.from(socket.rooms)).emit('randomChair', data);
+    });
+
+    //sur chaise
+    socket.on('onChaise', (data) => {
+      io.to(Array.from(socket.rooms)).emit('onChaise', data);
     });
 
     //Click-memory-color
     socket.on('retire-vie-memory', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('retire-vie-memory', data);
     });
 
     //Jsuivant-memory
     socket.on('Jsuivant-memory', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('Jsuivant-memory', data);
     });
 
     //Close Tutorial
     socket.on('startGame', (data) => {
-      console.log(data, 'pressed')
       io.to(Array.from(socket.rooms)).emit('startGame', "data");
     });
 
     //liste memorycolor
     socket.on('listMemo', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('listMemo', data);
     });
 
-    //        
+    //        NOMBRE DE JOUEURS
     socket.on('listeJoeursco', (nbrJ) => {
-      console.log(io.engine.clientsCount, 'long')
       io.emit('listeJoeursco', io.engine.clientsCount);
     })
 
