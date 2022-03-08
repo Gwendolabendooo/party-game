@@ -15,7 +15,7 @@ import InputTxt from './InputText'
 import { disabled } from 'express/lib/application';
 import Tuto from './tutorial'
 
-import NiceAvatar from 'react-nice-avatar'
+import Skin from './skin';
 
 const SortableItem = SortableElement(({value}) =>
   <div className='card-last-tab' data-index={value[1]}>{value[0]}</div>
@@ -230,7 +230,7 @@ class TrouvePersonnage extends React.Component {
 
         const listCelebrity = this.state.listcelebre.map(celebre => <div className='card-celebrite-tab'>{celebre}</div>);
 
-        const listJoueur = this.state.listeJ.map((element, i) => <li className='d-flex flex-column align-items-center'><div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>{this.state.ordreVote.map((vote, index) => <div>{vote[1] == element[0] ? <div className='d-flex flex-column' data-id={element[0]}>{this.state.ordreVote[index][0].map((voteId, iterate)=> voteId == iterate ? <div className='checkVote' data-vote="bon"><FontAwesomeIcon className="text-success vote" icon={['fas', 'check-circle']} /></div>  : <div className='checkVote' data-vote="mauvais"><FontAwesomeIcon className="text-danger vote" icon={['fas', 'times-circle']} /></div>)}</div> : ""}</div>)}</li>)
+        const listJoueur = this.state.listeJ.map((element, i) => <li className='d-flex flex-column align-items-center'><div className="nom-j position-relative">{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>{this.state.ordreVote.map((vote, index) => <div>{vote[1] == element[0] ? <div className='d-flex flex-column' data-id={element[0]}>{this.state.ordreVote[index][0].map((voteId, iterate)=> voteId == iterate ? <div className='checkVote' data-vote="bon"><FontAwesomeIcon className="text-success vote" icon={['fas', 'check-circle']} /></div>  : <div className='checkVote' data-vote="mauvais"><FontAwesomeIcon className="text-danger vote" icon={['fas', 'times-circle']} /></div>)}</div> : ""}</div>)}</li>)
         
         return (
             <div className="w-100 h-100 d-flex justify-content-center align-items-center">

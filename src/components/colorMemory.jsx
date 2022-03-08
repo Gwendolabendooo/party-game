@@ -5,9 +5,7 @@ import {SocketContext, socket} from './socket';
 import Score from './Score'
 import Tuto from './tutorial'
 
-import Jeudusimon from '../img/jeuxSimon.svg'
-
-import NiceAvatar from 'react-nice-avatar'
+import Skin from './skin';
 
 class ColorMemory extends React.Component {
     constructor(props) {
@@ -275,7 +273,7 @@ class ColorMemory extends React.Component {
                             if (index == 0) {
                                 return (
                                     <div className={item[4] == 3 ? "nom-j position-relative valide" : item[4] == 2 ? "nom-j position-relative bg-warning" : item[4] == 1 ? "nom-j position-relative valide" : "nom-j position-relative dead"}>
-                                        <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
+                                        <Skin conf={item[3]} h="3rem" w="3rem" />
                                         <span className='m-auto text-center'>
                                             {item[1]}
                                         </span>
@@ -284,7 +282,7 @@ class ColorMemory extends React.Component {
                             }else{
                                 return (
                                     <div className={item[4] == 3 ? "nom-j position-relative valide opacity-25" : item[4] == 2 ? "nom-j position-relative bg-warning opacity-25" : item[4] == 1 ? "nom-j position-relative valide opacity-25" : "nom-j position-relative dead opacity-25"}>
-                                        <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
+                                        <Skin conf={item[3]} h="3rem" w="3rem" />
                                         <span className='m-auto text-center'>
                                             {item[1]}
                                         </span>

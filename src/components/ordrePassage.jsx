@@ -5,9 +5,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAppleAlt, faBacon, faCarrot, faCheese, faCrown, faEgg, faFish, faHamburger, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {SocketContext, socket} from './socket';
+import Skin from './skin';
 
-import NiceAvatar from 'react-nice-avatar'
+import {SocketContext, socket} from './socket';
 
 class ordrePassage extends React.Component  {
     constructor(props) {
@@ -39,9 +39,9 @@ class ordrePassage extends React.Component  {
             <div className={this.props.hidebg == true ? "room-ctn hidebg justify-content-around" : "room-ctn"} style={{width: 1000+"px", height: 'auto'}} id="scrollHorizontal" onWheel={this.scrollHorizontal}>
                 <div>
                     {this.props.showSecond !== true ?
-                        this.state.listeJ.map(element => <div className="nom-j position-relative" data-second={element[0] !== this.state.listeJ[0][0] ? true : false}>{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>)
+                        this.state.listeJ.map(element => <div className="nom-j position-relative" data-second={element[0] !== this.state.listeJ[0][0] ? true : false}>{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)
                         :
-                        this.state.listeJ.map(element => <div className="nom-j position-relative">{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>)
+                        this.state.listeJ.map(element => <div className="nom-j position-relative">{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)
                     }
                 </div>
             </div>

@@ -1,9 +1,7 @@
 import React from 'react';
 import logo from '../logo.svg'
 import {SocketContext, socket} from './socket';
-
-import NiceAvatar from 'react-nice-avatar'
-
+import Skin from './skin';
 class score extends React.Component {
     constructor(props) {
         super(props);
@@ -37,9 +35,9 @@ class score extends React.Component {
                         <div style={{textTransform: "uppercase"}}>Score</div>
                         <ul className="list-score">
                             {this.state.jeu !== "SpeedWord" && this.state.jeu !== "Tir a la corde" && this.state.jeu !== "Escalade en relais" ?
-                                this.props.listej.map((element, i) => <li><div className="rank">{i+1}</div><div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div><div className="points"><div>{element[2][1] === undefined ? element[2] : element[2][0] + ' : ' + (element[2][1] < 10 ? '0' + element[2][1] : element[2][1]) + ' : ' + (element[2][2] < 10 ? '0' + element[2][2] : element[2][2]) }</div></div></li>)
+                                this.props.listej.map((element, i) => <li><div className="rank">{i+1}</div><div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}><Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div><div className="points"><div>{element[2][1] === undefined ? element[2] : element[2][0] + ' : ' + (element[2][1] < 10 ? '0' + element[2][1] : element[2][1]) + ' : ' + (element[2][2] < 10 ? '0' + element[2][2] : element[2][2]) }</div></div></li>)
                                 :
-                                this.props.listej.map((element, i) => i == 0 ? this.props.listej[0].map((joueur, index) => <li><div className="rank">{1}</div><div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...joueur[3]} /><span>{joueur[1]}</span></div><div className="points"><div>1</div></div></li>) : this.props.listej[1].map((joueur, index) => <li><div className="rank">{2}</div><div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...joueur[3]} /><span>{joueur[1]}</span></div><div className="points"><div>0</div></div></li>))
+                                this.props.listej.map((element, i) => i == 0 ? this.props.listej[0].map((joueur, index) => <li><div className="rank">{1}</div><div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}><Skin conf={joueur[3]} h="3rem" w="3rem" /><span>{joueur[1]}</span></div><div className="points"><div>1</div></div></li>) : this.props.listej[1].map((joueur, index) => <li><div className="rank">{2}</div><div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}><Skin conf={joueur[3]} h="3rem" w="3rem" /><span>{joueur[1]}</span></div><div className="points"><div>0</div></div></li>))
                             }
                         </ul>
                     </div>

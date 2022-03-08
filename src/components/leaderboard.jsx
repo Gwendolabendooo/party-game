@@ -3,7 +3,7 @@ import React, { useState, setState } from 'react';
 import Transition from './transition'
 import {SocketContext, socket} from './socket';
 
-import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
+import Skin from './skin';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAppleAlt, faBacon, faCarrot, faCheese, faCrown, faEgg, faFish, faHamburger, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +20,6 @@ class Leaderboard extends React.Component {
             fin: false,
             listeJ: this.props.listej,
             afficheScore : false,
-            config: genConfig(AvatarConfig),
             speed: 1.3,
             time: 0
         }; 
@@ -65,7 +64,7 @@ class Leaderboard extends React.Component {
                                 return (
                                     <div className='d-flex align-items-center flex-column order-1 rounded bg-warning winner position-relative'> 
                                         <FontAwesomeIcon className="text-warning position-absolute crown-rank-1" icon={['fas', 'crown']} />
-                                        <NiceAvatar style={{ width: '8rem', height: '8rem' }} {...item[3]} />
+                                        <Skin conf={item[3]} h="8rem" w="8rem" />
                                         <div>
                                             {item[1]} Pts
                                         </div>
@@ -77,7 +76,7 @@ class Leaderboard extends React.Component {
                             }else if (index <= 2) {
                                 return (
                                     <div className={index == 1 ? 'd-flex align-items-center flex-column order-0 winner-2 bg-light rounded' : 'd-flex align-items-center flex-column order-2 winner-2 rounded third'}> 
-                                        <NiceAvatar style={{ width: '5rem', height: '5rem' }} {...item[3]} />
+                                        <Skin conf={item[3]} h="5rem" w="5rem" />
                                         <div>
                                             {item[1]} Pts
                                         </div>
@@ -98,7 +97,7 @@ class Leaderboard extends React.Component {
                                             <span className='p-2 m-2 circle d-flex align-items-center justify-content-evenly'>
                                                 {index + 1 }
                                             </span>
-                                            <NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} />
+                                            <Skin conf={item[3]} h="3rem" w="3rem" />
                                         </div>
                                         <span className='w-50'>
                                             {item[2]}

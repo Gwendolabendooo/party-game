@@ -33,6 +33,7 @@ class creLobby extends React.Component  {
                       pseudo: "",
                       nbrPlayer: 0,
                       config: genConfig(AvatarConfig),
+                      regex: [],
                       earSize: ["small", "big"],
                       hairStyle: ["normal", "thick", "mohawk", "womanLong", "womanShort"],
                       hatStyle: ["none", "beanie", "turban"],
@@ -64,7 +65,7 @@ class creLobby extends React.Component  {
     
     handleSubmit(event) {
         event.preventDefault();
-        console.log(event.target[2].value)
+        console.log(this.state.regex)
         this.setState({joined: false})
         socket.emit('addRoom', event.target[3].value);
     }
@@ -79,22 +80,46 @@ class creLobby extends React.Component  {
         this.setState({room: e.target.value.toLowerCase()})
     }
 
+    componentDidMount(){
+        this.state.regex[0] = this.state.earSize.findIndex(elem => elem == this.state.config.earSize)
+        this.state.regex[1] = this.state.hairStyle.findIndex(elem => elem == this.state.config.hairStyle)
+        this.state.regex[2] = this.state.hatStyle.findIndex(elem => elem == this.state.config.hatStyle)
+        this.state.regex[3] = this.state.eyeStyle.findIndex(elem => elem == this.state.config.eyeStyle)
+        this.state.regex[4] = this.state.glassesStyle.findIndex(elem => elem == this.state.config.glassesStyle)
+        this.state.regex[5] = this.state.noseStyle.findIndex(elem => elem == this.state.config.noseStyle)
+        this.state.regex[6] = this.state.mouthStyle.findIndex(elem => elem == this.state.config.mouthStyle)
+        this.state.regex[7] = this.state.shirtStyle.findIndex(elem => elem == this.state.config.shirtStyle)
+        this.state.regex[8] = this.state.config.bgColor
+        this.state.regex[9] = this.state.config.faceColor
+    }
+
     randomConfig(){
         console.log(this.state.config)
         this.setState({config: genConfig(AvatarConfig)})
+
+        this.state.regex[0] = this.state.earSize.findIndex(elem => elem == this.state.config.earSize)
+        this.state.regex[1] = this.state.hairStyle.findIndex(elem => elem == this.state.config.hairStyle)
+        this.state.regex[2] = this.state.hatStyle.findIndex(elem => elem == this.state.config.hatStyle)
+        this.state.regex[3] = this.state.eyeStyle.findIndex(elem => elem == this.state.config.eyeStyle)
+        this.state.regex[4] = this.state.glassesStyle.findIndex(elem => elem == this.state.config.glassesStyle)
+        this.state.regex[5] = this.state.noseStyle.findIndex(elem => elem == this.state.config.noseStyle)
+        this.state.regex[6] = this.state.mouthStyle.findIndex(elem => elem == this.state.config.mouthStyle)
+        this.state.regex[7] = this.state.shirtStyle.findIndex(elem => elem == this.state.config.shirtStyle)
+        this.state.regex[8] = this.state.config.bgColor
+        this.state.regex[9] = this.state.config.faceColor
     }
 
     changeColor(event){
         var newConf = this.state.config
         newConf.bgColor = event.target.value
-
+        this.state.regex[8] = event.target.value
         this.setState({config: newConf})
     }
 
     changeFace(event){
         var newConf = this.state.config
         newConf.faceColor = event.target.value
-
+        this.state.regex[9] = event.target.value
         this.setState({config: newConf})
     }
 
@@ -103,21 +128,25 @@ class creLobby extends React.Component  {
         console.log(this.state.config)
         if (newConf.earSize === this.state.earSize[0]) {
             newConf.earSize = this.state.earSize[1]
+            this.state.regex[0] = 1
         }else{
             newConf.earSize = this.state.earSize[0]
+            this.state.regex[0] = 0
         }
         this.setState({config: newConf})
     }
 
-    customSkin(skinPart, name){
+    customSkin(skinPart, name, place){
         var newConf = this.state.config
         var index = skinPart.indexOf(newConf[name]);
 
 
         if (index !== skinPart.length - 1) {
             newConf[name] = skinPart[index + 1]
+            this.state.regex[place] = index + 1
         }else{
             newConf[name] = skinPart[0]
+            this.state.regex[place] = index + 1
         }
         this.setState({config: newConf})
     }
@@ -158,25 +187,25 @@ class creLobby extends React.Component  {
                                     <div className='partSkin' onClick={this.ear}>
                                         <img src={Hearing} alt="" />
                                     </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.hairStyle, 'hairStyle')}>
+                                    <div className='partSkin' onClick={() => this.customSkin(this.state.hairStyle, 'hairStyle', 1)}>
                                         <img src={WomanHair} alt="" />
                                     </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.hatStyle, 'hatStyle')}>
+                                    <div className='partSkin' onClick={() => this.customSkin(this.state.hatStyle, 'hatStyle', 2)}>
                                         <img src={DetectiveHat} alt="" />
                                     </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.eyeStyle, 'eyeStyle')}>
+                                    <div className='partSkin' onClick={() => this.customSkin(this.state.eyeStyle, 'eyeStyle', 3)}>
                                         <img src={Eye} alt="" />
                                     </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.glassesStyle, 'glassesStyle')}>
+                                    <div className='partSkin' onClick={() => this.customSkin(this.state.glassesStyle, 'glassesStyle', 4)}>
                                         <img src={Glasses} alt="" />
                                     </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.noseStyle, 'noseStyle')}>
+                                    <div className='partSkin' onClick={() => this.customSkin(this.state.noseStyle, 'noseStyle', 5)}>
                                         <img src={Smelling} alt="" />
                                     </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.mouthStyle, 'mouthStyle')}>
+                                    <div className='partSkin' onClick={() => this.customSkin(this.state.mouthStyle, 'mouthStyle', 6)}>
                                         <img src={Lips} alt="" />
                                     </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.shirtStyle, 'shirtStyle')}>
+                                    <div className='partSkin' onClick={() => this.customSkin(this.state.shirtStyle, 'shirtStyle', 7)}>
                                         <img src={Tshirt} alt="" />
                                     </div>
                                     <div className='partSkin'>
@@ -223,7 +252,7 @@ class creLobby extends React.Component  {
                         </div>
                     </div>
                 </div>
-                : <Lobby room={this.state.room} pseudo={this.state.pseudo} config={this.state.config} />}
+                : <Lobby room={this.state.room} pseudo={this.state.pseudo} config={this.state.regex} />}
             </div>
         ) 
     } 

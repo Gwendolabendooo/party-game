@@ -1,5 +1,5 @@
 import React, { useState, setState } from 'react';
-import NiceAvatar from 'react-nice-avatar'
+import Skin from '../skin';
 
 import Transition from '../transition'
 import {SocketContext, socket} from '../socket';
@@ -136,9 +136,9 @@ class ChaisesMusicales extends React.Component {
                     {
                         this.state.listeJ.map((item, index) => {
                             if (this.props.id == item[0]) {
-                                return <div className="nom-j position-relative position-absolute no-transition z3 m-0" id={item[0]} style={{top: this.state.top, left: this.state.left}}><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} /><span>{item[1]}</span></div>
+                                return <div className="nom-j position-relative position-absolute no-transition z3 m-0" id={item[0]} style={{top: this.state.top, left: this.state.left}}><Skin conf={item[3]} h="3rem" w="3rem" /><span>{item[1]}</span></div>
                             }else{
-                                return <div className="nom-j position-relative position-absolute no-transition z3 m-0" id={item[0]} style={{top: 0, left: 0}}><NiceAvatar style={{ width: '3rem', height: '3rem' }} {...item[3]} /><span>{item[1]}</span></div>
+                                return <div className="nom-j position-relative position-absolute no-transition z3 m-0" id={item[0]} style={{top: 0, left: 0}}><Skin conf={item[3]} h="3rem" w="3rem" /><span>{item[1]}</span></div>
                             }
                         })
                     }

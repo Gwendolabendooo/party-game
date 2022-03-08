@@ -23,6 +23,8 @@ import SpeedWord from './Games/SpeedWordRelay';
 import TirCorde from './Games/TirCorde';
 import RelayEscalade from './Games/RelayEscalade';
 import ChaisesMusicales from './Games/ChaisesMusicale';
+import Skin from './skin';
+
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
 
@@ -111,7 +113,6 @@ class Lobby extends React.Component  {
 
         socket.on('arrive', (room) => {
             //TO DO GERER ENVOIE DES JEUX SELECTIONN2S
-            console.log(room)
             room.shift()
             this.setState({listeJ: room, chef: room[0][0]})
             console.log(this.state.listeJ)
@@ -299,7 +300,7 @@ class Lobby extends React.Component  {
                     </div>
                     <div className="room-ctn" id="scrollHorizontal" onWheel={this.scrollHorizontal}>
                         <div>
-                            {this.state.listeJ.map((element, i) => <div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}>{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<NiceAvatar style={{ width: '3rem', height: '3rem' }} {...element[3]} /><span>{element[1]}</span></div>)}
+                            {this.state.listeJ.map((element, i) => <div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}>{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)}
                         </div>
                     </div>
                     <div>
