@@ -124,6 +124,7 @@ class ChaisesMusicales extends React.Component {
     }
 
     componentWillUnmount(){
+        document.removeEventListener('keydown', this.moovingChamp);
     }
 
     render() {
