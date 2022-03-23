@@ -22,6 +22,7 @@ import ColorMemory from './colorMemory';
 import SpeedWord from './Games/SpeedWordRelay';
 import TirCorde from './Games/TirCorde';
 import RelayEscalade from './Games/RelayEscalade';
+import Jauge from './Games/jauge';
 import ChaisesMusicales from './Games/ChaisesMusicale';
 import Skin from './skin';
 
@@ -87,6 +88,10 @@ class Lobby extends React.Component  {
                 },
                 {
                     name: "Chaises Musicales",
+                    selected: true
+                },
+                {
+                    name: "Jauge",
                     selected: true
                 }
             ]
@@ -285,6 +290,8 @@ class Lobby extends React.Component  {
                     return <RelayEscalade score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
                 case "Chaises Musicales":
                     return <ChaisesMusicales name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                case "Jauge":
+                    return <Jauge name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
 
                 default:
                     var lsit= this.state.listeJselected

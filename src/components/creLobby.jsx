@@ -91,6 +91,8 @@ class creLobby extends React.Component  {
         this.state.regex[7] = this.state.shirtStyle.findIndex(elem => elem == this.state.config.shirtStyle)
         this.state.regex[8] = this.state.config.bgColor
         this.state.regex[9] = this.state.config.faceColor
+        this.state.regex[10] = this.state.config.hatColor
+        this.state.regex[11] = this.state.config.hairColor
     }
 
     randomConfig(){
@@ -107,6 +109,8 @@ class creLobby extends React.Component  {
         this.state.regex[7] = this.state.shirtStyle.findIndex(elem => elem == this.state.config.shirtStyle)
         this.state.regex[8] = this.state.config.bgColor
         this.state.regex[9] = this.state.config.faceColor
+        this.state.regex[10] = this.state.config.hatColor
+        this.state.regex[11] = this.state.config.hairColor
     }
 
     changeColor(event){

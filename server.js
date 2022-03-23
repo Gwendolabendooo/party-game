@@ -71,7 +71,7 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
     //Fin Empileur
     socket.on('empile-fin', (tab) => {
-      var retour = [socket.id, data];
+      var retour = [socket.id, tab];
       io.to(Array.from(socket.rooms)).emit('fin-autoClick', retour);
       console.log(retour)
     })
@@ -266,6 +266,27 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     socket.on('posChaises', (data) => {
       io.to(Array.from(socket.rooms)).emit('posChaises', data);
     });
+
+    //JEU JAUGE
+    socket.on('affichecompteurJauge', (data) => {
+      io.to(Array.from(socket.rooms)).emit('affichecompteurJauge', data);
+    });
+
+    //FIN JAUGE
+    socket.on('finJauge', (data) => {
+      io.to(Array.from(socket.rooms)).emit('finJauge', data);
+    });
+
+    //STOP JAUGE
+    socket.on('stopJauge', (data) => {
+      io.to(Array.from(socket.rooms)).emit('stopJauge', data);
+    });
+
+    //INCR JAUGE
+    socket.on('incrCptJauge', (data) => {
+      io.to(Array.from(socket.rooms)).emit('incrCptJauge', data);
+    });
+
 
     //randome chaise pose
     socket.on('randomChair', (data) => {

@@ -37,13 +37,17 @@ class ordrePassage extends React.Component  {
 
         return (
             <div className={this.props.hidebg == true ? "room-ctn hidebg justify-content-around" : "room-ctn"} style={{width: 1000+"px", height: 'auto'}} id="scrollHorizontal" onWheel={this.scrollHorizontal}>
-                <div>
-                    {this.props.showSecond !== true ?
-                        this.state.listeJ.map(element => <div className="nom-j position-relative" data-second={element[0] !== this.state.listeJ[0][0] ? true : false}>{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)
-                        :
-                        this.state.listeJ.map(element => <div className="nom-j position-relative">{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)
-                    }
-                </div>
+                {this.props.jauge !== true ?
+                    <div>
+                        {this.props.showSecond !== true ?
+                            this.state.listeJ.map(element => <div className="nom-j position-relative" data-second={element[0] !== this.state.listeJ[0][0] ? true : false}>{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)
+                            :
+                            this.state.listeJ.map(element => <div className="nom-j position-relative">{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)
+                        }
+                    </div>   
+                    :
+                    this.state.listeJ.map(element => <div className="nom-j jauge-j position-relative pt-0"><Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span><div className="score-liste-jauge">{element[2]}</div></div>)
+            }
             </div>
         ) 
     } 
