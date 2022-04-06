@@ -25,8 +25,6 @@ class paire extends React.Component {
             tuto: true
         }
 
-        console.log(this.props.listej, this.props.chef, "ici")
-
         var tabPoints = this.state.listeJ
         tabPoints.forEach(element => {
             element[2] = 0;

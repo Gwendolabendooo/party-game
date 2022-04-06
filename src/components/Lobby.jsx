@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import React, { useState, setState } from 'react';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAppleAlt, faBacon, faCarrot, faCheese, faCrown, faEgg, faFish, faHamburger, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faAppleAlt, faBacon, faCarrot, faCheese, faCrown, faEgg, faFish, faHamburger, faInfoCircle, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {SocketContext, socket} from './socket';
@@ -41,58 +41,98 @@ class Lobby extends React.Component  {
             scoreFinal: [],
             autoclick: false,
             listeJselected: [],
+            idJeux: [],
             Jeux: [
                 {
                     name: "Jeu des Paires",
-                    selected: true
+                    illustration: "paire",
+                    desc: "Tu dois découvrir deux cartes identiques pour former une paire. Si les cartes découvertes ne forment pas une paire elle sont de nouveau couvertes et c'est au joueur suivant de jouer. Le jeu se poursuit ainsi jusqu'à ce que toutes les paires soient découvertes.",
+                    selected: true,
+                    id: 1
                 },
                 {
                     name: "Empileur",
-                    selected: true
+                    illustration: "empileur",
+                    desc: "A l'aide de la touche 'ESPACE' appuie lorsque le cube qui se déplace est juste au dessus du précédent. La partie s'arrète lorsque tous les joueurs ont fini d'empiler",
+                    selected: true,
+                    id: 2
                 },
                 {
                     name: "Autoclick",
-                    selected: true
+                    illustration: "click",
+                    desc: "Appuie le plus vite possible sur le carré bleue. Attention, une lettre peut apparaître de temps en temps, il faudrat que tu appuie sur la touche de ton clavier correspondante pour continuer d'avancer. La partie prends fin lorsque tous les joueurs ont remplit la barre entièrement",
+                    selected: true,
+                    id: 3
                 },
                 {
                     name: "Dans le mille",
-                    selected: true
+                    illustration: "mille",
+                    desc: "Des cibles apparaisse aléatoirement sur ton écran, appuie le plus vite possible sur ces dernières (le plus au centre possible). Attention, les cibles rouges sont des maluces tandis que les cibles vertes te donnent beaucoup de points. La partie prends fin lorsque la barre verte est vide.",
+                    selected: true,
+                    id: 4
                 },
                 {
                     name: "PtitBac",
-                    selected: true
+                    illustration: "ptitBac",
+                    desc: "Le principe est basé sur celui du petit bac classique. Une catégorie vous sera proposée (Nom, fruit, pays,...) ainsi qu'une lettre de l'alphabet.Le but du jeu est de trouver un mot appartenant à la catégorie proposée et commençant par la lettre demandée.",
+                    selected: true,
+                    id: 5
                 },
                 {
                     name: "Trouve le Personnage",
-                    selected: true
+                    illustration: "personnage",
+                    desc: "Chaque joueur reçoit un personnage qu’il garde secret et écrit un mot qui lui fait penser à ce dernier. Ce mot passera de main en main, et changera petit à petit. A la fin de la partie, tous les personnages seront révélés. Les joueurs devront retrouver sans communiquer quel personnage correspond à chaque mot.",
+                    selected: true,
+                    id: 6
                 },
                 {
                     name: "Calcul Mental",
-                    selected: true
+                    illustration: "mental",
+                    desc: "Un calcul s'affiche, à toi de le résoudre avant que la barre verte ne se vide complètement. La partie s'arrète après le 5eme calcul.",
+                    selected: true,
+                    id: 7
                 },
                 {
                     name: "Color Memory",
-                    selected: true
+                    illustration: "memo",
+                    desc: "Une combinaison de couleur s'affiche (pendant que le fond est sombre) lorsque c'est ton tour reproduit cette dernière en cliquant sur les couleurs correspondante. A chaque fois qu'un joueur reproduit la combinaison, une couleur supplémentaite est ajoutée à la combinaison. Chaque joueurs dispose d'une vie, la partie s'arrète lorsqu'il de reste aucun joueur",
+                    selected: true,
+                    id: 8
                 },
                 {
                     name: "Speed Word",
-                    selected: true
+                    illustration: "word",
+                    desc: "Tu arrive dans une équipe aléatoire. Le but, écrire le plus vite possible une suite de mots, lorsque tu à bien reproduit chaque mots, le tour passe automatiquement à tes coéquipiers. La partie se termine au bout de 6 suites de mots validés.",
+                    selected: true,
+                    id: 9
                 },
                 {
                     name: "Tir a la corde",
-                    selected: true
+                    illustration: "corde",
+                    desc: "Tu arrive dans une équipe aléatoire. Le but, appuyer sur les touches '<' et '>' en alterné le plus vite possible. La partie s'arrête lorsqu'une des deux équipes à franchie les pointillés noir.",
+                    selected: true,
+                    id: 10
                 },
                 {
                     name: "Escalade en relais",
-                    selected: true
+                    illustration: "escalade",
+                    desc: "Tu arrive dans une équipe aléatoire. Le but, appuyer le plus rapidement possible sur les touches 'A', 'Z', 'E' et 'R' (si c'est ton tour) lorsque ces dernières apparaissent sur l'écran. Attention, appuyer sur la mauvaise touche te fais redescendre d'un niveau. La partie s'arrète lorsqu'une des deux équipes à fini 6 fois.",
+                    selected: true,
+                    id: 11
                 },
                 {
                     name: "Chaises Musicales",
-                    selected: true
+                    illustration: "chaise",
+                    desc: "Chaque joueur est représenté par son avatar. le but, se déplacer à l'aide des touches directionnel du clavier et se rendre le premier dans la zone qui apparaît. à chaque fois qu'il ne reste qu'un joueur à ne pas être qualifié, un nouveau tour commence et il est éliminer.",
+                    selected: true,
+                    id: 12
                 },
                 {
                     name: "Jauge",
-                    selected: true
+                    illustration: "jauge",
+                    desc: "Lorsque c'est ton tour, frotte le plus vite possible le rond blanc jusqu'à qu'il disparaisse. Ensuite, appuie au bon moment sur le bouton pour avoir le meilleur score possible, chaque joueur à 2 essai ton score final sera le meilleur score de tes 2 essai.",
+                    selected: true,
+                    id: 13
                 }
             ]
         }
@@ -111,9 +151,18 @@ class Lobby extends React.Component  {
             console.log(room)
         })
 
-        socket.on('JeuDebut', (room) => {
-            this.setState({Jeux: room})
-            console.log(room)
+        socket.on('JeuDebut', (idgames) => {
+            var listeJeux = []
+
+            if (this.state.chef !== this.state.id){
+                idgames.forEach(id => {
+                    listeJeux.push(this.state.Jeux.find(element => element.id === id))
+                })
+                listeJeux[listeJeux.length] = this.state.Jeux.find(element => element.id === -1)
+
+                console.log(listeJeux)
+                this.setState({Jeux: listeJeux})
+            }
         })
 
         socket.on('arrive', (room) => {
@@ -140,20 +189,26 @@ class Lobby extends React.Component  {
 
         socket.on('start', (start) => {
             var games = this.state.Jeux
-            console.log(games, games[games.length - 1].name)
+            var idGames = this.state.idJeux
 
             if (this.state.chef === this.state.id) {
                 var randomeJeu = this.state.Jeux.sort(()=> Math.random() - 0.5);  
 
                 randomeJeu[randomeJeu.length] = {
                     name: "Tableau des scores",
-                    selected: true
+                    illustration: "tableau",
+                    desc: "",
+                    selected: true,
+                    id: -1
                 }
 
                 var selectedGames = []
                 randomeJeu.forEach(game => {
                     if (game.selected == true) {
                         selectedGames.push(game)
+                        if (game.id !== -1) {
+                            idGames.push(game.id)   
+                        }
                     }
                 })
 
@@ -168,14 +223,17 @@ class Lobby extends React.Component  {
 
                 if (ishere != -1) {
                     selectedGames[ishere] = selectedGames[0]
+                    idGames[ishere] = idGames[0]
+                    idGames[0] = 1
                     selectedGames[0] = {
                         name: "Jeu des Paires",
                         selected: true
                     }   
                 }
+                console.log(idGames)
 
                 this.setState({Jeux: selectedGames})
-                socket.emit('JeuDebut', this.state.Jeux);
+                socket.emit('JeuDebut', idGames);
             }
             //Init score final
             var scoreFin = this.state.scoreFinal
@@ -246,7 +304,8 @@ class Lobby extends React.Component  {
 
     render() {
         library.add(
-            faCrown
+            faCrown,
+            faInfoCircle
         )
 
         const start = () => {
@@ -304,6 +363,12 @@ class Lobby extends React.Component  {
                 <div className="ctn-lobby">
                     <div className="room-name">
                         {this.props.room}
+                    </div>
+                    <div className='ctninfoBubble'>
+                        <FontAwesomeIcon className="text-info position-absolute" id='infoBubble' icon={['fas', 'info-circle']} />
+                        <div className='rounded p-3 d-none position-absolute popinBuble'>
+                            Impossible de rejouer au même jeu 2 fois d'affilé dans le même lobby (bientôt dispo)
+                        </div>
                     </div>
                     <div className="room-ctn" id="scrollHorizontal" onWheel={this.scrollHorizontal}>
                         <div>

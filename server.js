@@ -28,7 +28,6 @@ https.listen(PORT, () => {
 });
 
 io.on('connection', (socket) => { /* socket object may be used to send specific messages to the new connected client */
-    console.log(socket.id, "test");
 
     socket.on('id', (room) => {
       socket.emit('id', socket.id);
@@ -37,7 +36,6 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //Afficher nom
     socket.on('arrivee', (room) => {
       let index = null;
-      console.log("arrivée", room )
 
       for (var i = 0; i < Lobbys.length; i++) {
         if (Lobbys[i][0] === room.room) {
@@ -73,7 +71,6 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     socket.on('empile-fin', (tab) => {
       var retour = [socket.id, tab];
       io.to(Array.from(socket.rooms)).emit('fin-autoClick', retour);
-      console.log(retour)
     })
 
     //Tour suivant
@@ -84,7 +81,6 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //Jeu suivant
     socket.on('Jeu-suivant', (room) => {
       io.to(Array.from(socket.rooms)).emit('Jeu-suivant', room);
-      console.log(room, "nouveau jeu")
     });
 
     //Initiate list games
@@ -101,19 +97,16 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     socket.on('fin-autoClick', (data) => {
       var retour = [socket.id, data];
       io.to(Array.from(socket.rooms)).emit('fin-autoClick', retour);
-      console.log(retour)
     });
 
     //Fin cible
     socket.on('fin-cible', (data) => {
       var retour = [socket.id, data];
       io.to(Array.from(socket.rooms)).emit('fin-cible', retour);
-      console.log(retour)
     });
 
     //LetterPtitbac
     socket.on('send-letter', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('send-letter', data);
     });
     //ValidBac
@@ -123,68 +116,56 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
     //DataBac
     socket.on('submit-bac', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('submit-bac', [data, socket.id]);
     });
 
     //Votebac
     socket.on('change-check-bac', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('change-check-bac', [data, socket.id]);
     });
 
     //Scorebac
     socket.on('score-bac', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('score-bac', data);
     });
 
     //List celebrite
     socket.on('listCelebrite', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('listCelebrite', data);
     });
 
     //mot celebrite
     socket.on('motCelebre', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('motCelebre', data);
     });
 
     //affiche classement devinemot
     socket.on('affClassement', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('affClassement', [data, socket.id]);
     });
 
     //affiche classement devinemot
     socket.on('champVide', (data) => {
-      console.log(data, socket.id)
-      console.log("calcul")
       io.to(Array.from(socket.rooms)).emit('champVide', true);
     });
 
     //cumule mental
     socket.on('cumuleMental', (data) => {
-      console.log("data", socket.id)
       io.to(Array.from(socket.rooms)).emit('cumuleMental', data);
     });
 
     //calcul mache suivante
     socket.on('mancheSuivanteCalcul', (data) => {
-      console.log("mancheSuivante", socket.id)
       io.to(Array.from(socket.rooms)).emit('mancheSuivanteCalcul', data);
     });
 
     //ajoute liste number calcul
     socket.on('listeNumber', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('listeNumber', data);
     });
 
     //Envoie du calcul
     socket.on('Calcul', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('Calcul', [data, socket.id]);
     });
 
@@ -206,19 +187,16 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
     //red word
     socket.on('redWord', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('redWord', [data, socket.id]);
     });
 
     //red word
     socket.on('sentenceSpeedWord', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('sentenceSpeedWord', data);
     });
 
     //blue word
     socket.on('blueWord', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('blueWord', [data, socket.id]);
     });
 
@@ -325,23 +303,19 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
     //INCR SCORE FINAL
     socket.on('scoreFinal', (data) => {
-      console.log("scorefinal", data)
       io.to(Array.from(socket.rooms)).emit('scoreFinal', data);
     });
 
     //Ordre vote
     socket.on('ordreVote', (data) => {
-      console.log(data)
       io.to(Array.from(socket.rooms)).emit('ordreVote', [data, socket.id]);
     });
 
     //création lobby
     socket.on('addRoom', (room) => {
-      console.log(room, "addroom", Lobbys)
       let exist = 0;
       socket.join(room)
       if (Lobbys.length !== 0) {
-        console.log(Lobbys[0][0], "------------------------")
         for (var i = 0; i < Lobbys.length; i++) {
           if (Lobbys[i][0] === room) {
             exist++
@@ -366,7 +340,6 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       //Suppression liste des joueurs
       let exist = 0;
       if (Lobbys.length !== 0) {
-        console.log(Lobbys[0][0], "------------------------")
         for (var i = 0; i < Lobbys.length; i++) {
             for (let index = 0; index < Lobbys[i].length; index++) {
                 if (Lobbys[i][index][0] === socket.id) {
@@ -374,7 +347,6 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
                     console.log(Lobbys[i], "modif", socket.rooms)
                     io.to(Array.from(Lobbys[i])).emit("deco", Lobbys[i]);
                 }    
-                console.log(exist)
             }
         }
       }

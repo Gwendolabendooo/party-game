@@ -22,7 +22,7 @@ class Jauge extends React.Component {
             finChrono: false,
             debutChrono: false,
             valueJauge: 0, 
-            cptTour: 0
+            cptTour: 0,
         };
 
         var tabPoints = this.props.listej
@@ -65,10 +65,15 @@ class Jauge extends React.Component {
         })
 
         socket.on('stopJauge', (percent) => {
-            document.getElementById('cursorJauge').style.animationPlayState = 'paused';
-            document.getElementById('cursorJauge2').style.animationPlayState = 'paused';
+            document.getElementById('cursorJauge').style.animation = 'none';
+            document.getElementById('cursorJauge2').style.animation = 'none';
             document.getElementById('fake-cursor').style.animationPlayState = 'paused';
             this.setState({ valueJauge: percent })  
+            
+            const stroke = (1350 - 730) * (percent / 100) + 730
+            console.log(stroke)
+            document.getElementById('cursorJauge2').style.strokeDasharray = "0, "+stroke;
+            document.getElementById('cursorJauge').style.strokeDasharray = "0, "+stroke;
 
             setTimeout(this.newScore ,4000);
 
@@ -115,8 +120,8 @@ class Jauge extends React.Component {
 
     stopJauge(){
         if (this.props.id == this.state.listeJ[0][0]) {
-            document.getElementById('cursorJauge').style.animationPlayState = 'paused';
-            document.getElementById('cursorJauge2').style.animationPlayState = 'paused';
+            document.getElementById('cursorJauge').style.animation = 'none';
+            document.getElementById('cursorJauge2').style.animation = 'none';
             document.getElementById('fake-cursor').style.animationPlayState = 'paused';
             const percent = (document.querySelector("#fake-cursor").offsetLeft / 400) * 100
             socket.emit('stopJauge', percent);
@@ -173,7 +178,7 @@ class Jauge extends React.Component {
     render() {
         return (
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
-                {this.state.tuto ? <Tuto chef={this.props.chef} game='Jauge' desc="Appuie le plus vite possible sur le carré bleue. Attention, une lettre peut apparaître de temps en temps, il faudrat que tu appuie sur la touche de ton clavier correspondante pour continuer d'avancer. La partie prends fin lorsque tous les joueurs ont remplit la barre entièrement"></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef} game='Jauge' desc="Lorsque c'est ton tour, frotte le plus vite possible le rond blanc jusqu'à qu'il disparaisse. Ensuite, appuie au bon moment sur le bouton pour avoir le meilleur score possible, chaque joueur à 2 essai ton score final sera le meilleur score de tes 2 essai.  "></Tuto> : ""}
                 <Transition  title={"Jauge"}/>
                 {this.state.afficheScore ? <Score jeu={"Jauge"} chef={this.props.chef} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC apparition-game ctn-empileur justify-content-between">

@@ -117,7 +117,7 @@ class TirCorde extends React.Component {
         )
         return (
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
-                {this.state.tuto ? <Tuto chef={this.props.chef} game='Tir a la corde' desc="Appuie le plus vite possible sur le carré bleue. Attention, une lettre peut apparaître de temps en temps, il faudrat que tu appuie sur la touche de ton clavier correspondante pour continuer d'avancer. La partie prends fin lorsque tous les joueurs ont remplit la barre entièrement"></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef} game='Tir a la corde' desc="Tu arrive dans une équipe aléatoire. Le but, appuyer sur les touches '<' et '>' en alterné le plus vite possible. La partie s'arrête lorsqu'une des deux équipes à franchie les pointillés noir." ></Tuto> : ""}
                 <Transition  title={"Tir a la corde"}/>
                 {this.state.afficheScore ? <Score jeu={"Tir a la corde"} chef={this.props.chef} listej={this.state.equipeWin}/> : ''}
                 <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly position-relative">

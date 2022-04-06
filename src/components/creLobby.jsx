@@ -226,20 +226,26 @@ class creLobby extends React.Component  {
                                 <NiceAvatar style={{ width: '150px', height: '150px' }} {...this.state.config} />
                             </div>
                         </div>
-                        <div className='btn-random btn-start little-marg' onClick={this.randomConfig}>
+                        <div className='btn-random btn-start little-marg mt-5' onClick={this.randomConfig}>
                             Aléatoire
                         </div>
                         <input type="text" name="Pseudo" maxLength="15" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
                         <input type="text" name="Lobby" maxLength="15" placeholder='Nom du serveur' value={this.state.room} onChange={this.updateLobby} required id="" />
                         <input type="submit" value="Rejoindre" className='btn-start btn-creLobby' />
-                        <div className='d-flex align-items-center network justify-content-evenly mt-3'>
-                            <FontAwesomeIcon className="text-white" icon={['fab', 'instagram']} />
-                            <FontAwesomeIcon className="text-white" icon={['fab', 'discord']} />
-                            <FontAwesomeIcon className="text-white" icon={['fab', 'twitter']} />
+                        <div className='d-flex align-items-center network justify-content-evenly mt-4'>
+                            <a href="https://www.instagram.com/micro_games.fr/" target="_blank" rel="noopener noreferrer">
+                                <FontAwesomeIcon className="text-white" icon={['fab', 'instagram']} />
+                            </a>
+                            <a href="https://discord.gg/JTV9YnWXCx" target="_blank" rel="noopener noreferrer">
+                                <FontAwesomeIcon className="text-white" icon={['fab', 'discord']} />
+                            </a>
+                            <a href="https://twitter.com/microgamesfr" target="_blank" rel="noopener noreferrer">
+                                <FontAwesomeIcon className="text-white" icon={['fab', 'twitter']} />
+                            </a>
                         </div>
                     </form>
                     <div className='desc-jeu pt-4'>
-                        <div class="d-flex align-items-center w-75 justify-content-evenly pb-0">
+                        <div className="d-flex align-items-center w-75 justify-content-evenly pb-0">
                             <img src={logo} className='logo' alt="" />
                             <div className='h2 titre'>Micro Games</div>
                         </div>
@@ -249,9 +255,9 @@ class creLobby extends React.Component  {
                             </div>
                             <div className='position-relative'>
                                 <img src={Puzzle} style={{ height: '330px' }} alt="" />
-                                <div class="Bubble-second position-absolute" style={{ width: 80+"px", height: 80+"px", left: -30+"px", bottom: 70+"px" }}></div>
-                                <div class="Bubble-five position-absolute" style={{ width: 40+"px", height: 40+"px", left: -10+"px", bottom: 270+"px" }}></div>
-                                <div class="Bubble-five position-absolute" style={{ width: 60+"px", height: 60+"px", right: 0+"px", bottom: 40+"px" }}></div>
+                                <div className="Bubble-second position-absolute" style={{ width: 80+"px", height: 80+"px", left: -30+"px", bottom: 70+"px" }}></div>
+                                <div className="Bubble-five position-absolute" style={{ width: 40+"px", height: 40+"px", left: -10+"px", bottom: 270+"px" }}></div>
+                                <div className="Bubble-five position-absolute" style={{ width: 60+"px", height: 60+"px", right: 0+"px", bottom: 40+"px" }}></div>
                             </div>
                         </div>
                     </div>

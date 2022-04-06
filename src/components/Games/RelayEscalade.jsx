@@ -176,7 +176,7 @@ class RelayEscalade extends React.Component {
     render() {
         return (
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
-                {this.state.tuto ? <Tuto chef={this.props.chef == true} game='Escalade en relais' desc="Appuie le plus vite possible sur le carré bleue. Attention, une lettre peut apparaître de temps en temps, il faudrat que tu appuie sur la touche de ton clavier correspondante pour continuer d'avancer. La partie prends fin lorsque tous les joueurs ont remplit la barre entièrement"></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef == true} game='Escalade en relais' desc="Tu arrive dans une équipe aléatoire. Le but, appuyer le plus rapidement possible sur les touches 'A', 'Z', 'E' et 'R' (si c'est ton tour) lorsque ces dernières apparaissent sur l'écran. Attention, appuyer sur la mauvaise touche te fais redescendre d'un niveau. La partie s'arrète lorsqu'une des deux équipes à fini 6 fois."></Tuto> : ""}
                 <Transition  title={"Escalade en relais"}/>
                 {this.state.afficheScore ? <Score jeu={"Escalade en relais"} chef={this.props.chef == true} listej={this.state.equipeWin}/> : ''}
                

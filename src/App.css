@@ -286,6 +286,18 @@ input[type="text"]::placeholder {
   width: 250px;
 }
 
+.network > a > svg{
+  transition: all .5s;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+}
+
+.network > a > svg:hover{
+  color: #000000!important;
+}
+
 input[type="color"] {
 	-webkit-appearance: none;
 	border: none;
@@ -820,7 +832,7 @@ input[type="checkbox"]{
   text-align: center;
   padding: 15px;
   cursor: pointer;
-  margin: 30px;
+  margin: auto;
   transition: all .3s;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
@@ -933,8 +945,26 @@ input[type="checkbox"]{
 }
 
 .room-name{
-  padding: 25px;
+  padding: 15px;
   text-transform: uppercase;
+}
+
+#infoBubble{
+  right: 40px;
+  top: 220px;
+  cursor: pointer;
+  filter: drop-shadow(10px 10px 28px #0000009e);
+}
+
+.ctninfoBubble:hover > .popinBuble{
+  display: block!important;
+}
+
+.popinBuble{
+  background: rgba(0, 0, 0, 0.638);
+  z-index: 1000;
+  text-transform: none;
+  font-size: 20px;
 }
 
 .list-score::-webkit-scrollbar-thumb {
@@ -1038,7 +1068,7 @@ input[type="checkbox"]{
   align-items: center;
   width: 800px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 15px;
   background-color: #ffffff1e;
 }
 
@@ -1174,14 +1204,14 @@ input[type="checkbox"]{
 }
 
 .card-game{
-  width: 155px;
-  height: 130px;
+  width: 151px;
+  height: 155px;
   transition: filter .3s;
   color: white;
   position: relative;
+  background-repeat: no-repeat;
   display: flex;
   margin: 20px;
-  background-color: #6057e5;
   box-shadow: 0px 0 9px 0px #6057e5;
   animation-duration: .5s;
   animation-name: apparition;
@@ -1192,12 +1222,44 @@ input[type="checkbox"]{
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border-radius: 10px;
+  border-radius: 11px;
   cursor: pointer;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+  background-size: cover;
+}
+
+.info{
+  right: 6px;
+  top: 11px;
+  font-size: 24px;
+  color: #ffffff!important;
+}
+
+.desc-hover{
+  background-color: #00000084;
+  top: 0;
+  right: 0;
+  width: 400px;
+  padding: 15px;
+  font-size: 15px;
+  text-transform: initial;
+}
+
+.popin-desc{
+  display: none;
+  background-color: #00000048;
+  color: white;
+  width: 400px;
+  padding: 5px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.card-game > .info:hover + .popin-desc{
+  display: block;
 }
 
 .delay-toaster{
@@ -1234,7 +1296,7 @@ input[type="checkbox"]{
 .ctn-jeux{
   display: flex;
   width: 800px;
-  height: 300px;
+  height: 380px;
   overflow: auto;
   margin: auto;
   flex-direction: row;
@@ -2063,6 +2125,6 @@ bottom: 10%;
 from{
   stroke-dasharray: 0 730;
 }to{
-  stroke-dasharray: 0 1330;
+  stroke-dasharray: 0 1350;
 }
 }

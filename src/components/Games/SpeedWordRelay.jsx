@@ -209,7 +209,7 @@ class SpeedWord extends React.Component {
     render() {
         return (
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
-                {this.state.tuto ? <Tuto chef={this.props.chef == true} game='Speed Word' desc="Appuie le plus vite possible sur le carré bleue. Attention, une lettre peut apparaître de temps en temps, il faudrat que tu appuie sur la touche de ton clavier correspondante pour continuer d'avancer. La partie prends fin lorsque tous les joueurs ont remplit la barre entièrement"></Tuto> : ""}
+                {this.state.tuto ? <Tuto chef={this.props.chef == true} game='Speed Word' desc="Tu arrive dans une équipe aléatoire. Le but, écrire le plus vite possible une suite de mots, lorsque tu à bien reproduit chaque mots, le tour passe automatiquement à tes coéquipiers. La partie se termine au bout de 6 suites de mots validés."></Tuto> : ""}
                 <Transition  title={"SpeedWord"}/>
                 {this.state.afficheScore ? <Score jeu={"SpeedWord"} chef={this.props.chef == true} listej={this.state.equipeWin}/> : ''}
                 <div className="justify-content-evenly ctn-autoC ctn-empileur rounded overflow-hidden">

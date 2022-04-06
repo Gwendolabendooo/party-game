@@ -9,8 +9,20 @@ class Jeux extends React.Component  {
         this.state = {
             listeJ: this.props.liste,
             filter: "",
+            desc: ""
         }
         // this.filterChef = this.filterChef.bind(this)
+    }
+
+
+    componentDidMount(){
+        document.addEventListener('showDesc', (detail) => this.setDesc(detail))
+    }
+
+    setDesc(detail){
+        const { desc } = detail.detail
+        console.log(desc)
+        this.setState({desc: desc})
     }
 
     // filterChef(){
@@ -27,10 +39,16 @@ class Jeux extends React.Component  {
             <div className="ctn-search-jeu">
                 {/* <SearchBox /> */}
                 {/* {this.filterChef} */}
-                {console.log(this.state.listeJ)}
                 <div className="ctn-jeux">
-                    {this.state.listeJ.map((jeu) => <Jeu name={jeu.name} chef={this.props.chef} id={this.props.id} selected={jeu.selected} />)}
+                    {this.state.listeJ.map((jeu) => <Jeu name={jeu.name} description={jeu.desc} chef={this.props.chef} illustration={jeu.illustration} id={this.props.id} selected={jeu.selected} />)}
                 </div>
+                {
+                    this.state.desc !== "" ? 
+                        <div id='descShow' className='position-absolute desc-hover rounded'>
+                            {this.state.desc}
+                        </div>
+                        :""
+                }
             </div>
             
         )

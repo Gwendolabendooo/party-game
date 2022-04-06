@@ -84,19 +84,19 @@ class transition extends React.Component {
                         {this.props.title}
                     </h2>
                 </div>
-                <div class="bubble Bubble-first position-absolute"  style={{ width: 100+"px", height: 100+"px" }}></div>
-                <div class="bubble Bubble-first position-absolute" style={{ width: 40+"px", height: 40+"px" }}></div>
-                <div class="bubble Bubble-three position-absolute" style={{ width: 180+"px", height: 180+"px" }}></div>
-                <div class="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
-                <div class="bubble Bubble-three position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
-                <div class="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
-                <div class="bubble Bubble-four position-absolute" style={{ width: 240+"px", height: 240+"px" }}></div>
-                <div class="bubble Bubble-five position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
-                <div class="bubble Bubble-second position-absolute" style={{ width: 70+"px", height: 70+"px" }}></div>
-                <div class="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
-                <div class="bubble Bubble-four position-absolute" style={{ width: 200+"px", height: 200+"px" }}></div>
-                <div class="bubble Bubble-five position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
-                <div class="bubble Bubble-second position-absolute" style={{ width: 70+"px", height: 70+"px" }}></div>
+                <div className="bubble Bubble-first position-absolute"  style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div className="bubble Bubble-first position-absolute" style={{ width: 40+"px", height: 40+"px" }}></div>
+                <div className="bubble Bubble-three position-absolute" style={{ width: 180+"px", height: 180+"px" }}></div>
+                <div className="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div className="bubble Bubble-three position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div className="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div className="bubble Bubble-four position-absolute" style={{ width: 240+"px", height: 240+"px" }}></div>
+                <div className="bubble Bubble-five position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div className="bubble Bubble-second position-absolute" style={{ width: 70+"px", height: 70+"px" }}></div>
+                <div className="bubble Bubble-second position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div className="bubble Bubble-four position-absolute" style={{ width: 200+"px", height: 200+"px" }}></div>
+                <div className="bubble Bubble-five position-absolute" style={{ width: 100+"px", height: 100+"px" }}></div>
+                <div className="bubble Bubble-second position-absolute" style={{ width: 70+"px", height: 70+"px" }}></div>
             </div>
         )  
     }
