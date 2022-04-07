@@ -42,8 +42,8 @@ class score extends React.Component {
                         </ul>
                     </div>
                     {this.props.chef == true ? 
-                        <div className="btn-start btn-suivant" style={{ borderRadius: "5px" }} onClick={() => this.suivant(this.state.jeu)}>Jeu suivant</div>:
-                        <div className="btn-start btn-suivant" title="Tu n'es pas le chef de groupe" style={{ borderRadius: "5px", filter: "brightness(0.5)"}} disabled>Jeu suivant</div>
+                        <div className="btn-start btn-suivant mt-4" style={{ borderRadius: "5px" }} onClick={() => this.suivant(this.state.jeu)}>Jeu suivant</div>:
+                        <div className="btn-start btn-suivant mt-4" title="Tu n'es pas le chef de groupe" style={{ borderRadius: "5px", filter: "brightness(0.5)"}} disabled>Jeu suivant</div>
                     }
                 </div>
             </div>

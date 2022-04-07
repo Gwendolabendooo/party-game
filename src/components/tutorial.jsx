@@ -36,13 +36,13 @@ class Tuto extends React.Component {
                             <div className='text-center p-3 bg-desc-tuto bg-tuto-sde'>
                                 {this.props.desc}
                             </div>
-                            <div className='ctn-player'>
+                            {/* <div className='ctn-player'>
                                 <Player
                                     playsInline
                                     poster={tsset}
                                     src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     { this.props.chef == true ? 

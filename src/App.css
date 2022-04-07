@@ -128,7 +128,7 @@ input[type="text"]::placeholder {
   background: linear-gradient(to bottom, #8BECFF 0%, #9200FF 143%);
   width: 900px;
   color: white;
-  height: 600px;
+  height: 400px;
   border-radius: 8px;
   overflow: hidden;
   -webkit-border-radius: 8px;
@@ -964,6 +964,7 @@ input[type="checkbox"]{
   background: rgba(0, 0, 0, 0.638);
   z-index: 1000;
   text-transform: none;
+
   font-size: 20px;
 }
 

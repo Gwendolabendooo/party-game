@@ -90,15 +90,17 @@ class Jauge extends React.Component {
     }
 
     debutJauge(){
-        document.querySelector('#loader').animate([
-            // keyframes
-            { width: '100%' },
-            { width: '0' }
-        ], {
-            // timing options
-            duration: 10000,
-            iterations: 1
-        });
+        if ( document.getElementById('ctn-jauge') !== undefined) {
+            document.querySelector('#loader').animate([
+                // keyframes
+                { width: '100%' },
+                { width: '0' }
+            ], {
+                // timing options
+                duration: 10000,
+                iterations: 1
+            });   
+        }
 
         this.setState({ afficheJauge: true })    
         document.getElementById('ctn-jauge').style.background = ""
