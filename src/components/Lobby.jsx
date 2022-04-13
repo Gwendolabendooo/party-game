@@ -158,9 +158,16 @@ class Lobby extends React.Component  {
                 idgames.forEach(id => {
                     listeJeux.push(this.state.Jeux.find(element => element.id === id))
                 })
-                listeJeux[listeJeux.length] = this.state.Jeux.find(element => element.id === -1)
+                listeJeux.filter(element => element.id !== -1)
+                listeJeux[listeJeux.length] = {
+                    name: "Tableau des scores",
+                    illustration: "tableau",
+                    desc: "",
+                    selected: true,
+                    id: -1
+                }
+                console.log(idgames, listeJeux)
 
-                console.log(listeJeux)
                 this.setState({Jeux: listeJeux})
             }
         })
@@ -230,7 +237,7 @@ class Lobby extends React.Component  {
                         selected: true
                     }   
                 }
-                console.log(idGames)
+                idGames = [...new Set(idGames)]
 
                 this.setState({Jeux: selectedGames})
                 socket.emit('JeuDebut', idGames);
@@ -315,7 +322,8 @@ class Lobby extends React.Component  {
         }
 
         const jeuSuivant = (jeu) => {
-            var game = "t"
+            var game = ""
+            console.log(this.state.Jeux)
             if (this.state.Jeux.length == 0) {
                 game = "aucun"
             }else{
@@ -332,7 +340,7 @@ class Lobby extends React.Component  {
                 case "Dans le mille": 
                     return  <Cible cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "PtitBac": 
-                    return  <PtitBac cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
+                    return <PtitBac cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "Trouve le Personnage": 
                     return  <TrouvePersonnage cle={this.state.id} chef={this.state.chef} id={this.state.id} listej={this.state.listeJ}/>
                 case "Calcul Mental":
@@ -381,7 +389,7 @@ class Lobby extends React.Component  {
                     { this.state.id == this.state.chef ? 
                         <div className="btn-start" onClick={start}>Commencer</div> 
                         : 
-                        <div className="btn-start" style={{filter: "opacity(0.5)"}} title="Tu n'es pas le chef de groupe" disabled="true">Commencer</div> }
+                        <div className="btn-start" style={{filter: "opacity(0.5)"}} title="Tu n'es pas le chef de groupe" disabled={true} >Commencer</div> }
 
                 </div>
             :    <div className="d-flex align-items-center align-content-around flex-column ctn-max-jeux justify-content-evenly w-100">

@@ -8,6 +8,7 @@ import InputText from './input-text'
 import Tuto from './tutorial'
 
 class PtitBac extends React.Component {
+    _isMounted = false;
     constructor(props) {
         super(props);
     
@@ -30,9 +31,10 @@ class PtitBac extends React.Component {
             this.setState({ tuto: false })  
         })
 
-        socket.on('valid-bac', () => {
+        socket.on('valid-bac', (test) => {
             const inputs = document.getElementById('data-bac').querySelectorAll('input')
             let dataBac = []
+            console.log(test)
 
             inputs.forEach(element => {
                 dataBac.push(element.value)
@@ -59,6 +61,7 @@ class PtitBac extends React.Component {
 
         socket.on('submit-bac', (data) => {
             const listBac = document.getElementById('listBac').querySelectorAll('div[data-input="true"]')
+            console.log(data)
 
             listBac.forEach((element, i) => {
                 let pseudo = ""
@@ -81,7 +84,6 @@ class PtitBac extends React.Component {
                 }else{
                     chef = false
                 }
-                console.log("dsfsd", chef)
                 element.addEventListener("click", function(e) {
                     e.preventDefault();
                     if (chef) {
@@ -94,7 +96,6 @@ class PtitBac extends React.Component {
     }
 
     componentDidMount() {
-        console.log("test")
         if(this.props.id === this.props.chef){
             const letter = this.state.listLetter[Math.floor(Math.random() * this.state.listLetter.length)];
             this.setState({ letter: letter })
@@ -111,6 +112,13 @@ class PtitBac extends React.Component {
         console.log(tabPoints, this.state.listeJ)
     }
 
+    componentWillUnmount(){
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     dataBac = (event) => {
         event.preventDefault();
 
@@ -118,6 +126,7 @@ class PtitBac extends React.Component {
         tabInput.forEach(element => {
             console.log(element.value)
         })
+        console.log('this.dataBac')
         
         socket.emit('valid-bac', true);      
     }
@@ -128,6 +137,7 @@ class PtitBac extends React.Component {
 
         if (this.props.chef === this.props.id) {
             var tabPoints = this.state.listeJ
+            console.log(this.state.listeJ)
 
             tabPoints.forEach(element => {
                 console.log(element[0], event.target)
@@ -170,6 +180,7 @@ class PtitBac extends React.Component {
                             </form>
                         : 
                             <form id='listBac' onSubmit={this.resBac}>
+                                {console.log(this.state.listInput, "lalala")}
                                 {this.state.listInput.map(element => <div data-input="true" id={element}><div className='title-bac mt-5 mb-3'>{element}</div></div> )}
                                 {this.props.chef === this.props.id ?
                                     <input type="submit" value="Valider" className='btn-start btn-creLobby m-0 mt-5 mb-5' />:

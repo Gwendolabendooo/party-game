@@ -111,7 +111,8 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     });
     //ValidBac
     socket.on('valid-bac', (data) => {
-      io.to(Array.from(socket.rooms)).emit('valid-bac', true);
+      console.log(socket.rooms)
+      io.to(Array.from(socket.rooms)).emit('valid-bac', socket.id);
     });
 
     //DataBac

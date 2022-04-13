@@ -35,7 +35,7 @@ class Jauge extends React.Component {
 
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
-            if (document.querySelector(".moov-Circle") !== undefined) {
+            if (document.getElementById("ctn-jauge") !== null) {
                 document.querySelector('#loader').animate([
                     // keyframes
                     { width: '100%' },
@@ -46,8 +46,8 @@ class Jauge extends React.Component {
                     iterations: 1
                 });
                 setTimeout(this.debutJauge,3000);
+                document.getElementById('ctn-jauge').style.background = "#00000099"
             }
-            document.getElementById('ctn-jauge').style.background = "#00000099"
         })
         
         socket.on('affichecompteurJauge', (data) => {
@@ -90,7 +90,7 @@ class Jauge extends React.Component {
     }
 
     debutJauge(){
-        if ( document.getElementById('ctn-jauge') !== undefined) {
+        if ( document.getElementById('ctn-jauge') !== null || this.state.afficheScore === false) {
             document.querySelector('#loader').animate([
                 // keyframes
                 { width: '100%' },
@@ -100,15 +100,15 @@ class Jauge extends React.Component {
                 duration: 10000,
                 iterations: 1
             });   
-        }
 
-        this.setState({ afficheJauge: true })    
-        document.getElementById('ctn-jauge').style.background = ""
+            this.setState({ afficheJauge: true })    
+            document.getElementById('ctn-jauge').style.background = ""
 
-        if (this.props.chef) {
-            setTimeout(function(){
-                socket.emit('affichecompteurJauge', true);
-            }, 10000)  
+            if (this.props.chef) {
+                setTimeout(function(){
+                    socket.emit('affichecompteurJauge', true);
+                }, 10000)  
+            }
         }
     }
 

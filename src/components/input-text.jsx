@@ -22,7 +22,7 @@ class InputText extends React.Component {
         return (
             <div className="ctn-input">
                 <label htmlFor={this.props.id}>{this.props.label}</label>
-                <input type="text" className='m-0' maxLength="30" placeholder={this.props.letter + "..."} required name={this.props.id} value={this.state.input} onChange={this.updateInput} id={this.props.id} autocomplete="off"/>
+                <input type="text" className='m-0' maxLength="30" placeholder={this.props.letter + "..."} required name={this.props.id} value={this.state.input} onChange={this.updateInput} id={this.props.id} autoComplete="off"/>
             </div>
         )  
     }

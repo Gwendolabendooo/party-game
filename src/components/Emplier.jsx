@@ -31,7 +31,6 @@ class Empileur extends React.Component {
         })
 
         socket.on('fin-autoClick', (data) => {
-            console.log(data, this.state.listeJ, "ertrtretretre")
             var tabMinute = this.props.listej
             var cptvide = 0
             
@@ -46,7 +45,6 @@ class Empileur extends React.Component {
 
             if (cptvide === 0) {
                 let score = this.state.listeJ;
-                console.log(score)
                 score.sort(function(a, b) {
                     return (a[2][0] * 60000 + a[2][1] * 1000 + a[2][2] * 10) - (b[2][0] * 60000 + b[2][1] * 1000 + b[2][2] * 10) ;
                 })
@@ -61,10 +59,10 @@ class Empileur extends React.Component {
             element[2] = 0;
             console.log(element)
         });
+        console.log(this.state.speed)
 
         this.setState({ listeJ: tabPoints })
         
-        console.log(tabPoints, this.state.listeJ)
     }
     
     componentWillUnmount() {

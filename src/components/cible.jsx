@@ -24,7 +24,10 @@ class Cible extends React.Component {
             speed: 1.3,
             time: 0,
             cptfin: 0,
-            record: 0
+            record: 0,
+            intervalleGreen : "",
+            intervalleRed: "",
+            intervalle: ""
         }; 
 
         
@@ -60,6 +63,13 @@ class Cible extends React.Component {
                 this.setState({ afficheScore: true, listeJ: score })
             }
         });
+    }
+
+    componentWillUnmount() {
+        console.log(this.state.intervalleRed)
+        clearInterval(this.state.intervalleRed)
+        clearInterval(this.state.intervalle)
+        clearInterval(this.state.intervalleGreen)
     }
 
     componentDidMount() {
@@ -107,7 +117,7 @@ class Cible extends React.Component {
     newCible = (e) =>{
         if(ciblenorm === 0){
             ciblenorm++
-            setInterval(()=>{
+            this.state.intervalle = setInterval(()=>{
                 if(!this.state.afficheScore){
                     var pos1 = Math.floor(Math.random()*880)
                     var pos2 = Math.floor(Math.random()*580)
@@ -140,7 +150,7 @@ class Cible extends React.Component {
     newGoldCible = (e) =>{
         if (ciblegreen === 0) {
             ciblegreen++
-            setInterval(()=>{
+            this.state.intervalleGreen = setInterval(()=>{
                 if(!this.state.afficheScore){
                     var pos1 = Math.floor(Math.random()*880)
                     var pos2 = Math.floor(Math.random()*580)
@@ -186,7 +196,7 @@ class Cible extends React.Component {
     newMalusCible = (e) =>{
         if (ciblemalus === 0) {
             ciblemalus++
-            setInterval(()=>{
+            this.state.intervalleRed = setInterval(()=>{
                 if(!this.state.afficheScore){
                     var pos1 = Math.floor(Math.random()*880)
                     var pos2 = Math.floor(Math.random()*580)
