@@ -32,7 +32,7 @@ class ChaisesMusicales extends React.Component {
             this.setState({ tuto: false })  
 
             if (document.getElementById("chaises") != undefined && this.props.chef) {
-                setTimeout(this.randomChair, Math.floor(Math.random() * (12000 - 5000 + 1) + 5000));
+                setTimeout(this.randomChair, 8000);
             }
         })
         
@@ -55,18 +55,17 @@ class ChaisesMusicales extends React.Component {
             this.setState({ placeLeft: 0, placeTop: 0 })
 
             if (document.querySelectorAll(".qualifie, .looserChaise").length != this.state.listeJ.length - 1) {
-                setTimeout(this.randomChair, Math.floor(Math.random() * (12000 - 5000 + 1) + 5000));
+                setTimeout(this.randomChair, 8000);
             }else{
                 var liste = this.state.listeJ
 
                 var looser = liste.find(player => player[0] == document.querySelector(".nom-j:not(.qualifie, .looserChaise)").id)
                 document.querySelector(".nom-j:not(.qualifie)").classList.add("looserChaise")
                 looser[2] = document.querySelectorAll(".looserChaise").length
-                console.log(liste)
 
                 document.querySelectorAll(".qualifie").forEach(elem =>{
                     elem.classList.remove("qualifie")
-                    setTimeout(this.randomChair, Math.floor(Math.random() * (12000 - 5000 + 1) + 5000));
+                    setTimeout(this.randomChair, 8000);
                 })
             }
 
@@ -84,7 +83,6 @@ class ChaisesMusicales extends React.Component {
     }
 
     randomChair(){
-        console.log("oui")
         var left = this.state.placeLeft
         var top = this.state.placeTop
         top = Math.floor(Math.random() * (580 - 0 + 1) + 0)
@@ -148,7 +146,7 @@ class ChaisesMusicales extends React.Component {
                             <div className='bg-warning rounded position-absolute z1' id='chaise' style={{width: 160, height: 100, left: this.state.placeLeft, top: this.state.placeTop}}>
                             </div>
                             :
-                            ""
+                            null
                     }
                 </div>
             </div>

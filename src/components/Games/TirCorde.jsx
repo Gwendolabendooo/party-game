@@ -39,30 +39,35 @@ class TirCorde extends React.Component {
             this.setState({ afficheScore: true, equipeWin: data }) 
         })
 
+        socket.on('compoCorde', (data) => {
+            this.setState({ red: data[0], blue: data[1] })
+        })
+
         socket.on('clickCorde', (id) => {
-            if ( this.state.red.find(element => element[0] == id) == undefined ) {
-                var cpt = this.state.blueclick;
-                this.setState({ blueclick: cpt + 1 })
-            }else{
-                var cpt = this.state.redclick;
-                this.setState({ redclick: cpt + 1 })
-            }
-
-            if (this.state.redclick > this.state.blueclick) {
-                const newHeight = 50 + (Math.floor(this.state.redclick / this.state.red.length) - Math.floor(this.state.blueclick / this.state.blue.length))
-                console.log(newHeight)
-                if (newHeight >= 80 && this.props.chef == true) {
-                    socket.emit('cordeWin', [this.state.red, this.state.blue]);
+            if (document.getElementById("cordelette") !== undefined) {
+                if ( this.state.red.find(element => element[0] == id) == undefined ) {
+                    var cpt = this.state.blueclick;
+                    this.setState({ blueclick: cpt + 1 })
+                }else{
+                    var cpt = this.state.redclick;
+                    this.setState({ redclick: cpt + 1 })
                 }
 
-                document.getElementById("cordelette").style.height = newHeight + "%"
-            }else{
-                const newHeight = 50 - (Math.floor(this.state.blueclick / this.state.blue.length) - Math.floor(this.state.redclick / this.state.red.length))
-                if (newHeight <= 20 && this.props.chef == true) {
-                    socket.emit('cordeWin', [this.state.blue, this.state.red]);
-                }
+                if (this.state.redclick > this.state.blueclick) {
+                    const newHeight = 50 + (Math.floor(this.state.redclick / this.state.red.length) - Math.floor(this.state.blueclick / this.state.blue.length))
+                    if (newHeight >= 80 && this.props.chef == true) {
+                        socket.emit('cordeWin', [this.state.red, this.state.blue]);
+                    }
 
-                document.getElementById("cordelette").style.height = newHeight  + "%"
+                    document.getElementById("cordelette").style.height = newHeight + "%"
+                }else{
+                    const newHeight = 50 - (Math.floor(this.state.blueclick / this.state.blue.length) - Math.floor(this.state.redclick / this.state.red.length))
+                    if (newHeight <= 20 && this.props.chef == true) {
+                        socket.emit('cordeWin', [this.state.blue, this.state.red]);
+                    }
+
+                    document.getElementById("cordelette").style.height = newHeight  + "%"
+                }
             }
         })
     }
@@ -84,7 +89,7 @@ class TirCorde extends React.Component {
             }
         })
 
-        this.setState({ red: red, blue: blue })
+        socket.emit('compoCorde', [red, blue]);
     }
 
     componentWillUnmount(){

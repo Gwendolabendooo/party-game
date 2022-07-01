@@ -111,8 +111,12 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     });
     //ValidBac
     socket.on('valid-bac', (data) => {
-      console.log(socket.rooms)
       io.to(Array.from(socket.rooms)).emit('valid-bac', socket.id);
+    });
+
+    //corde composition
+    socket.on('compoCorde', (data) => {
+      io.to(Array.from(socket.rooms)).emit('compoCorde', data);
     });
 
     //DataBac
