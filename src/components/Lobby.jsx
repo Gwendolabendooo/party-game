@@ -345,8 +345,8 @@ class Lobby extends React.Component  {
 
     sendFriend() {
         const copytext = document.getElementById('sendFriendRequest');
-        navigator.clipboard.writeText(copytext.value);
-        console.log("test")
+        copytext.select();
+        document.execCommand("copy");
         this.setState({showCopi: true})
         setTimeout(() => this.animCopied(), 3000)
     }
@@ -373,15 +373,20 @@ class Lobby extends React.Component  {
             faMinus
         )
 
-        const start = () => {
-            if (this.state.id === this.state.chef) {
-                socket.emit('start', "true");
-            }
-        }
-
         const lockEmit = () => {
             if (this.state.id === this.state.chef) {
                 socket.emit('changelock', !this.state.locked);
+            }
+        }
+
+        const start = () => {
+            if (this.state.id === this.state.chef) {
+                if (this.state.locked === false) {
+                    if (this.state.id === this.state.chef) {
+                        socket.emit('changelock', !this.state.locked);
+                    }
+                }
+                socket.emit('start', "true");
             }
         }
 
@@ -443,7 +448,7 @@ class Lobby extends React.Component  {
                                 </div>:null
                             }
                         </div> 
-                        <input type="hidden" name="sendFriendRequest" id='sendFriendRequest' value={'http://micro-games.fr/?room=' + this.props.room} />
+                        <input type="text" name="sendFriendRequest" className='opacity-0 p-0 m-0 position-absolute text-lowercase' style={{height: 0}} id='sendFriendRequest' value={'http://micro-games.fr/?room=' + this.props.room} />
                     </div>
                     <div className='ctninfoBubble'>
                         <FontAwesomeIcon className="text-info position-absolute" id='infoBubble' icon={['fas', 'info-circle']} />

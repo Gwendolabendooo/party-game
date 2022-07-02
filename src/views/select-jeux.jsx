@@ -44,7 +44,7 @@ class Jeux extends React.Component  {
                 </div>
                 {
                     this.state.desc !== "" ? 
-                        <div id='descShow' className='position-absolute desc-hover rounded'>
+                        <div id='descShow' className='position-absolute desc-hover rounded' style={{zIndex: 1000}}>
                             {this.state.desc}
                         </div>
                         :""
