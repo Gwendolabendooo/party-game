@@ -23,11 +23,6 @@ class ChaisesMusicales extends React.Component {
 
         this.randomChair = this.randomChair.bind(this)
 
-        var tabPoints = this.props.listej
-        tabPoints.forEach(element => {
-            element[2] = 0;
-        });
-
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
 
@@ -60,7 +55,7 @@ class ChaisesMusicales extends React.Component {
                 var liste = this.state.listeJ
 
                 var looser = liste.find(player => player[0] == document.querySelector(".nom-j:not(.qualifie, .looserChaise)").id)
-                document.querySelector(".nom-j:not(.qualifie)").classList.add("looserChaise")
+                document.getElementById(looser[0]).classList.add("looserChaise")
                 looser[2] = document.querySelectorAll(".looserChaise").length
 
                 document.querySelectorAll(".qualifie").forEach(elem =>{
@@ -118,6 +113,11 @@ class ChaisesMusicales extends React.Component {
     }
 
     componentDidMount(){
+        var tabPoints = this.state.listeJ
+        tabPoints.forEach(element => {
+            element[2] = 0;
+        });
+
         document.addEventListener('keydown', this.moovingChamp);
     }
 

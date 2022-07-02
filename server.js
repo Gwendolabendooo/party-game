@@ -38,12 +38,14 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       let index = null;
 
       for (var i = 0; i < Lobbys.length; i++) {
-        if (Lobbys[i][0] === room.room) {
-          Lobbys[i].push([socket.id, room.pseudo, 0, room.config])
+        if (Lobbys[i][0] === room[0].room) {
+          Lobbys[i].push([socket.id, room[0].pseudo, 0, room[0].config])
           index = i
         }
       }
-      io.to(Array.from(socket.rooms)).emit("arrive", Lobbys[index]);
+      console.log(room[1])
+      const retour = [Lobbys[index], room[1], socket.id]
+      io.to(Array.from(socket.rooms)).emit("arrive", retour);
 
     });
 
@@ -65,6 +67,11 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //Fin paire
     socket.on('paire-fin', (tab) => {
         io.to(Array.from(socket.rooms)).emit('paire-fin', tab);
+    })
+
+    //order jeux
+    socket.on('newOrderJeux', (tab) => {
+      io.to(Array.from(socket.rooms)).emit('newOrderJeux', tab);
     })
 
     //Fin Empileur

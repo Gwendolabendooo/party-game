@@ -30,7 +30,7 @@ class TirCorde extends React.Component {
 
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
-            if (document.getElementById("cordelette") !== undefined || document.getElementById("cordelette") !== null) {
+            if (document.getElementById("cordelette") !== undefined && document.getElementById("cordelette") !== null) {
                 document.addEventListener('keydown', this.keypressED);
             }
         })
@@ -46,7 +46,7 @@ class TirCorde extends React.Component {
         })
 
         socket.on('clickCorde', (id) => {
-            if (document.getElementById("cordelette") !== undefined || document.getElementById("cordelette") !== null) {
+            if (document.getElementById("cordelette") !== undefined && document.getElementById("cordelette") !== null) {
                 if ( this.state.red.find(element => element[0] == id) == undefined ) {
                     var cpt = this.state.blueclick;
                     this.setState({ blueclick: cpt + 1 })
@@ -80,18 +80,20 @@ class TirCorde extends React.Component {
             element[2] = 0;
         });
 
-        var red = this.state.red;
-        var blue = this.state.blue;
-
-        this.state.listeJ.forEach((joueur,i) =>{
-            if (i % 2 == 0) {
-                red.push(joueur)
-            }else{
-                blue.push(joueur)
-            }
-        })
-
-        socket.emit('compoCorde', [red, blue]);
+        if (this.props.chef == true) {
+            var red = [];
+            var blue = [];
+    
+            this.state.listeJ.forEach((joueur,i) =>{
+                if (i % 2 == 0) {
+                    red.push(joueur)
+                }else{
+                    blue.push(joueur)
+                }
+            })
+    
+            socket.emit('compoCorde', [red, blue]);   
+        }
     }
 
     componentWillUnmount(){
@@ -127,23 +129,25 @@ class TirCorde extends React.Component {
                 {this.state.tuto ? <Tuto chef={this.props.chef} game='Tir a la corde' desc="Tu arrive dans une équipe aléatoire. Le but, appuyer sur les touches '<' et '>' en alterné le plus vite possible. La partie s'arrête lorsqu'une des deux équipes à franchie les pointillés noir." ></Tuto> : ""}
                 <Transition  title={"Tir a la corde"}/>
                 {this.state.afficheScore ? <Score jeu={"Tir a la corde"} chef={this.props.chef} listej={this.state.equipeWin}/> : ''}
-                <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly position-relative">
-                    <div className='position-absolute d-flex'>
-                        <div className='ctn-touch d-flex align-items-center justify-content-around rounded bg-white m-4' style={this.state.keypress == 1 ? {filter:" opacity(0.5)"} : {filter:" opacity(1)"}}>
-                            <FontAwesomeIcon icon={['fas', "angle-left"]} />
+                {this.state.red.length !== 0 && this.state.blue.length !== 0 ?
+                    <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly position-relative">
+                        <div className='position-absolute d-flex'>
+                            <div className='ctn-touch d-flex align-items-center justify-content-around rounded bg-white m-4' style={this.state.keypress == 1 ? {filter:" opacity(0.5)"} : {filter:" opacity(1)"}}>
+                                <FontAwesomeIcon icon={['fas', "angle-left"]} />
+                            </div>
+                            <div className='ctn-touch d-flex align-items-center justify-content-around rounded bg-white m-4' style={this.state.keypress == 0 ? {filter:" opacity(0.5)"} : {filter:" opacity(1)"}}>
+                                <FontAwesomeIcon icon={['fas', "angle-right"]} />
+                            </div>
                         </div>
-                        <div className='ctn-touch d-flex align-items-center justify-content-around rounded bg-white m-4' style={this.state.keypress == 0 ? {filter:" opacity(0.5)"} : {filter:" opacity(1)"}}>
-                            <FontAwesomeIcon icon={['fas', "angle-right"]} />
+                        <OrdrePassage listej={this.state.red} showSecond={true} hidebg={true}/>
+                        <div className='h-75 ctn-corde position-relative'>
+                            <div className='ctn-blue-corde' id='cordelette'></div>
+                            <div className='position-absolute ligne-corde text-center'>- - - - - - -</div>
+                            <div className='position-absolute ligne-corde2 text-center'>- - - - - - -</div>
                         </div>
-                    </div>
-                    <OrdrePassage listej={this.state.red} showSecond={true} hidebg={true}/>
-                    <div className='h-75 ctn-corde position-relative'>
-                        <div className='ctn-blue-corde' id='cordelette'></div>
-                        <div className='position-absolute ligne-corde text-center'>- - - - - - -</div>
-                        <div className='position-absolute ligne-corde2 text-center'>- - - - - - -</div>
-                    </div>
-                    <OrdrePassage listej={this.state.blue} showSecond={true} hidebg={true}/>
-                </div>
+                        <OrdrePassage listej={this.state.blue} showSecond={true} hidebg={true}/>
+                    </div>: null
+                }
             </div>
         )  
     }

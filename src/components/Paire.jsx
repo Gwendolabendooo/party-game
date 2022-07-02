@@ -25,11 +25,6 @@ class paire extends React.Component {
             tuto: true
         }
 
-        var tabPoints = this.state.listeJ
-        tabPoints.forEach(element => {
-            element[2] = 0;
-        });
-
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
         })
@@ -96,7 +91,12 @@ class paire extends React.Component {
         })
     }
 
-
+    componentDidMount(){
+        var tabPoints = this.state.listeJ
+        tabPoints.forEach(element => {
+            element[2] = 0;
+        });
+    }
 
     Randomize(){
             let listCard = ["lemon", "apple-alt", "carrot", "pepper-hot", "fish", "egg", "bacon", "pizza-slice", "cheese", "hamburger", "lemon", "apple-alt", "carrot", "pepper-hot", "fish", "egg", "bacon", "pizza-slice", "cheese", "hamburger", "ice-cream", "ice-cream", "bone", "bone"]

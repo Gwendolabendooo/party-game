@@ -28,6 +28,7 @@ import Skin from './skin';
 
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
+import jeu from './Jeux';
 
 class Lobby extends React.Component  {
     constructor(props) {
@@ -136,7 +137,15 @@ class Lobby extends React.Component  {
                 }
             ]
         }
-        socket.emit('arrivee', {room: this.props.room, pseudo: this.props.pseudo, config: this.props.config});
+
+        if (this.state.chef === this.state.id) {
+            var jeulittle = []
+            this.state.Jeux.map(jeu => {
+                jeulittle.push([jeu.id, jeu.selected])
+            })
+
+            socket.emit('arrivee', [{room: this.props.room, pseudo: this.props.pseudo, config: this.props.config}, jeulittle]);
+        }
 
         socket.on('selectJeu', (room) => {
             var jeux = this.state.Jeux
@@ -166,7 +175,6 @@ class Lobby extends React.Component  {
                     selected: true,
                     id: -1
                 }
-                console.log(idgames, listeJeux)
 
                 this.setState({Jeux: listeJeux})
             }
@@ -174,9 +182,31 @@ class Lobby extends React.Component  {
 
         socket.on('arrive', (room) => {
             //TO DO GERER ENVOIE DES JEUX SELECTIONN2S
-            room.shift()
-            this.setState({listeJ: room, chef: room[0][0]})
-            console.log(this.state.listeJ)
+            room[0].shift()
+            console.log(this.state.id)
+
+            if (this.state.chef === this.state.id) {
+                    var jeulittle = []
+                    this.state.Jeux.map(jeu => {
+                        jeulittle.push([jeu.id, jeu.selected])
+                    })
+                socket.emit('newOrderJeux', jeulittle);
+            }
+
+            this.setState({listeJ: room[0], chef: room[0][0][0]})
+        });
+
+        socket.on('newOrderJeux', (room) => {
+            var jeuxListing = this.state.Jeux
+            room.map(gaming => {
+                const memeId = (element) => element.id == gaming[0];
+                let newid = jeuxListing.findIndex(memeId)
+                if (gaming[1] !== jeuxListing[newid].selected ) {
+                    jeuxListing[newid].selected = false
+                }
+            })  
+            console.log(room, "-----")
+            this.setState({Jeux: jeuxListing})
         });
 
         socket.on('deco', (room) => {
