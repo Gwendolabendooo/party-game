@@ -30,7 +30,7 @@ class TirCorde extends React.Component {
 
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
-            if (document.getElementById("cordelette") !== undefined) {
+            if (document.getElementById("cordelette") !== undefined || document.getElementById("cordelette") !== null) {
                 document.addEventListener('keydown', this.keypressED);
             }
         })
@@ -40,11 +40,13 @@ class TirCorde extends React.Component {
         })
 
         socket.on('compoCorde', (data) => {
+            console.log(data)
             this.setState({ red: data[0], blue: data[1] })
+            console.log(this.state.red, this.state.blue)
         })
 
         socket.on('clickCorde', (id) => {
-            if (document.getElementById("cordelette") !== undefined) {
+            if (document.getElementById("cordelette") !== undefined || document.getElementById("cordelette") !== null) {
                 if ( this.state.red.find(element => element[0] == id) == undefined ) {
                     var cpt = this.state.blueclick;
                     this.setState({ blueclick: cpt + 1 })
