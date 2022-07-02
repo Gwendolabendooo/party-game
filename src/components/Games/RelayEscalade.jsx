@@ -54,7 +54,7 @@ class RelayEscalade extends React.Component {
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
 
-            if (document.getElementById('letterEscalade') !== undefined) {
+            if (document.getElementById('letterEscalade') !== undefined && document.getElementById('letterEscalade') !== null) {
                 if (this.state.red[0][0] == this.props.id) {
                     document.addEventListener('keypress', this.keypressRed);
                 }
