@@ -39,15 +39,23 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
       for (var i = 0; i < Lobbys.length; i++) {
         if (Lobbys[i][0] === room[0].room) {
-          Lobbys[i].push([socket.id, room[0].pseudo, 0, room[0].config])
-          index = i
+          if (Lobbys[i].length > 1 && Lobbys[i][1][3] && Lobbys[i][1][3] === true) {
+            io.to(socket.id).emit('groupeFerme', true)
+          } else{
+            Lobbys[i].push([socket.id, room[0].pseudo, 0, room[0].config])
+            index = i
+            const retour = [Lobbys[index], room[1], socket.id]
+            io.to(Array.from(socket.rooms)).emit("arrive", retour);
+          }
         }
       }
-      console.log(room[1])
-      const retour = [Lobbys[index], room[1], socket.id]
-      io.to(Array.from(socket.rooms)).emit("arrive", retour);
 
     });
+
+    //kick joueur
+    socket.on('kickJoueur', (id) => {
+      io.to(id).emit('kickJoueur', true)
+    })
 
     //Initialisation paires
     socket.on('initial-paires', (tab) => {
@@ -67,6 +75,20 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //Fin paire
     socket.on('paire-fin', (tab) => {
         io.to(Array.from(socket.rooms)).emit('paire-fin', tab);
+    })
+
+    //Lock groupe
+    socket.on('changelock', (tab) => {
+      if (Lobbys.length !== 0) {
+        for (var i = 0; i < Lobbys.length; i++) {
+            for (let index = 0; index < Lobbys[i].length; index++) {
+                if (Lobbys[i][index][0] === socket.id) {
+                    Lobbys[i][index][3] = tab
+                }    
+            }
+        }
+      }
+      io.to(Array.from(socket.rooms)).emit('changelock', tab);
     })
 
     //order jeux
@@ -350,13 +372,11 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       console.log('user disconnected');
 
       //Suppression liste des joueurs
-      let exist = 0;
       if (Lobbys.length !== 0) {
         for (var i = 0; i < Lobbys.length; i++) {
             for (let index = 0; index < Lobbys[i].length; index++) {
                 if (Lobbys[i][index][0] === socket.id) {
                     Lobbys[i].splice(index, 1)
-                    console.log(Lobbys[i], "modif", socket.rooms)
                     io.to(Array.from(Lobbys[i])).emit("deco", Lobbys[i]);
                 }    
             }

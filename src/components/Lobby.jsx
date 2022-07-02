@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import React, { useState, setState } from 'react';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAppleAlt, faBacon, faCarrot, faCheese, faCrown, faEgg, faFish, faHamburger, faInfoCircle, faLemon, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faAppleAlt, faBacon, faBan, faCarrot, faCheese, faCrown, faEgg, faFish, faHamburger, faInfoCircle, faLemon, faLockOpen, faMinus, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {SocketContext, socket} from './socket';
@@ -43,6 +43,8 @@ class Lobby extends React.Component  {
             autoclick: false,
             listeJselected: [],
             idJeux: [],
+            locked: false,
+            showCopi: false,
             Jeux: [
                 {
                     name: "Jeu des Paires",
@@ -205,7 +207,6 @@ class Lobby extends React.Component  {
                     jeuxListing[newid].selected = false
                 }
             })  
-            console.log(room, "-----")
             this.setState({Jeux: jeuxListing})
         });
 
@@ -294,6 +295,15 @@ class Lobby extends React.Component  {
             this.setState({Jeux: randomeGame})
         });
 
+        socket.on('changelock', (val) => {
+            console.log(val)
+            this.setState({locked: val})
+        });
+
+        socket.on('kickJoueur', (val) => {
+            window.location.reload();
+        });
+        
         socket.on('scoreFinal', (classement) => {
             console.log(classement, 'le classmeent', classement[0][0].length)
             var scoreFin = this.state.scoreFinal
@@ -330,8 +340,24 @@ class Lobby extends React.Component  {
                 })      
             }
             this.setState({scoreFinal: scoreFin})
-            console.log("scoreFin ", this.state.scoreFinal)
         });
+    }
+
+    sendFriend() {
+        const copytext = document.getElementById('sendFriendRequest');
+        navigator.clipboard.writeText(copytext.value);
+        console.log("test")
+        this.setState({showCopi: true})
+        setTimeout(() => this.animCopied(), 3000)
+    }
+
+    animCopied() {
+        console.log("test2")
+        this.setState({showCopi: false})
+    }
+
+    kick(id) {
+        socket.emit('kickJoueur', id);
     }
 
     scrollHorizontal(event){
@@ -342,12 +368,20 @@ class Lobby extends React.Component  {
     render() {
         library.add(
             faCrown,
-            faInfoCircle
+            faInfoCircle,
+            faLockOpen,
+            faMinus
         )
 
         const start = () => {
             if (this.state.id === this.state.chef) {
                 socket.emit('start', "true");
+            }
+        }
+
+        const lockEmit = () => {
+            if (this.state.id === this.state.chef) {
+                socket.emit('changelock', !this.state.locked);
             }
         }
 
@@ -399,8 +433,17 @@ class Lobby extends React.Component  {
         return (
             this.state.start === false ? 
                 <div className="ctn-lobby">
-                    <div className="room-name">
+                    <div className="room-name position-relative w-100 text-center">
                         {this.props.room}
+                        <div className="btn-start position-absolute guestSend" onClick={() => this.sendFriend()}>
+                            Inviter
+                            {this.state.showCopi === true ?
+                                <div className='position-absolute rounded p-2 popinBuble copiedMessage'>
+                                    Lien d'invitation copié!
+                                </div>:null
+                            }
+                        </div> 
+                        <input type="hidden" name="sendFriendRequest" id='sendFriendRequest' value={'http://micro-games.fr/?room=' + this.props.room} />
                     </div>
                     <div className='ctninfoBubble'>
                         <FontAwesomeIcon className="text-info position-absolute" id='infoBubble' icon={['fas', 'info-circle']} />
@@ -408,9 +451,12 @@ class Lobby extends React.Component  {
                             Impossible de rejouer au même jeu 2 fois d'affilé dans le même lobby (bientôt dispo)
                         </div>
                     </div>
-                    <div className="room-ctn" id="scrollHorizontal" onWheel={this.scrollHorizontal}>
+                    <div className="room-ctn position-relative" id="scrollHorizontal" onWheel={this.scrollHorizontal}>
                         <div>
-                            {this.state.listeJ.map((element, i) => <div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}>{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)}
+                            {this.state.listeJ.map((element, i) => <div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}>{this.state.chef === this.state.id && i !== 0 ? <div className='position-absolute rounded-circle bg-danger retireJ p-1 cursor-pointer' onClick={() => this.kick(element[0])}><FontAwesomeIcon icon={['fas', 'minus']} /></div>:null}{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)}
+                        </div>
+                        <div className={this.state.locked ? 'position-absolute p-2 bg-danger rounded-circle lockGroupe cursor-pointer': 'position-absolute p-2 bg-success rounded-circle lockGroupe cursor-pointer'} onClick={lockEmit} style={{fontSize: 14+"px", zIndex: 10}}>
+                            <FontAwesomeIcon icon={['fas', 'lock-open']} />
                         </div>
                     </div>
                     <div>

@@ -61,6 +61,11 @@ class creLobby extends React.Component  {
             console.log(nbrJ, "enw")
             this.setState({nbrPlayer: nbrJ})
         })
+
+        socket.on('groupeFerme', (nbrJ) => {
+            this.setState({joined: true})
+            this.displayErrorPop()
+        })
     }
     
     handleSubmit(event) {
@@ -80,6 +85,11 @@ class creLobby extends React.Component  {
         this.setState({room: e.target.value.toLowerCase()})
     }
 
+    displayErrorPop() {
+        this.setState({showPop: true})
+        setTimeout(() => this.setState({showPop: false}), 3000)
+    }
+
     componentDidMount(){
         this.state.regex[0] = this.state.earSize.findIndex(elem => elem == this.state.config.earSize)
         this.state.regex[1] = this.state.hairStyle.findIndex(elem => elem == this.state.config.hairStyle)
@@ -93,6 +103,10 @@ class creLobby extends React.Component  {
         this.state.regex[9] = this.state.config.faceColor
         this.state.regex[10] = this.state.config.hatColor
         this.state.regex[11] = this.state.config.hairColor
+
+        if (new URLSearchParams(window.location.search).get('room') !== null) {
+            this.setState({room: new URLSearchParams(window.location.search).get('room')})
+        }
     }
 
     randomConfig(){
@@ -176,6 +190,12 @@ class creLobby extends React.Component  {
                 <MoovingBG></MoovingBG>
                 {this.state.joined === true ? 
                 <div className="ctn-creLobby position-relative">
+                    {
+                        this.state.showPop ?
+                        <div className='p-4 rounded popError position-absolute'>
+                            Le groupe que tu essaye de rejoindre est complet et/ou fermé
+                        </div>:null
+                    }
                     <div className='d-flex align-items-center position-absolute rounded nb-j'>
                         <div className='m-2 fontAdd'>
                             {this.state.nbrPlayer}

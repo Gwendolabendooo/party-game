@@ -137,6 +137,39 @@ input[type="text"]::placeholder {
   -o-border-radius: 8px;
 }
 
+.copiedMessage{
+  font-size: 16px!important;
+  transform: translate(-50%, -50%)!important;
+  left: 50%!important;
+  width: 160px!important;
+  top: 190%!important;
+  background: rgb(36 224 132 / 89%)!important;
+  animation-duration: .4s;
+  animation-name: apparition;
+}
+
+.lockGroupe{
+  box-shadow: 0px 0 4px 0px #000000;
+  transform: translate(-50%, -50%);
+  left: 97%;
+  top: 22%;
+  transition: all .4s;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.guestSend{
+  padding-left: 20px!important;
+  padding-right: 20px!important;
+  padding-bottom: 10px!important;
+  padding-top: 10px!important;
+  right: 100px;
+  top: 14px;
+  font-size: 16px!important;
+}
+
 .bg-tuto-sde{
   color: #ffffff;
   font-family: sans-serif;
@@ -1294,6 +1327,24 @@ input[type="checkbox"]{
   font-size: 70px;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.popError{
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  background-color: #f53f3feb;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
 .ctn-jeux{
   display: flex;
   width: 800px;
@@ -1303,6 +1354,18 @@ input[type="checkbox"]{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+
+.retireJ{
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  display: flex;
+  left: 82%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
 .card-select{
