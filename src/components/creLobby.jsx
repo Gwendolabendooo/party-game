@@ -249,8 +249,8 @@ class creLobby extends React.Component  {
                         <div className='btn-random btn-start little-marg mt-5' onClick={this.randomConfig}>
                             Aléatoire
                         </div>
-                        <input type="text" name="Pseudo" maxLength="15" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
-                        <input type="text" name="Lobby" maxLength="15" placeholder='Nom du serveur' value={this.state.room} onChange={this.updateLobby} required id="" />
+                        <input type="text" name="Pseudo" maxLength="12" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
+                        <input type="text" name="Lobby" maxLength="10" placeholder='Nom du serveur' value={this.state.room} onChange={this.updateLobby} required id="" />
                         <input type="submit" value="Rejoindre" className='btn-start btn-creLobby' />
                         <div className='d-flex align-items-center network justify-content-evenly mt-4'>
                             <a href="https://www.instagram.com/micro_games.fr/" target="_blank" rel="noopener noreferrer">
