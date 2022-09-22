@@ -32,7 +32,6 @@ class jeu extends React.Component {
     }
 
     ChooseBg(){
-        console.log(this.props.illustration)
         switch (this.props.illustration) {
             case "empileur": 
                 return empileur
@@ -62,7 +61,6 @@ class jeu extends React.Component {
     }
 
     displayOn(desc){
-        console.log(desc)
         const customEvent = new CustomEvent('showDesc', { detail: { desc: desc } });
         document.dispatchEvent(customEvent);
     }

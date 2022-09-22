@@ -347,12 +347,12 @@ class Lobby extends React.Component  {
         const copytext = document.getElementById('sendFriendRequest');
         copytext.select();
         document.execCommand("copy");
+        document.activeElement.blur();
         this.setState({showCopi: true})
         setTimeout(() => this.animCopied(), 3000)
     }
 
     animCopied() {
-        console.log("test2")
         this.setState({showCopi: false})
     }
 

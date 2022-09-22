@@ -79,23 +79,44 @@ class Empileur extends React.Component {
             var cube = document.querySelector(".cubeMoove");
             var cube1 = document.querySelector(".cube1").offsetLeft;
     
-            if (e.code === "Space" && cube.offsetLeft === cube1) {
-                cube.classList.remove("cubeMoove")
+            if (e === null) {
+                if (e === null && cube.offsetLeft === cube1) {
+                    cube.classList.remove("cubeMoove")
+        
+                    this.setState({speed: this.state.speed - .13})
+                    console.log(this.state.speed)
+                    var speed = this.state.speed
+        
+                    var cubemore = document.createElement("div");
+                    cubemore.classList.add("cubeMoove", "cube")
+                    cubemore.style.animationDuration = speed+"s";
+          
+                    document.querySelector(".ctn-empileur").insertBefore(cubemore, document.querySelector(".cube"))
     
-                this.setState({speed: this.state.speed - .13})
-                console.log(this.state.speed)
-                var speed = this.state.speed
+                    if (document.querySelectorAll(".cube").length >= 11) {
+                        this.setState({fin: true})
+                        document.querySelector(".cubeMoove").classList.remove("cubeMoove")
+                    }
+                }   
+            } else {
+                if (e.code === "Space" && cube.offsetLeft === cube1) {
+                    cube.classList.remove("cubeMoove")
+        
+                    this.setState({speed: this.state.speed - .13})
+                    console.log(this.state.speed)
+                    var speed = this.state.speed
+        
+                    var cubemore = document.createElement("div");
+                    cubemore.classList.add("cubeMoove", "cube")
+                    cubemore.style.animationDuration = speed+"s";
+          
+                    document.querySelector(".ctn-empileur").insertBefore(cubemore, document.querySelector(".cube"))
     
-                var cubemore = document.createElement("div");
-                cubemore.classList.add("cubeMoove", "cube")
-                cubemore.style.animationDuration = speed+"s";
-      
-                document.querySelector(".ctn-empileur").insertBefore(cubemore, document.querySelector(".cube"))
-
-                if (document.querySelectorAll(".cube").length >= 11) {
-                    this.setState({fin: true})
-                    document.querySelector(".cubeMoove").classList.remove("cubeMoove")
-                }
+                    if (document.querySelectorAll(".cube").length >= 11) {
+                        this.setState({fin: true})
+                        document.querySelector(".cubeMoove").classList.remove("cubeMoove")
+                    }
+                }   
             }   
         }else{
             console.log(current - timeout)
@@ -108,7 +129,7 @@ class Empileur extends React.Component {
                 {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game="L'empileur" desc="A l'aide de la touche 'ESPACE' appuie lorsque le cube qui se déplace est juste au dessus du précédent. La partie s'arrète lorsque tous les joueurs ont fini d'empiler"></Tuto> : ""}
                 <Transition  title={"L'empileur"}/>
                 {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <div className="ctn-autoC ctn-empileur apparition-game position-relative mini-game paires flex-nowrap">
+                <div className="ctn-autoC ctn-empileur apparition-game position-relative mini-game paires flex-nowrap" onClick={() => this.keypressED(null)}>
                     <div className="chrono-right">
                         <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
                     </div>

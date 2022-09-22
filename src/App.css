@@ -144,9 +144,10 @@ input[type="text"]::placeholder {
 .copiedMessage{
   font-size: 16px!important;
   transform: translate(-50%, -50%)!important;
-  left: 50%!important;
+  left: 24%!important;
   width: 160px!important;
   top: 190%!important;
+  z-index: 10000;
   background: rgb(36 224 132 / 89%)!important;
   animation-duration: .4s;
   animation-name: apparition;
@@ -2184,6 +2185,10 @@ bottom: 10%;
   -o-transition: all .3s;
 }
 
+.ww-50{
+  width: 50%;
+}
+
 .hh-auto{
   height: auto;
 }
@@ -2208,8 +2213,33 @@ from{
   .desc-jeu{
     display: none;
   }
+  .ww-50{
+    width: 90%;
+  }
+  .auto-progress{
+    width: 90%;
+  }
+  .back-logo{
+    background-image: none;
+  }
   .trouvePersonnage{
     width: 90%;
+  }
+  .autoClick-btn{
+    margin-bottom: 50px;
+  }
+  .trouveperso{
+    justify-content: flex-start;
+  }
+  #ctnVote{
+    align-items: center;
+    width: 90%;
+  }
+  #ctnVote > form{
+    width: 100%;
+  }
+  .toscale{
+    transform: scale(0.5);
   }
   .label-celebrite{
     max-width: 90%;
@@ -2313,8 +2343,11 @@ from{
   .desc-hover{
     width: 100%;
   }
+  .back-tuto{
+    width: 100vw;
+  }
   #infoBubble{
-    bottom: 50px;
+    bottom: 15px;
     right: 15px;
     top: auto;
   }

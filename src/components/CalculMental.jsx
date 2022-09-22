@@ -321,7 +321,7 @@ class CalculMental extends React.Component {
                         {this.state.bon.length === this.state.listeJ.length ? scoreJ : listJoueur }
                     </div>
                     <span id='loader' className='loader'></span>
-                    <div className='z-index-2 d-flex flex-column align-items-center justify-content-around h-100 text-white w-50'>
+                    <div className='z-index-2 d-flex flex-column align-items-center justify-content-around h-100 text-white ww-50'>
                         <div className='h3 col-12 text-center'>
                             Etape
                             <span>

@@ -111,8 +111,11 @@ class AutoClicker extends React.Component {
     }
 
     keypressED = (e) =>{
-        console.log(e.key, this.state.randomeL)
-        if (this.state.randomeL === e.key.toLowerCase()) {
+        if (e !== null) {
+            if (this.state.randomeL === e.key.toLowerCase()) {
+                this.setState({ randomeL: null })
+            }   
+        } else {
             this.setState({ randomeL: null })
         }
     }
@@ -125,7 +128,7 @@ class AutoClicker extends React.Component {
                 {this.state.afficheScore ? <Score jeu={"autoclick"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly">
                     <Stopwatch  debut={this.state.debut} fin={this.state.fin}/>
-                    {this.state.randomeL === null ? '' : <div className='displayRandomL'><span>{this.state.randomeL}</span></div>}
+                    {this.state.randomeL === null ? '' : <div className='displayRandomL' onClick={() => this.keypressED(null)}><span>{this.state.randomeL}</span></div>}
                     <div className="auto-progress mb-3 mt-3">
                         <div style={{width: this.state.click + '%'}}>
 
