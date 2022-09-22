@@ -104,6 +104,8 @@ class creLobby extends React.Component  {
         this.state.regex[10] = this.state.config.hatColor
         this.state.regex[11] = this.state.config.hairColor
 
+        document.querySelector(':root').style.setProperty('--height100', window.innerHeight+"px")
+
         if (new URLSearchParams(window.location.search).get('room') !== null) {
             this.setState({room: new URLSearchParams(window.location.search).get('room')})
         }

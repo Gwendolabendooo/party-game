@@ -237,7 +237,7 @@ class TrouvePersonnage extends React.Component {
                 {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Trouve le personnage' desc="Chaque joueur reçoit un personnage qu’il garde secret et écrit un mot qui lui fait penser à ce dernier. Ce mot passera de main en main, et changera petit à petit. A la fin de la partie, tous les personnages seront révélés. Les joueurs devront retrouver sans communiquer quel personnage correspond à chaque mot."></Tuto> : ""}
                 <Transition  title={"Trouve le personnage"}/>
                 {this.state.afficheScore ? <Score jeu={"Trouve le personnage"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <div className="ctn-autoC ctn-empileur apparition-game h-auto">
+                <div className="ctn-autoC ctn-empileur apparition-game hh-auto">
                     {this.state.celebrity != 3 ?
                         <div className='trouvePersonnage h-100'>
                             <div className='text-white text-center label-celebrite mt-3 mb-3'>
