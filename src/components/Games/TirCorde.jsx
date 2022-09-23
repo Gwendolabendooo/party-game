@@ -119,6 +119,24 @@ class TirCorde extends React.Component {
         console.log(this.state.nbclick)
     }
 
+    left(){
+        var click = this.state.nbclick
+        if (this.state.keypress == 0) {
+            click++
+            this.setState({ keypress: 1, nbclick: click })
+            socket.emit('clickCorde', this.props.id); 
+        }
+    }
+
+    right(){
+        var click = this.state.nbclick
+        if (this.state.keypress == 1) {
+            click++
+            this.setState({ keypress: 0, nbclick: click })
+            socket.emit('clickCorde', this.props.id); 
+        }
+    }
+
     render() {
         library.add(
             faAngleLeft,
@@ -132,10 +150,10 @@ class TirCorde extends React.Component {
                 {this.state.red.length !== 0 && this.state.blue.length !== 0 ?
                     <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly position-relative">
                         <div className='position-absolute d-flex'>
-                            <div className='ctn-touch d-flex align-items-center justify-content-around rounded bg-white m-4' style={this.state.keypress == 1 ? {filter:" opacity(0.5)"} : {filter:" opacity(1)"}}>
+                            <div className='ctn-touch d-flex align-items-center justify-content-around rounded bg-white m-4' onClick={() => this.left()} style={this.state.keypress == 1 ? {filter:" opacity(0.5)"} : {filter:" opacity(1)"}}>
                                 <FontAwesomeIcon icon={['fas', "angle-left"]} />
                             </div>
-                            <div className='ctn-touch d-flex align-items-center justify-content-around rounded bg-white m-4' style={this.state.keypress == 0 ? {filter:" opacity(0.5)"} : {filter:" opacity(1)"}}>
+                            <div className='ctn-touch d-flex align-items-center justify-content-around rounded bg-white m-4' onClick={() => this.right()} style={this.state.keypress == 0 ? {filter:" opacity(0.5)"} : {filter:" opacity(1)"}}>
                                 <FontAwesomeIcon icon={['fas', "angle-right"]} />
                             </div>
                         </div>

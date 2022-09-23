@@ -146,7 +146,6 @@ class SpeedWord extends React.Component {
             }
         })
 
-        console.log(red)
         this.setState({ red: red, blue: blue })
 
         if (red[0][0] == this.props.id) {
@@ -203,16 +202,13 @@ class SpeedWord extends React.Component {
         // }
     }
 
-    componentWillUnmount(){
-    }
-
     render() {
         return (
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
                 {this.state.tuto ? <Tuto chef={this.props.chef == true} game='Speed Word' desc="Tu arrive dans une équipe aléatoire. Le but, écrire le plus vite possible une suite de mots, lorsque tu à bien reproduit chaque mots, le tour passe automatiquement à tes coéquipiers. La partie se termine au bout de 6 suites de mots validés."></Tuto> : ""}
                 <Transition  title={"SpeedWord"}/>
                 {this.state.afficheScore ? <Score jeu={"SpeedWord"} chef={this.props.chef == true} listej={this.state.equipeWin}/> : ''}
-                <div className="justify-content-evenly ctn-autoC ctn-empileur rounded overflow-hidden">
+                <div className="justify-content-evenly ctn-autoC ctn-empileur speedword rounded overflow-hidden">
                     <div className='h-50 d-flex flex-column align-items-center justify-content-around redteam'>
                         <OrdrePassage listej={this.state.red} hidebg={true}/>
                         <div className='w-100 text-center font-paytone' id='redTeam'>
@@ -227,7 +223,7 @@ class SpeedWord extends React.Component {
                                 ""
                             }
                         </div>
-                        <input type="text" id='inputRed' value={this.state.redInput} onChange={(e) => this.verifMot(e, "redTeam")} className='w-75 text-center' autocomplete="off" name="" disabled/>
+                        <input type="text" id='inputRed' value={this.state.redInput} onChange={(e) => this.verifMot(e, "redTeam")} className='w-75 text-center' autocomplete="off" autoFocus name="" disabled/>
                         <div className='cpt-Words'>
                             {this.state.redTeamlvl} / 6
                         </div>
@@ -246,7 +242,7 @@ class SpeedWord extends React.Component {
                                 ""
                             }
                         </div>
-                        <input type="text" id='inputBlue' value={this.state.blueInput} onChange={(e) => this.verifMotBlue(e, "blueTeam")} className='w-75 text-center' autocomplete="off" name="" disabled/>
+                        <input type="text" id='inputBlue' value={this.state.blueInput} onChange={(e) => this.verifMotBlue(e, "blueTeam")} className='w-75 text-center' autocomplete="off" name="" autoFocus disabled/>
                         <div className='cpt-Words'>
                             {this.state.blueTeamlvl} / 6
                         </div>

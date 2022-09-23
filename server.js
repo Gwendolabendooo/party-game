@@ -42,9 +42,10 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
           if (Lobbys[i].length > 1 && Lobbys[i][1][3] && Lobbys[i][1][3] === true) {
             io.to(socket.id).emit('groupeFerme', true)
           } else{
-            Lobbys[i].push([socket.id, room[0].pseudo, 0, room[0].config])
+            Lobbys[i].push([socket.id, room[0].pseudo, 0, room[0].config, room[0].computer])
             index = i
             const retour = [Lobbys[index], room[1], socket.id]
+            console.log(retour)
             io.to(Array.from(socket.rooms)).emit("arrive", retour);
           }
         }
@@ -332,7 +333,7 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 
     //        NOMBRE DE JOUEURS
     socket.on('listeJoeursco', (nbrJ) => {
-      io.emit('listeJoeursco', io.engine.clientsCount);
+      io.emit('listeJoeursco', io.engine.clientsCount + 14);
     })
 
     //INCR SCORE FINAL

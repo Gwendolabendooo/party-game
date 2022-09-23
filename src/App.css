@@ -45,7 +45,7 @@ input:-internal-autofill-selected{
   color: #3879e2!important;
 }
 
-input[type="text"] {
+input[type="text"], input[type="number"]{
   border: none;
   background: linear-gradient(180deg, #FFFFFF 0%, #E3E3E3 100%);
   border-radius: 20px;
@@ -2189,6 +2189,15 @@ bottom: 10%;
   width: 50%;
 }
 
+.clickletter:active{
+  background-color: #000000!important;
+  color: white;
+  transform: scale(.8);
+}
+.clickletter{
+  transition: all .3s;
+}
+
 .hh-auto{
   height: auto;
 }
@@ -2212,6 +2221,25 @@ from{
 @media only screen and (max-width: 900px) {
   .desc-jeu{
     display: none;
+  }
+  .ctn-simon{
+    transform: scale(0.7);
+  }
+  .speedword > div{
+    width: 100%;
+  }
+  .redteam > input {
+    font-size: 14px;
+    padding-left: 6px;
+    padding: 6px;
+  }
+  .blueteam > input {
+    font-size: 14px;
+    padding-left: 6px;
+    padding: 6px;
+  }
+  .loadEscalade{
+    height: 110px;
   }
   .ww-50{
     width: 90%;

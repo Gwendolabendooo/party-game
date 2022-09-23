@@ -70,6 +70,13 @@ class jeu extends React.Component {
             faInfoCircle
         )
 
+        if (this.props.fordesk && this.props.computer) {
+            return(
+                <div className="card-game card-select" style={{backgroundImage: 'url('+this.ChooseBg()+')'}}>
+                    <FontAwesomeIcon className="position-absolute info" style={{filter: "drop-shadow(0px 0px 1px)"}} onMouseLeave={() => this.displayOn("")} onClick={() => this.displayOn(this.props.description)} onMouseEnter={() => this.displayOn(this.props.description)} icon={['fas', 'info-circle']} />
+                </div>
+            )
+        }
         return (
             <div className={this.props.selected ? "card-game" : "card-game card-select"} style={{backgroundImage: 'url('+this.ChooseBg()+')'}} onClick={this.selectCard}>
                 <FontAwesomeIcon className="position-absolute info" style={{filter: "drop-shadow(0px 0px 1px)"}} onMouseLeave={() => this.displayOn("")} onClick={() => this.displayOn(this.props.description)} onMouseEnter={() => this.displayOn(this.props.description)} icon={['fas', 'info-circle']} />

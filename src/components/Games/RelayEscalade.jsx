@@ -23,6 +23,7 @@ class RelayEscalade extends React.Component {
             blueTeamlvl: 1,
             redTeamindex: 0,
             blueTeamindex: 0,
+            iskeyboard: false,
             listeLettres: [
                 {
                     number: 0,
@@ -57,10 +58,12 @@ class RelayEscalade extends React.Component {
             if (document.getElementById('letterEscalade') !== undefined && document.getElementById('letterEscalade') !== null) {
                 if (this.state.red[0][0] == this.props.id) {
                     document.addEventListener('keypress', this.keypressRed);
+                    this.setState({ iskeyboard: true })
                 }
         
                 if (this.state.blue[0][0] == this.props.id) {
                     document.addEventListener('keypress', this.keypressBlue);
+                    this.setState({ iskeyboard: true })
                 }
             }
         })
@@ -77,8 +80,10 @@ class RelayEscalade extends React.Component {
                     if (team.length > 1) {
                         if (this.props.id == team[team.length - 1][0]) {
                             document.removeEventListener('keypress', this.keypressBlue);
+                            this.setState({ iskeyboard: false })
                         }else if (this.props.id == team[0][0]) {
                             document.addEventListener('keypress', this.keypressBlue);
+                            this.setState({ iskeyboard: true })
                         }
                     }
                     if (this.state.blueTeamlvl != 6) {
@@ -105,8 +110,10 @@ class RelayEscalade extends React.Component {
                     if (team.length > 1) {
                         if (this.props.id == team[team.length - 1][0]) {
                             document.removeEventListener('keypress', this.keypressRed);
+                            this.setState({ iskeyboard: false })
                         }else if (this.props.id == team[0][0]) {
                             document.addEventListener('keypress', this.keypressRed);
+                            this.setState({ iskeyboard: true })
                         }   
                     }
                     if (this.state.redTeamlvl != 6) {
@@ -168,6 +175,14 @@ class RelayEscalade extends React.Component {
         }
     }
 
+    letter(lettre){
+        if (this.state.red.find(joueur => joueur[0] === this.props.id)) {
+            socket.emit('redEscaladePress', lettre);
+        } else {
+            socket.emit('blueEscaladePress', lettre);
+        }
+    }
+
     componentWillUnmount(){
         document.removeEventListener('keypress', this.keypressRed);
         document.removeEventListener('keypress', this.keypressBlue);
@@ -193,7 +208,6 @@ class RelayEscalade extends React.Component {
                             <div className='letterRelay rounded bg-white m-2 opacity-25'>
                                 {this.state.listeLettres[this.state.redTeamlvl - 1].words[this.state.redTeamindex + 1]}
                             </div>
-
                         </div>
                         <div className='position-absolute loadEscalade overflow-hidden d-flex align-items-end'>
                             <div className='bg-success w-100' style={{height: this.state.redTeamindex / this.state.listeLettres[0].words.length * 100 + "%"}}>
@@ -224,6 +238,22 @@ class RelayEscalade extends React.Component {
                             {this.state.blueTeamlvl} / 6
                         </div>
                     </div>
+                    {this.state.iskeyboard === true && !this.props.isComputer ?
+                        <div className='d-flex'>
+                            <div className='letterRelay rounded bg-white m-2 clickletter' onClick={() => this.letter('a')}>
+                                A
+                            </div>
+                            <div className='letterRelay rounded bg-white m-2 clickletter' onClick={() => this.letter('z')}>
+                                Z
+                            </div>
+                            <div className='letterRelay rounded bg-white m-2 clickletter' onClick={() => this.letter('e')}>
+                                E
+                            </div>
+                            <div className='letterRelay rounded bg-white m-2 clickletter' onClick={() => this.letter('r')}>
+                                R
+                            </div>
+                        </div>    
+                    : null}
                 </div>
             </div>
         )  

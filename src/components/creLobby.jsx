@@ -32,6 +32,7 @@ class creLobby extends React.Component  {
                       room: "",
                       pseudo: "",
                       nbrPlayer: 0,
+                      computer: true,
                       config: genConfig(AvatarConfig),
                       regex: [],
                       earSize: ["small", "big"],
@@ -105,6 +106,10 @@ class creLobby extends React.Component  {
         this.state.regex[11] = this.state.config.hairColor
 
         document.querySelector(':root').style.setProperty('--height100', window.innerHeight+"px")
+
+        if (window.screen.width <= 900) {
+            this.setState({computer: false})
+        }
 
         if (new URLSearchParams(window.location.search).get('room') !== null) {
             this.setState({room: new URLSearchParams(window.location.search).get('room')})
@@ -284,7 +289,7 @@ class creLobby extends React.Component  {
                         </div>
                     </div>
                 </div>
-                : <Lobby room={this.state.room} pseudo={this.state.pseudo} config={this.state.regex} />}
+                : <Lobby room={this.state.room} pseudo={this.state.pseudo} computer={this.state.computer} config={this.state.regex} />}
             </div>
         ) 
     } 

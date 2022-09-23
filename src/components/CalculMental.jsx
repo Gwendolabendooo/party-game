@@ -330,7 +330,7 @@ class CalculMental extends React.Component {
                         </div>
                         <div className='h1 p-3 rounded col-12 text-center calcul' id='calcul'>9 * 7 + 4</div>
                         <form className='col-12' onSubmit={(e) => resultat(e)}>
-                            <InputTxt letter="48" col="col-12" id="inputCalcul"/>
+                            <InputTxt letter="48" type="number" col="col-12" id="inputCalcul"/>
                             <input type="submit" value="Valider" id='subMot' className='btn-start btn-creLobby m-0 mt-5 mb-5' />
                         </form>
                     </div>

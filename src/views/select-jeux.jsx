@@ -40,7 +40,7 @@ class Jeux extends React.Component  {
                 {/* <SearchBox /> */}
                 {/* {this.filterChef} */}
                 <div className="ctn-jeux">
-                    {this.state.listeJ.map((jeu) => <Jeu name={jeu.name} description={jeu.desc} chef={this.props.chef} illustration={jeu.illustration} id={this.props.id} selected={jeu.selected} />)}
+                    {this.state.listeJ.map((jeu) => <Jeu name={jeu.name} description={jeu.desc} chef={this.props.chef} computer={this.props.computer} fordesk={jeu.desktop} illustration={jeu.illustration} id={this.props.id} selected={jeu.selected} />)}
                 </div>
                 {
                     this.state.desc !== "" ? 
