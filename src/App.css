@@ -2218,9 +2218,36 @@ from{
 }
 }
 
+.fit-cont{
+  width: fit-content;
+}
+
+.justify-content-aroundd{
+  justify-content: space-around;
+}
+
+.redteam, .blueteam{
+  width: 100%;
+}
+
 @media only screen and (max-width: 900px) {
   .desc-jeu{
     display: none;
+  }
+  .ctn-perso-4{
+    transform: none!important;
+    justify-content: start;
+  }
+  .ctn-autoC{
+    width: 100%;
+  }
+  .paires{
+    width: 100%;
+    height: 100vh;
+  }
+  .paire-card{
+    width: 90px;
+    height: 70px;
   }
   .ctn-simon{
     transform: scale(0.7);
@@ -2239,7 +2266,7 @@ from{
     padding: 6px;
   }
   .loadEscalade{
-    height: 110px;
+    height: 80px;
   }
   .ww-50{
     width: 90%;
@@ -2291,6 +2318,10 @@ from{
   }
   .pseudo-bac{
     font-size: 13px;
+  }
+  .card-celebrite-tab{
+    width: 140px;
+    font-size: 11px;
   }
   .ctn-autoC{
     height: var(--height100)!important;

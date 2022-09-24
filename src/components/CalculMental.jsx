@@ -317,8 +317,10 @@ class CalculMental extends React.Component {
                 {this.state.afficheScore ? <Score jeu={"empile"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex">
                     <div className='position-absolute back-logo'></div>
-                    <div className='d-flex p-3 mw-100'>
-                        {this.state.bon.length === this.state.listeJ.length ? scoreJ : listJoueur }
+                    <div className='p-3 mw-100 overflow-auto'>
+                        <div className='fit-cont d-flex h-100'>
+                            {this.state.bon.length === this.state.listeJ.length ? scoreJ : listJoueur }
+                        </div>
                     </div>
                     <span id='loader' className='loader'></span>
                     <div className='z-index-2 d-flex flex-column align-items-center justify-content-around h-100 text-white ww-50'>

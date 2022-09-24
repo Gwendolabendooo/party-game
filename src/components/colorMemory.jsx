@@ -268,28 +268,30 @@ class ColorMemory extends React.Component {
                 <Transition  title={"Memory Color"}/>
                 {this.state.afficheScore ? <Score jeu={"Dans le mille"} chef={this.props.chef} listej={this.state.listeJ}/> : ''}
                 <div className="ctn-autoC ctn-back-logo apparition-game position-relative d-flex justify-content-around">
-                    <div className='d-flex flex-row'>
-                        {this.state.listeJ.map((item, index) => {
-                            if (index == 0) {
-                                return (
-                                    <div className={item[4] == 3 ? "nom-j position-relative valide" : item[4] == 2 ? "nom-j position-relative bg-warning" : item[4] == 1 ? "nom-j position-relative valide" : "nom-j position-relative dead"}>
-                                        <Skin conf={item[3]} h="3rem" w="3rem" />
-                                        <span className='m-auto text-center'>
-                                            {item[1]}
-                                        </span>
-                                    </div>
-                                );  
-                            }else{
-                                return (
-                                    <div className={item[4] == 3 ? "nom-j position-relative valide opacity-25" : item[4] == 2 ? "nom-j position-relative bg-warning opacity-25" : item[4] == 1 ? "nom-j position-relative valide opacity-25" : "nom-j position-relative dead opacity-25"}>
-                                        <Skin conf={item[3]} h="3rem" w="3rem" />
-                                        <span className='m-auto text-center'>
-                                            {item[1]}
-                                        </span>
-                                    </div>
-                                );  
-                            } 
-                        })}
+                    <div className='w-100 overflow-auto'>
+                        <div className='d-flex flex-row fit-cont'>
+                            {this.state.listeJ.map((item, index) => {
+                                if (index == 0) {
+                                    return (
+                                        <div className={item[4] == 3 ? "nom-j position-relative valide" : item[4] == 2 ? "nom-j position-relative bg-warning" : item[4] == 1 ? "nom-j position-relative valide" : "nom-j position-relative dead"}>
+                                            <Skin conf={item[3]} h="3rem" w="3rem" />
+                                            <span className='m-auto text-center'>
+                                                {item[1]}
+                                            </span>
+                                        </div>
+                                    );  
+                                }else{
+                                    return (
+                                        <div className={item[4] == 3 ? "nom-j position-relative valide opacity-25" : item[4] == 2 ? "nom-j position-relative bg-warning opacity-25" : item[4] == 1 ? "nom-j position-relative valide opacity-25" : "nom-j position-relative dead opacity-25"}>
+                                            <Skin conf={item[3]} h="3rem" w="3rem" />
+                                            <span className='m-auto text-center'>
+                                                {item[1]}
+                                            </span>
+                                        </div>
+                                    );  
+                                } 
+                            })}
+                        </div>
                     </div>
                     <span id='loader' className='loader'></span>
                     <span className='text-white lvl'>Niveau <span className='text-warning'>{this.state.niveau.length}</span></span>

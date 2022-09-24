@@ -36,9 +36,9 @@ class ordrePassage extends React.Component  {
         )
 
         return (
-            <div className={this.props.hidebg == true ? "room-ctn hidebg justify-content-around" : "room-ctn"} style={{width: 1000+"px", height: 'auto'}} id="scrollHorizontal" onWheel={this.scrollHorizontal}>
+            <div className={this.props.hidebg == true ? "room-ctn hidebg justify-content-aroundd w-100 overflow-auto ctn-perso-4" : "room-ctn w-100 overflow-auto ctn-perso-4"} style={{height: 'auto'}} id="scrollHorizontal" onWheel={this.scrollHorizontal}>
                 {this.props.jauge !== true ?
-                    <div>
+                    <div className='fit-con h-100'>
                         {this.props.showSecond !== true ?
                             this.state.listeJ.map(element => <div className="nom-j position-relative" data-second={element[0] !== this.state.listeJ[0][0] ? true : false}>{this.props.hidebg == true ? "" : <div className="score-liste">{element[2]}</div>}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)
                             :

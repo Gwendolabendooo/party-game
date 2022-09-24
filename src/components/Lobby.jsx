@@ -263,8 +263,8 @@ class Lobby extends React.Component  {
                 var selectedGames = []
                 randomeJeu.forEach(game => {
                     if (game.selected == true) {
-                        if (game.desktop && this.props.computer) {
-                        } else {
+                        if (!this.props.computer && game.desktop) {  
+                        }else {
                             selectedGames.push(game)
                             if (game.id !== -1) {
                                 idGames.push(game.id)   

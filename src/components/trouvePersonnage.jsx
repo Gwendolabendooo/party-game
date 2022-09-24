@@ -273,16 +273,18 @@ class TrouvePersonnage extends React.Component {
                             </form>
                         </div>
                         :
-                        <div className='d-flex flex-column'>
-                            <div className='d-flex'>
-                                <ul className='p-top180'>
-                                    {listCelebrity}
-                                </ul>
-                                <ul className='d-flex'>
-                                    {listJoueur}
-                                </ul>
+                        <div className='d-flex flex-column w-100 h-100'>
+                            <div className='w-100 overflow-auto h-100'>
+                                <div className='d-flex fit-cont'>
+                                    <ul className='p-top180'>
+                                        {listCelebrity}
+                                    </ul>
+                                    <ul className='d-flex'>
+                                        {listJoueur}
+                                    </ul>
+                                </div>
                             </div>
-                            <form onSubmit={this.affScore}>
+                            <form onSubmit={this.affScore} className="w-75 m-auto" >
                                 {this.props.id === this.props.chef ?
                                     <input type="submit" value="Classement" className='btn-start btn-creLobby m-0 mt-5 mb-5' />
                                     :
