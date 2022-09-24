@@ -57,7 +57,7 @@ class Leaderboard extends React.Component {
                         })
                     })
                 } */}
-                <div className='d-flex flex-column'>
+                <div className='d-flex flex-column ctn-scoreboard'>
                     <div className='d-flex align-items-end ctn-leader'>
                         {this.props.score.map((item, index) => {
                             if (index == 0) {
@@ -88,7 +88,7 @@ class Leaderboard extends React.Component {
                             }
                         })}
                     </div>
-                    <div className='mt-3'>
+                    <div className='mt-3 h-100 overflow-auto'>
                         {this.props.score.map((item, index) => {
                             if (index > 2) {
                                 return (
@@ -99,7 +99,7 @@ class Leaderboard extends React.Component {
                                             </span>
                                             <Skin conf={item[3]} h="3rem" w="3rem" />
                                         </div>
-                                        <span className='w-50'>
+                                        <span className='w-50 d-flex align-items-center'>
                                             {item[2]}
                                         </span>
                                         <span className='m-2'>
@@ -111,9 +111,9 @@ class Leaderboard extends React.Component {
                         })}
                     </div>
                     {this.props.chef == true ?
-                        <input type="submit" value="Retour lobby" onClick={this.retourLobby} className='btn-start btn-creLobby m-0 mt-5' />
+                        <input type="submit" value="Retour lobby" onClick={this.retourLobby} className='btn-start btn-creLobby btn-score' />
                         :
-                        <input type="submit" value="Retour lobby" title="Tu n'es pas le chef de groupe" style={{filter: "opacity(0.5)"}} className='btn-start btn-creLobby m-0 mt-5' disabled/>
+                        <input type="submit" value="Retour lobby" title="Tu n'es pas le chef de groupe" style={{filter: "opacity(0.5)"}} className='btn-start btn-creLobby btn-score' disabled/>
                     }
                 </div>
             </div>
