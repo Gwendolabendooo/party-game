@@ -240,16 +240,16 @@ class RelayEscalade extends React.Component {
                     </div>
                     {this.state.iskeyboard === true && !this.props.isComputer ?
                         <div className='d-flex'>
-                            <div className='letterRelay rounded bg-white m-2 clickletter' onClick={() => this.letter('a')}>
+                            <div className='letterRelay2 rounded bg-white m-2 clickletter' onClick={() => this.letter('a')}>
                                 A
                             </div>
-                            <div className='letterRelay rounded bg-white m-2 clickletter' onClick={() => this.letter('z')}>
+                            <div className='letterRelay2 rounded bg-white m-2 clickletter' onClick={() => this.letter('z')}>
                                 Z
                             </div>
-                            <div className='letterRelay rounded bg-white m-2 clickletter' onClick={() => this.letter('e')}>
+                            <div className='letterRelay2 rounded bg-white m-2 clickletter' onClick={() => this.letter('e')}>
                                 E
                             </div>
-                            <div className='letterRelay rounded bg-white m-2 clickletter' onClick={() => this.letter('r')}>
+                            <div className='letterRelay2 rounded bg-white m-2 clickletter' onClick={() => this.letter('r')}>
                                 R
                             </div>
                         </div>    

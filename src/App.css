@@ -19,6 +19,7 @@ input:-internal-autofill-selected{
 
 html{
   scroll-behavior: smooth;
+  user-select: none;
 }
 
 div{
@@ -2047,6 +2048,16 @@ svg * {
 .letterRelay{
   width: 50px;
   height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 22px;
+}
+
+.letterRelay2{
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-around;

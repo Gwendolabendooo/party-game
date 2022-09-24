@@ -20,11 +20,11 @@ class score extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.props.listej, this.props.listej[0], this.props.listej[1])
         if (this.props.chef) {
             socket.emit('scoreFinal', this.props.listej);
             console.log("suivant")   
         }
+        document.activeElement.blur();
     }
 
     render() {
