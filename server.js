@@ -300,6 +300,10 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('incrCptJauge', data);
     });
 
+    //QUIESTCE
+    socket.on('vote', (data) => {
+      io.to(Array.from(socket.rooms)).emit('vote', [socket.id, data]);
+    });
 
     //randome chaise pose
     socket.on('randomChair', (data) => {

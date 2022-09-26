@@ -16,175 +16,226 @@ class Quiestce extends React.Component {
             afficheScore : false,
             tuto: true,
             showPopup: false,
+            voteSend: false,
+            cardId: null,
+            nextButton: false,
             whoIs: [
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
-                [
-                    0,
-                    1,
-                    0,
-                    2,
-                    0,
-                    2,
-                    0,
-                    2,
-                    "#FFEBA4",
-                    "#AC6651",
-                    "#FC909F",
-                    "#000"
-                ],
+                {
+                    name: "test",
+                    id: 0,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 1,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 2,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 3,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 4,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 5,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 6,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 7,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 8,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 9,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 10,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
+                {
+                    name: "test",
+                    id: 11,
+                    conf: [
+                        1,
+                        1,
+                        1,
+                        2,
+                        0,
+                        2,
+                        0,
+                        2,
+                        "#FFEBA4",
+                        "#AC6651",
+                        "#FC909F",
+                        "#000"
+                    ]
+                },
             ]
         };
 
@@ -194,6 +245,35 @@ class Quiestce extends React.Component {
             if (this.props.chef) {
             }
         })
+
+        socket.on('vote', (data) => {
+            let liste = this.state.listeJ;
+            liste.forEach(element => {
+                console.log(element)
+                if (element[0] === data[0]) {
+                    element[2] = data[1]
+                }
+            })
+            this.setState({ listeJ: liste})
+        })
+    }
+
+    sendVote() {
+        socket.emit('vote', this.state.cardId);
+        this.setState({ voteSend: true})
+    }
+
+    whoCard(index) {
+        this.setState({ showPopup: true, cardId: index })
+    }
+
+    scrollLeft() {
+        if (!this.state.nextButton) {
+            document.getElementById('listQuiestce').scrollLeft = 1000
+        } else {
+            document.getElementById('listQuiestce').scrollLeft = 0
+        }
+        this.setState({ nextButton: !this.state.nextButton})
     }
 
     componentDidMount(){
@@ -219,18 +299,18 @@ class Quiestce extends React.Component {
                 <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly position-relative">
                     {this.state.showPopup ? 
                         <div className='position-fixed w-100 h-100 bg-modal d-flex align-items-center justify-content-center'>
-                            <div className='rounded-3 bg-white p-3 d-flex align-items-center justify-content-center flex-column w-75'>
+                            <div className='rounded-3 bg-white p-3 d-flex align-items-center justify-content-center flex-column w-75 modal-qui'>
                                 <div className='text-center'>
                                     Veux-tu vraiment valider ton choix ?
                                 </div>
                                 <div className='d-flex flex-column align-items-center bg-warning fit-cont rounded-3 p-1 m-2'>
-                                    <Skin conf={this.state.whoIs[0]} h="4rem" w="4rem" />
+                                    <Skin conf={this.state.whoIs[this.state.cardId].conf} h="4rem" w="4rem" />
                                     <div className='quinom text-center'>
-                                        Jean dupond
+                                        {this.state.whoIs[this.state.cardId].name}
                                     </div>
                                 </div>
                                 <div className='d-flex w-100'>
-                                    <div className='bg-success m-1 p-2 rounded-3 text-white w-100 text-center' onClick={() => this.setState({ showPopup: false})}>
+                                    <div className='bg-success m-1 p-2 rounded-3 text-white w-100 text-center' onClick={() => {this.setState({ showPopup: false}); this.sendVote()}}>
                                         oui
                                     </div>
                                     <div className='bg-danger m-1 p-2 rounded-3 text-white w-100 text-center' onClick={() => this.setState({ showPopup: false})}>
@@ -242,22 +322,40 @@ class Quiestce extends React.Component {
                     : null}
                     <div className='mw-100 overflow-auto'>
                         <div className='fit-cont d-flex'>
-                            {scoreJ}
+                            {listJoueur}
                         </div>
                     </div>
                     <div className='w-100 d-flex align-items-center align-content-center justify-content-center flex-wrap ctn-qui'>
-                        {this.state.whoIs.map(who => {
-                            return(
-                                <div className='d-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1' onClick={() => this.setState({ showPopup: true})}>
-                                    <Skin conf={who} h="4rem" w="4rem" />
-                                    <div className='quinom text-center'>
-                                        Jean dupond
-                                    </div>
+                        <div className='overflow-auto w-100' id='listQuiestce'>
+                            <div className='fit-cont webkit-box'>
+                                <div className='w-100 d-flex align-items-center align-content-center justify-content-center flex-wrap ctn-qui'>
+                                    {this.state.whoIs.map((who, index) => {
+                                        return(
+                                            <div className={this.state.voteSend ? 'd-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1 pointer-none' : 'd-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1'} onClick={() => this.whoCard(index)}>
+                                                <Skin conf={who.conf} h="4rem" w="4rem" />
+                                                <div className='quinom text-center'>
+                                                    {who.name}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
                                 </div>
-                            )
-                        })}
+                                <div className='w-100 d-flex align-items-center align-content-center justify-content-center flex-wrap ctn-qui'>
+                                    {this.state.whoIs.map((who, index) => {
+                                        return(
+                                            <div className={this.state.voteSend ? 'd-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1 pointer-none' : 'd-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1'} onClick={() => this.whoCard(index)}>
+                                                <Skin conf={who.conf} h="4rem" w="4rem" />
+                                                <div className='quinom text-center'>
+                                                    {who.name}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" value={!this.state.nextButton ? "Page 2" : "Page 1" } onClick={() => this.scrollLeft()} className='btn-start btn-creLobby btn-score m-2 w-100' />
                     </div>
-                    <input type="submit" value="Page 2" className='btn-start btn-creLobby btn-score m-2 w-100' />
                 </div>
             </div>
         )  

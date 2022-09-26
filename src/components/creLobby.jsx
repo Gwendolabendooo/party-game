@@ -59,7 +59,6 @@ class creLobby extends React.Component  {
         socket.emit('listeJoeursco', "co");
 
         socket.on('listeJoeursco', (nbrJ) => {
-            console.log(nbrJ, "enw")
             this.setState({nbrPlayer: nbrJ})
         })
 
@@ -92,6 +91,7 @@ class creLobby extends React.Component  {
     }
 
     componentDidMount(){
+        this.state.config.shirtColor = this.state.config.bgColor
         this.state.regex[0] = this.state.earSize.findIndex(elem => elem == this.state.config.earSize)
         this.state.regex[1] = this.state.hairStyle.findIndex(elem => elem == this.state.config.hairStyle)
         this.state.regex[2] = this.state.hatStyle.findIndex(elem => elem == this.state.config.hatStyle)
@@ -104,6 +104,7 @@ class creLobby extends React.Component  {
         this.state.regex[9] = this.state.config.faceColor
         this.state.regex[10] = this.state.config.hatColor
         this.state.regex[11] = this.state.config.hairColor
+        this.state.regex[12] = this.state.config.bgColor
 
         document.querySelector(':root').style.setProperty('--height100', window.innerHeight+"px")
 
@@ -117,8 +118,10 @@ class creLobby extends React.Component  {
     }
 
     randomConfig(){
-        console.log(this.state.config)
-        this.setState({config: genConfig(AvatarConfig)})
+        const newConfig = genConfig(AvatarConfig)
+        newConfig.shirtColor = newConfig.bgColor
+
+        this.setState({config: newConfig})
 
         this.state.regex[0] = this.state.earSize.findIndex(elem => elem == this.state.config.earSize)
         this.state.regex[1] = this.state.hairStyle.findIndex(elem => elem == this.state.config.hairStyle)
@@ -132,12 +135,15 @@ class creLobby extends React.Component  {
         this.state.regex[9] = this.state.config.faceColor
         this.state.regex[10] = this.state.config.hatColor
         this.state.regex[11] = this.state.config.hairColor
+        this.state.regex[12] = this.state.config.bgColor
     }
 
     changeColor(event){
         var newConf = this.state.config
         newConf.bgColor = event.target.value
+        newConf.shirtColor = event.target.value
         this.state.regex[8] = event.target.value
+        this.state.regex[12] = event.target.value
         this.setState({config: newConf})
     }
 

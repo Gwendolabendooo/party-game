@@ -17,6 +17,10 @@ input:-internal-autofill-selected{
   width: 40px;
 }
 
+.modal-qui{
+  max-width: 337px;
+}
+
 html{
   scroll-behavior: smooth;
   user-select: none;
@@ -2196,6 +2200,14 @@ bottom: 10%;
   -o-transition: all .3s;
 }
 
+.pointer-none{
+  pointer-events: none;
+}
+
+.webkit-box{
+  display: -webkit-box;
+}
+
 .ww-50{
   width: 50%;
 }
@@ -2254,6 +2266,20 @@ from{
 .bg-modal{
   background: #00000085;
   z-index: 100;
+}
+
+@media only screen and (max-height: 685px) {
+  .skin{
+  }
+  .btn-random{
+    margin: 10px;
+  }
+  input[type="text"]{
+    margin: 10px;
+  }
+  .btn-start{
+    margin: 5px!important;
+  }
 }
 
 @media only screen and (max-width: 900px) {
