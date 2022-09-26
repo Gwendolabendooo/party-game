@@ -24,6 +24,7 @@ import TirCorde from './Games/TirCorde';
 import RelayEscalade from './Games/RelayEscalade';
 import Jauge from './Games/jauge';
 import ChaisesMusicales from './Games/ChaisesMusicale';
+import Quiestce from './Games/Quiestce';
 import Skin from './skin';
 
 
@@ -151,6 +152,14 @@ class Lobby extends React.Component  {
                     selected: true,
                     id: 13,
                     desktop: true
+                },
+                {
+                    name: "Qui",
+                    illustration: "Qui est-ce ?",
+                    desc: "Lorsque c'est ton tour, frotte le plus vite possible le rond blanc jusqu'à qu'il disparaisse. Ensuite, appuie au bon moment sur le bouton pour avoir le meilleur score possible, chaque joueur à 2 essai ton score final sera le meilleur score de tes 2 essai.",
+                    selected: true,
+                    id: 14,
+                    desktop: false
                 }
             ]
         }
@@ -451,6 +460,8 @@ class Lobby extends React.Component  {
                     return <ChaisesMusicales name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
                 case "Jauge":
                     return <Jauge name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                case "Qui":
+                    return <Quiestce name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
 
                 default:
                     var lsit= this.state.listeJselected
