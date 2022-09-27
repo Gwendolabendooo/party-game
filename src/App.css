@@ -21,6 +21,10 @@ input:-internal-autofill-selected{
   max-width: 337px;
 }
 
+.ctn-qui > div{
+  transition: all .5s;
+}
+
 html{
   scroll-behavior: smooth;
   user-select: none;

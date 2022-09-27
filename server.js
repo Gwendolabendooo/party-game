@@ -45,7 +45,6 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
             Lobbys[i].push([socket.id, room[0].pseudo, 0, room[0].config, room[0].computer])
             index = i
             const retour = [Lobbys[index], room[1], socket.id]
-            console.log(retour)
             io.to(Array.from(socket.rooms)).emit("arrive", retour);
           }
         }
@@ -303,6 +302,12 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
     //QUIESTCE
     socket.on('vote', (data) => {
       io.to(Array.from(socket.rooms)).emit('vote', [socket.id, data]);
+    });
+
+    //QUIESTCE
+    socket.on('initquiestce', (data) => {
+      console.log(data)
+      io.to(Array.from(socket.rooms)).emit('initquiestce', data);
     });
 
     //randome chaise pose

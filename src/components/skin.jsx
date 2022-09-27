@@ -34,6 +34,7 @@ class Skin extends React.Component {
         conf.hairColor = this.props.conf[11]
         conf.shirtColor = this.props.conf[12]
         this.setState({ config: conf })
+        console.log("aa")
     }
 
     render() {

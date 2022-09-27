@@ -123,19 +123,19 @@ class creLobby extends React.Component  {
 
         this.setState({config: newConfig})
 
-        this.state.regex[0] = this.state.earSize.findIndex(elem => elem == this.state.config.earSize)
-        this.state.regex[1] = this.state.hairStyle.findIndex(elem => elem == this.state.config.hairStyle)
-        this.state.regex[2] = this.state.hatStyle.findIndex(elem => elem == this.state.config.hatStyle)
-        this.state.regex[3] = this.state.eyeStyle.findIndex(elem => elem == this.state.config.eyeStyle)
-        this.state.regex[4] = this.state.glassesStyle.findIndex(elem => elem == this.state.config.glassesStyle)
-        this.state.regex[5] = this.state.noseStyle.findIndex(elem => elem == this.state.config.noseStyle)
-        this.state.regex[6] = this.state.mouthStyle.findIndex(elem => elem == this.state.config.mouthStyle)
-        this.state.regex[7] = this.state.shirtStyle.findIndex(elem => elem == this.state.config.shirtStyle)
-        this.state.regex[8] = this.state.config.bgColor
-        this.state.regex[9] = this.state.config.faceColor
-        this.state.regex[10] = this.state.config.hatColor
-        this.state.regex[11] = this.state.config.hairColor
-        this.state.regex[12] = this.state.config.bgColor
+        this.state.regex[0] = this.state.earSize.findIndex(elem => elem == newConfig.earSize)
+        this.state.regex[1] = this.state.hairStyle.findIndex(elem => elem == newConfig.hairStyle)
+        this.state.regex[2] = this.state.hatStyle.findIndex(elem => elem == newConfig.hatStyle)
+        this.state.regex[3] = this.state.eyeStyle.findIndex(elem => elem == newConfig.eyeStyle)
+        this.state.regex[4] = this.state.glassesStyle.findIndex(elem => elem == newConfig.glassesStyle)
+        this.state.regex[5] = this.state.noseStyle.findIndex(elem => elem == newConfig.noseStyle)
+        this.state.regex[6] = this.state.mouthStyle.findIndex(elem => elem == newConfig.mouthStyle)
+        this.state.regex[7] = this.state.shirtStyle.findIndex(elem => elem == newConfig.shirtStyle)
+        this.state.regex[8] = newConfig.bgColor
+        this.state.regex[9] = newConfig.faceColor
+        this.state.regex[10] = newConfig.hatColor
+        this.state.regex[11] = newConfig.hairColor
+        this.state.regex[12] = newConfig.bgColor
     }
 
     changeColor(event){
