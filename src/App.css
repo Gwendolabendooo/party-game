@@ -21,6 +21,10 @@ input:-internal-autofill-selected{
   max-width: 337px;
 }
 
+.font-14{
+  font-size: 14px;
+}
+
 .ctn-qui > div{
   transition: all .5s;
 }

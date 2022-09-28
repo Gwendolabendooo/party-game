@@ -25,9 +25,10 @@ class Quiestce extends React.Component {
             devineur: null,
             reveal: false,
             nextButton: false,
+            fake: [],
             whoIs: [
                 {
-                    name: "test",
+                    name: "Jean",
                     id: 0,
                     conf: [
                         1,
@@ -46,311 +47,311 @@ class Quiestce extends React.Component {
                     ]
                 },
                 {
-                    name: "test",
+                    name: "Marc",
                     id: 1,
                     conf: [
                         1,
-                        3,
+                        4,
+                        0,
+                        0,
                         0,
                         1,
-                        0,
-                        0,
                         1,
-                        2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
+                        1,
                         "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#AC6651",
+                        "#506AF4",
+                        "#506AF4",
+                        "#D2EFF3"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Sophie",
                     id: 2,
-                    conf: [
-                        1,
-                        3,
-                        0,
+                    conf:  [
                         1,
                         0,
                         0,
+                        1,
                         1,
                         2,
-                        "#F48150",
+                        0,
+                        0,
+                        "#FFEBA4",
                         "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
+                        "#77311D",
+                        "#000",
+                        "#FFEBA4"
                     ]
                 },
                 {
-                    name: "test",
+                    name: "Jeanne",
                     id: 3,
                     conf: [
                         1,
                         3,
                         0,
-                        1,
-                        0,
-                        0,
-                        1,
                         2,
-                        "#F48150",
-                        "#AC6651",
+                        0,
+                        0,
+                        0,
+                        0,
+                        "#6BD9E9",
+                        "#F9C9B6",
                         "#fff",
                         "#D2EFF3",
-                        "#F48150"
+                        "#6BD9E9"
                     ]
                 },
                 {
-                    name: "test",
+                    name: "Elisa",
                     id: 4,
                     conf: [
                         1,
-                        3,
-                        0,
-                        1,
-                        0,
-                        0,
-                        1,
+                        4,
                         2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
+                        0,
+                        0,
+                        0,
+                        2,
+                        2,
                         "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#AC6651",
+                        "#FC909F",
+                        "#FC909F",
+                        "#D2EFF3"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Patrice",
                     id: 5,
                     conf: [
                         1,
-                        3,
                         0,
-                        1,
-                        0,
-                        0,
-                        1,
                         2,
-                        "#F48150",
+                        1,
+                        1,
+                        0,
+                        1,
+                        1,
+                        "#FC909F",
                         "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#77311D",
+                        "#000",
+                        "#FC909F"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Peipei",
                     id: 6,
-                    conf: [
+                    conf:  [
                         1,
-                        3,
-                        0,
                         1,
                         0,
                         0,
-                        1,
+                        0,
                         2,
-                        "#F48150",
+                        0,
+                        2,
+                        "#FFEDEF",
                         "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#506AF4",
+                        "#000",
+                        "#FFEDEF"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Bernard",
                     id: 7,
                     conf: [
-                        1,
-                        3,
-                        0,
-                        1,
                         0,
                         0,
-                        1,
+                        0,
                         2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
+                        0,
+                        2,
+                        1,
+                        0,
+                        "#E0DDFF",
+                        "#F9C9B6",
+                        "#77311D",
                         "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#E0DDFF"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Robert",
                     id: 8,
                     conf: [
                         1,
-                        3,
+                        4,
                         0,
-                        1,
-                        0,
-                        0,
-                        1,
                         2,
-                        "#F48150",
+                        1,
+                        1,
+                        0,
+                        0,
+                        "#F4D150",
                         "#AC6651",
-                        "#fff",
                         "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#D2EFF3",
+                        "#F4D150"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Damien",
                     id: 9,
                     conf: [
-                        1,
-                        3,
                         0,
                         1,
                         0,
+                        2,
                         0,
                         1,
                         2,
-                        "#F48150",
+                        0,
+                        "#9287FF",
                         "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#506AF4",
+                        "#77311D",
+                        "#9287FF"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Richard",
                     id: 10,
                     conf: [
                         1,
-                        3,
-                        0,
-                        1,
                         0,
                         0,
-                        1,
                         2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
+                        0,
+                        0,
+                        1,
+                        0,
                         "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#F9C9B6",
+                        "#fff",
+                        "#000",
+                        "#D2EFF3"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Emma",
                     id: 11,
                     conf: [
-                        1,
-                        3,
                         0,
                         1,
                         0,
-                        0,
                         1,
+                        0,
                         2,
-                        "#F48150",
+                        2,
+                        1,
+                        "#FFEBA4",
                         "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#000",
+                        "#000",
+                        "#FFEBA4"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Camille",
                     id: 12,
                     conf: [
-                        1,
-                        3,
                         0,
                         1,
                         0,
                         0,
-                        1,
                         2,
+                        0,
+                        0,
+                        0,
                         "#F48150",
-                        "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
+                        "#F9C9B6",
+                        "#506AF4",
+                        "#000",
                         "#F48150"
-                    ]
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Ana",
                     id: 13,
-                    conf: [
+                    conf:  [
                         1,
-                        3,
+                        1,
+                        1,
+                        1,
                         0,
                         1,
-                        0,
-                        0,
                         1,
-                        2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        1,
+                        "#FFEBA4",
+                        "#F9C9B6",
+                        "#77311D",
+                        "#000",
+                        "#FFEBA4"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Samy",
                     id: 14,
                     conf: [
-                        1,
-                        3,
+                        0,
+                        0,
                         0,
                         1,
                         0,
-                        0,
                         1,
+                        0,
                         2,
-                        "#F48150",
+                        "#FFEDEF",
                         "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#77311D",
+                        "#506AF4",
+                        "#FFEDEF"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Augustin",
                     id: 15,
                     conf: [
                         1,
-                        3,
+                        4,
                         0,
-                        1,
-                        0,
-                        0,
+                        2,
                         1,
                         2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
+                        1,
+                        1,
+                        "#E0DDFF",
+                        "#F9C9B6",
                         "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#77311D",
+                        "#E0DDFF"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Baptiste",
                     id: 16,
-                    conf: [
+                    conf:  [
                         1,
-                        3,
-                        0,
                         1,
                         0,
-                        0,
-                        1,
                         2,
-                        "#F48150",
+                        0,
+                        0,
+                        1,
+                        0,
+                        "#74D153",
                         "#AC6651",
                         "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#506AF4",
+                        "#74D153"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Alice",
                     id: 17,
                     conf: [
                         1,
@@ -358,138 +359,135 @@ class Quiestce extends React.Component {
                         0,
                         1,
                         0,
-                        0,
+                        1,
                         1,
                         2,
-                        "#F48150",
+                        "#FFEDEF",
                         "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#77311D",
+                        "#000",
+                        "#FFEDEF"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Ambre",
                     id: 18,
                     conf: [
-                        1,
-                        3,
+                        0,
+                        4,
                         0,
                         1,
                         0,
-                        0,
-                        1,
                         2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
+                        0,
+                        1,
+                        "#F4D150",
+                        "#F9C9B6",
+                        "#77311D",
+                        "#000",
+                        "#F4D150"
                     ]
                 },
                 {
-                    name: "test",
+                    name: "Lina",
                     id: 19,
                     conf: [
-                        1,
+                        0,
                         3,
                         0,
-                        1,
-                        0,
-                        0,
-                        1,
                         2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
+                        0,
+                        1,
+                        0,
+                        0,
+                        "#FC909F",
+                        "#F9C9B6",
+                        "#000",
                         "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#FC909F"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Rose",
                     id: 20,
                     conf: [
-                        1,
-                        3,
-                        0,
-                        1,
                         0,
                         0,
-                        1,
+                        0,
                         2,
-                        "#F48150",
-                        "#AC6651",
+                        0,
+                        2,
+                        2,
+                        2,
+                        "#FC909F",
+                        "#F9C9B6",
+                        "#506AF4",
                         "#fff",
-                        "#D2EFF3",
-                        "#F48150"
+                        "#FC909F"
                     ]
                 },
                 {
-                    name: "test",
+                    name: "Chloé",
                     id: 21,
                     conf: [
-                        1,
+                        0,
                         3,
                         0,
+                        0,
                         1,
-                        0,
-                        0,
                         1,
                         2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
+                        1,
+                        "#506AF4",
+                        "#F9C9B6",
                         "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#FC909F",
+                        "#506AF4"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Perrine",
                     id: 22,
                     conf: [
-                        1,
-                        3,
                         0,
-                        1,
-                        0,
+                        4,
                         0,
                         1,
                         2,
-                        "#F48150",
-                        "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        1,
+                        0,
+                        0,
+                        "#FFEBA4",
+                        "#F9C9B6",
+                        "#77311D",
+                        "#000",
+                        "#FFEBA4"
+                      ]
                 },
                 {
-                    name: "test",
+                    name: "Mathilde",
                     id: 23,
                     conf: [
                         1,
-                        3,
+                        4,
                         0,
                         1,
                         0,
                         0,
-                        1,
                         2,
-                        "#F48150",
+                        1,
+                        "#6BD9E9",
                         "#AC6651",
-                        "#fff",
-                        "#D2EFF3",
-                        "#F48150"
-                    ]
+                        "#000",
+                        "#F48150",
+                        "#6BD9E9"
+                      ]
                 }
             ]
         };
 
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
-
-            if (this.props.chef) {
-            }
         }) 
 
         socket.on('initquiestce', (data) => {
@@ -515,22 +513,38 @@ class Quiestce extends React.Component {
         socket.on('vote', (data) => {
             let liste = this.state.listeJ;
             let score = this.state.score;
-            liste.forEach(element => {
-                console.log(element)
-                if (element[0] === data[0]) {
-                    element[2] = data[1]
-                }
-            })
-            score.push(data)
+            let fake = this.state.fake;
 
-            if (score.length === 1) {
+            if (score.length === 0) {
+                score.push(data)
                 this.setState({ init: false })
+            } else {
+                if (score[0][1] === data[1]) {
+                    score.push([data[0], true])
+                } else {
+                }
             }
 
-            if (score.length === liste.length) {
-                this.setState({ listeJ: liste, score: score, reveal: true})
+            fake.push("1")
+
+            liste.forEach(element => {
+                if (element[0] === data[0]) {
+                    if (score[0][1] === data[1]) {
+                        element[2] = score.length * 5;
+                    } else {
+                        liste.find(item => item[2] <= 5)[2] -= 1
+                        element[2] = 1000;
+                    }
+                }
+            })
+
+            if (fake.length === liste.length) {
+                liste.sort(function(a, b) {
+                    return a[2] - b[2];
+                })
+                this.setState({ listeJ: liste, score: score, reveal: true, fake: fake})
             } else {
-                this.setState({ listeJ: liste, score: score})
+                this.setState({ listeJ: liste, score: score, fake: fake})
             }
         })
     }
@@ -570,6 +584,7 @@ class Quiestce extends React.Component {
 
             socket.emit('initquiestce', [regex, this.state.listeJ[Math.floor(Math.random()*((this.state.listeJ.length-1)-0+1)+0)]]); 
         }
+        console.log(this.state)
     }
 
     componentWillUnmount(){
@@ -586,16 +601,36 @@ class Quiestce extends React.Component {
             <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
                 {this.state.tuto ? <Tuto chef={this.props.chef} game={this.props.name} desc="Chaque joueur est représenté par son avatar. le but, se déplacer à l'aide des touches directionnel du clavier et se rendre le premier dans la zone qui apparaît. à chaque fois qu'il ne reste qu'un joueur à ne pas être qualifié, un nouveau tour commence et il est éliminer."></Tuto> : ""}
                 <Transition  title={this.props.name}/>
-                {this.state.afficheScore ? <Score jeu={this.props.name} chef={this.props.chef} listej={this.state.listeJ}/> : ''}
+                {this.state.afficheScore ? <Score jeu={this.props.name} chef={this.props.chef} listej={this.state.listeJ}/> : null}
                 <div className="ctn-autoC apparition-game ctn-empileur justify-content-evenly position-relative">
+                    {this.state.reveal ?
+                        <div className='position-fixed w-100 h-100 bg-modal d-flex align-items-center justify-content-center'>
+                            <div className='rounded-3 bg-white p-3 d-flex align-items-center justify-content-center flex-column w-75 modal-qui'>
+                                <div className='text-center border-bottom pb-2 mb-2 w-100'>
+                                    Le personnage à deviner était
+                                </div>
+                                <div className='d-flex flex-column align-items-center bg-warning fit-cont rounded-3 p-1 m-2'>
+                                    <Skin conf={this.state.whoIs.find(who => who.id == this.state.score[0][1]).conf} h="4rem" w="4rem" />
+                                    <div className='quinom text-center'>
+                                        {this.state.whoIs.find(who => who.id == this.state.score[0][1]).name}
+                                    </div>
+                                </div>
+                                <div className='d-flex w-100'>
+                                    <div className='bg-success m-1 p-2 rounded-3 text-white w-100 text-center' onClick={() => this.setState({ afficheScore: true })}>
+                                        D'accord
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    : null}
                     {this.state.init ?
                     this.state.mj ? 
                         <div className='position-fixed w-100 h-100 bg-modal d-flex align-items-center justify-content-center'>
                             <div className='rounded-3 bg-white p-3 d-flex align-items-center justify-content-center flex-column w-75 modal-qui'>
-                                <div className='text-center'>
+                                <div className='text-center border-bottom pb-2 mb-2 w-100'>
                                     Tu es le maître du jeu
                                 </div>
-                                <div>
+                                <div className='text-muted font-14 mb-2'>
                                     Choisis un personnage parmis la liste à faire deviner
                                 </div>
                                 <div className='d-flex w-100'>
@@ -609,7 +644,7 @@ class Quiestce extends React.Component {
                         <div className='position-fixed w-100 h-100 bg-modal d-flex align-items-center justify-content-center'>
                             <div className='rounded-3 bg-white p-3 d-flex align-items-center justify-content-center flex-column w-75 modal-qui'>
                                 <div className='text-center'>
-                                    Veuillez attendre que le maître du jeu choisisse un personnage
+                                    Veuillez attendre que le maître du jeu choisisse un personnage à faire deviner
                                 </div>
                             </div>
                         </div>
@@ -639,7 +674,7 @@ class Quiestce extends React.Component {
                     : null}
                     <div className='mw-100 overflow-auto'>
                         <div className='fit-cont d-flex'>
-                            {this.state.reveal ? scoreJ : listJoueur }
+                            { listJoueur }
                         </div>
                     </div>
                     <div className='w-100 d-flex align-items-center align-content-center justify-content-center flex-wrap ctn-qui'>

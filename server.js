@@ -91,6 +91,16 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('changelock', tab);
     })
 
+    //lock 10 player
+    socket.on('lock10', (tab) => {
+      io.to(Array.from(socket.rooms)).emit('lock10', true);
+    })
+
+    //unlock 10 player
+    socket.on('unlock', (tab) => {
+      io.to(Array.from(socket.rooms)).emit('unlock', true);
+    })
+
     //order jeux
     socket.on('newOrderJeux', (tab) => {
       io.to(Array.from(socket.rooms)).emit('newOrderJeux', tab);

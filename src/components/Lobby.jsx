@@ -40,6 +40,7 @@ class Lobby extends React.Component  {
             chef: '',
             start: false,
             id: '', 
+            permaLock: false,
             haveMobile: false,
             scoreFinal: [],
             autoclick: false,
@@ -154,7 +155,7 @@ class Lobby extends React.Component  {
                     desktop: true
                 },
                 {
-                    name: "Qui",
+                    name: "Qui est-ce",
                     illustration: "Qui est-ce ?",
                     desc: "Lorsque c'est ton tour, frotte le plus vite possible le rond blanc jusqu'à qu'il disparaisse. Ensuite, appuie au bon moment sur le bouton pour avoir le meilleur score possible, chaque joueur à 2 essai ton score final sera le meilleur score de tes 2 essai.",
                     selected: true,
@@ -210,6 +211,10 @@ class Lobby extends React.Component  {
             //TO DO GERER ENVOIE DES JEUX SELECTIONN2S
             room[0].shift()
 
+            if (room[0].length === 10 && this.state.chef === this.state.id) {
+                socket.emit('lock10', true);
+            }
+
             if (this.state.chef === this.state.id) {
                     var jeulittle = []
                     this.state.Jeux.map(jeu => {
@@ -219,12 +224,26 @@ class Lobby extends React.Component  {
             }
 
             if (room[0].find(joueur => joueur[4] === false) !== undefined) {
-                this.setState({haveMobile: true})
+                let jeux = this.state.Jeux
+                jeux.map(jeu => {
+                    if (jeu.desktop) {
+                        jeu.selected = false
+                    }
+                })
+                this.setState({haveMobile: true, Jeux: jeux})
             } else {
                 this.setState({haveMobile: false})
             }
 
             this.setState({listeJ: room[0], chef: room[0][0][0]})
+        });
+
+        socket.on('lock10', (room) => {
+            console.log("lockedforever")
+            if (this.state.chef === this.state.id) {
+                socket.emit('changelock', true);
+            }
+            this.setState({permaLock: true, locked: true})
         });
 
         socket.on('newOrderJeux', (room) => {
@@ -241,6 +260,9 @@ class Lobby extends React.Component  {
 
         socket.on('deco', (room) => {
             room.shift()
+            if (this.state.chef === this.state.id && room[0].length < 10) {
+                socket.emit('unlock', "true");
+            }
             if(room.length > 0){
                 this.setState({chef: room[0][0]})
                 console.log(this.state.listeJ)
@@ -252,6 +274,13 @@ class Lobby extends React.Component  {
 
         socket.on('id', (identifiant) => {
             this.setState({id: identifiant})
+        });
+
+        socket.on('unlock', (identifiant) => {
+            if (this.state.chef === this.state.id) {
+                socket.emit('changelock', false);
+            }
+            this.setState({permaLock: false, locked: false})
         });
 
         socket.on('start', (start) => {
@@ -328,8 +357,9 @@ class Lobby extends React.Component  {
         });
 
         socket.on('changelock', (val) => {
-            console.log(val)
-            this.setState({locked: val})
+            if (!this.state.permaLock) {
+                this.setState({locked: val})
+            }
         });
 
         socket.on('kickJoueur', (val) => {
@@ -339,10 +369,30 @@ class Lobby extends React.Component  {
         socket.on('scoreFinal', (classement) => {
             console.log(classement, 'le classmeent', classement[0][0].length)
             var scoreFin = this.state.scoreFinal
-            if (classement[0][0][0].length == 1) {
+            console.log(classement)
+            if (classement[1] === "Qui est-ce") {
+                scoreFin.forEach(score => {
+                    console.log(score)
+                    classement[0].forEach((pos, index) => {
+                        if (score[0] == pos[0]) {
+                            if (index == 0) {
+                                score[1] += pos[2]
+                            }else if (index == 1 && pos[2] !== 1000) {
+                                score[1] += 5
+                            }else if (index == 2 && pos[2] !== 1000) {
+                                score[1] += 3
+                            }else if (index == 3 && pos[2] !== 1000){
+                                score[1] += 2
+                            }else if(pos[2] !== 1000){
+                                score[1] += 1
+                            }
+                        }
+                    })
+                })
+            } else if (classement[0][0][0][0].length == 1) {
                 console.log("cas 1")
                 scoreFin.forEach(score => {
-                    classement.forEach((pos, index) => {
+                    classement[0].forEach((pos, index) => {
                         if (score[0] == pos[0]) {
                             if (index == 0) {
                                 score[1] += 5
@@ -357,14 +407,13 @@ class Lobby extends React.Component  {
                     })
                 })
             }else{
-                console.log("cas 2")
                 scoreFin.forEach(score => {
-                    classement[0].forEach((pos, index) => {
+                    classement[0][0].forEach((pos, index) => {
                         if (score[0] == pos[0]) {
                             score[1] += 3
                         }
                     })
-                    classement[1].forEach((pos, index) => {
+                    classement[0][1].forEach((pos, index) => {
                         if (score[0] == pos[0]) {
                             score[1] += 0
                         }
@@ -460,7 +509,7 @@ class Lobby extends React.Component  {
                     return <ChaisesMusicales name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
                 case "Jauge":
                     return <Jauge name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
-                case "Qui":
+                case "Qui est-ce":
                     return <Quiestce name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
 
                 default:
@@ -494,7 +543,7 @@ class Lobby extends React.Component  {
                         <div>
                             {this.state.listeJ.map((element, i) => <div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}>{this.state.chef === this.state.id && i !== 0 ? <div className='position-absolute rounded-circle bg-danger retireJ p-1 cursor-pointer' onClick={() => this.kick(element[0])}><FontAwesomeIcon icon={['fas', 'minus']} /></div>:null}{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)}
                         </div>
-                        <div className={this.state.locked ? 'position-fixed p-2 bg-danger rounded-circle lockGroupe cursor-pointer': 'position-fixed p-2 bg-success rounded-circle lockGroupe cursor-pointer'} onClick={lockEmit} style={{fontSize: 14+"px", zIndex: 10}}>
+                        <div className={this.state.locked || this.state.permaLock ? 'position-fixed p-2 bg-danger rounded-circle lockGroupe cursor-pointer': 'position-fixed p-2 bg-success rounded-circle lockGroupe cursor-pointer'} onClick={lockEmit} style={{fontSize: 14+"px", zIndex: 10}}>
                             <FontAwesomeIcon icon={['fas', 'lock-open']} />
                         </div>
                     </div>
