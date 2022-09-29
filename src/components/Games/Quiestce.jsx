@@ -25,6 +25,7 @@ class Quiestce extends React.Component {
             devineur: null,
             reveal: false,
             nextButton: false,
+            hard: false,
             fake: [],
             whoIs: [
                 {
@@ -278,19 +279,19 @@ class Quiestce extends React.Component {
                     name: "Ana",
                     id: 13,
                     conf:  [
-                        1,
-                        1,
-                        1,
+                        0,
+                        3,
+                        3,
                         1,
                         0,
+                        3,
                         1,
                         1,
-                        1,
-                        "#FFEBA4",
+                        "#eca7d9",
                         "#F9C9B6",
-                        "#77311D",
+                        "#506AF4",
                         "#000",
-                        "#FFEBA4"
+                        "#eca7d9"
                       ]
                 },
                 {
@@ -610,7 +611,9 @@ class Quiestce extends React.Component {
                                     Le personnage à deviner était
                                 </div>
                                 <div className='d-flex flex-column align-items-center bg-warning fit-cont rounded-3 p-1 m-2'>
-                                    <Skin conf={this.state.whoIs.find(who => who.id == this.state.score[0][1]).conf} h="4rem" w="4rem" />
+                                    <div className={!this.state.hard ? '' : 'filter-grey' }>
+                                        <Skin conf={this.state.whoIs.find(who => who.id == this.state.score[0][1]).conf} h="4rem" w="4rem" />
+                                    </div>
                                     <div className='quinom text-center'>
                                         {this.state.whoIs.find(who => who.id == this.state.score[0][1]).name}
                                     </div>
@@ -629,6 +632,21 @@ class Quiestce extends React.Component {
                             <div className='rounded-3 bg-white p-3 d-flex align-items-center justify-content-center flex-column w-75 modal-qui'>
                                 <div className='text-center border-bottom pb-2 mb-2 w-100'>
                                     Tu es le maître du jeu
+                                </div>
+                                <div>
+                                    <div>
+
+                                    </div>
+                                    <div className='d-flex'>
+                                        <div className={!this.state.hard ? "p-2 rounded bg-success" : "p-2 rounded bg-white" } onClick={() => this.setState({ hard: false})}>
+                                            <Skin conf={this.state.whoIs[0].conf} h="4rem" w="4rem" />
+                                        </div>
+                                        <div className={this.state.hard ? "p-2 rounded bg-success" : "p-2 rounded bg-white" } onClick={() => this.setState({ hard: true})}>
+                                            <div className='filter-grey'>
+                                                <Skin conf={this.state.whoIs[0].conf} h="4rem" w="4rem" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className='text-muted font-14 mb-2'>
                                     Choisis un personnage parmis la liste à faire deviner
@@ -656,7 +674,9 @@ class Quiestce extends React.Component {
                                     Veux-tu vraiment valider ton choix ?
                                 </div>
                                 <div className='d-flex flex-column align-items-center bg-warning fit-cont rounded-3 p-1 m-2'>
-                                    <Skin conf={this.state.whoIs.find(who => who.id == this.state.cardId).conf} h="4rem" w="4rem" />
+                                    <div className={!this.state.hard ? '' : 'filter-grey' }>
+                                        <Skin conf={this.state.whoIs.find(who => who.id == this.state.cardId).conf} h="4rem" w="4rem" />
+                                    </div>
                                     <div className='quinom text-center'>
                                         {this.state.whoIs.find(who => who.id == this.state.cardId).name}
                                     </div>
@@ -686,7 +706,9 @@ class Quiestce extends React.Component {
                                             if (index < 12) {
                                                 return(
                                                     <div className={this.state.voteSend ? this.state.cardId === who.id ? 'd-flex flex-column align-items-center fit-cont rounded-3 p-1 m-1 pointer-none bg-warning' : 'd-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1 pointer-none' : 'd-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1'} onClick={() => this.whoCard(who.id)}>
-                                                        <Skin conf={who.conf} h="4rem" w="4rem" />
+                                                        <div className={!this.state.hard ? '' : 'filter-grey' }>
+                                                            <Skin conf={who.conf} h="4rem" w="4rem" />
+                                                        </div>
                                                         <div className='quinom text-center'>
                                                             {who.name}
                                                         </div>
@@ -700,7 +722,9 @@ class Quiestce extends React.Component {
                                             if (index >= 12) {
                                                 return(
                                                     <div className={this.state.voteSend ? 'd-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1 pointer-none' : 'd-flex flex-column align-items-center bg-light fit-cont rounded-3 p-1 m-1'} onClick={() => this.whoCard(who.id)}>
-                                                        <Skin conf={who.conf} h="4rem" w="4rem" />
+                                                        <div className={!this.state.hard ? '' : 'filter-grey' }>
+                                                            <Skin conf={who.conf} h="4rem" w="4rem" />
+                                                        </div>
                                                         <div className='quinom text-center'>
                                                             {who.name}
                                                         </div>

@@ -181,6 +181,10 @@ input[type="text"]::placeholder {
   -o-transform: translate(-50%, -50%);
 }
 
+.filter-grey{
+  filter: grayscale(1);
+}
+
 .guestSend{
   padding-left: 20px!important;
   padding-right: 20px!important;

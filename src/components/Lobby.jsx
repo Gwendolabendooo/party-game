@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import React, { useState, setState } from 'react';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAppleAlt, faBacon, faBan, faCarrot, faCheese, faCrown, faEgg, faFish, faHamburger, faInfoCircle, faLemon, faLockOpen, faMinus, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faAppleAlt, faBacon, faBan, faCarrot, faCheese, faCrown, faEgg, faFish, faHamburger, faInfoCircle, faLemon, faLock, faLockOpen, faMinus, faPepperHot, faPizzaSlice, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {SocketContext, socket} from './socket';
@@ -156,8 +156,8 @@ class Lobby extends React.Component  {
                 },
                 {
                     name: "Qui est-ce",
-                    illustration: "Qui est-ce ?",
-                    desc: "Lorsque c'est ton tour, frotte le plus vite possible le rond blanc jusqu'à qu'il disparaisse. Ensuite, appuie au bon moment sur le bouton pour avoir le meilleur score possible, chaque joueur à 2 essai ton score final sera le meilleur score de tes 2 essai.",
+                    illustration: "Quiestce",
+                    desc: "Un maître du jeu est designer aléatoirement, il doit ensuite choisir entre deux type de difficultée (normal / difficile). Puis il choisit le personnage à faire deviner. Les autres joueurs peuvent alors lui poser des question et séléctionner un personnage une fois qu'ils pensent l'avoir deviné. Attention, il faut trovuer le personnage le plus vite possible",
                     selected: true,
                     id: 14,
                     desktop: false
@@ -451,7 +451,8 @@ class Lobby extends React.Component  {
             faCrown,
             faInfoCircle,
             faLockOpen,
-            faMinus
+            faMinus,
+            faLock
         )
 
         const lockEmit = () => {
@@ -544,7 +545,7 @@ class Lobby extends React.Component  {
                             {this.state.listeJ.map((element, i) => <div className="nom-j position-relative" style={{backgroundImage: "linear-gradient(180deg, #8BECFF 0%, #9200FF 168.42%)"}}>{this.state.chef === this.state.id && i !== 0 ? <div className='position-absolute rounded-circle bg-danger retireJ p-1 cursor-pointer' onClick={() => this.kick(element[0])}><FontAwesomeIcon icon={['fas', 'minus']} /></div>:null}{element === this.state.listeJ[0] ? <div className="crown"><FontAwesomeIcon className="text-warning" icon={['fas', 'crown']} /></div> : ""}<Skin conf={element[3]} h="3rem" w="3rem" /><span>{element[1]}</span></div>)}
                         </div>
                         <div className={this.state.locked || this.state.permaLock ? 'position-fixed p-2 bg-danger rounded-circle lockGroupe cursor-pointer': 'position-fixed p-2 bg-success rounded-circle lockGroupe cursor-pointer'} onClick={lockEmit} style={{fontSize: 14+"px", zIndex: 10}}>
-                            <FontAwesomeIcon icon={['fas', 'lock-open']} />
+                            <FontAwesomeIcon icon={['fas', !this.state.locked ? 'lock-open' : 'lock']} />
                         </div>
                     </div>
                     <div className='ctn-liste-de-jeu'>
