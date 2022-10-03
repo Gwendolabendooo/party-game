@@ -2,6 +2,7 @@ import App from "./App";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import React from "react";
+import * as serviceWorker from './serviceWorker';
 
 import {SocketContext, socket} from './components/socket';
 
@@ -17,3 +18,5 @@ ReactDOM.render(
   </SocketContext.Provider>,
   document.getElementById("root")
 );
+
+serviceWorker.register(); 

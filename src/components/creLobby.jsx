@@ -108,6 +108,8 @@ class creLobby extends React.Component  {
 
         document.querySelector(':root').style.setProperty('--height100', window.innerHeight+"px")
 
+        setTimeout(() => document.querySelector(':root').style.setProperty('--height100', window.innerHeight+"px"), 2000)
+
         if (window.screen.width <= 900) {
             this.setState({computer: false})
         }
