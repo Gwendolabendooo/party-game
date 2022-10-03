@@ -24,6 +24,7 @@ import TirCorde from './Games/TirCorde';
 import RelayEscalade from './Games/RelayEscalade';
 import Jauge from './Games/jauge';
 import ChaisesMusicales from './Games/ChaisesMusicale';
+import Burger from './Games/burger';
 import Quiestce from './Games/Quiestce';
 import Skin from './skin';
 
@@ -156,12 +157,12 @@ class Lobby extends React.Component  {
                 },
                 {
                     name: "Qui est-ce",
-                    illustration: "Quiestce",
+                    illustration: "qui",
                     desc: "Un maître du jeu est designer aléatoirement, il doit ensuite choisir entre deux type de difficultée (normal / difficile). Puis il choisit le personnage à faire deviner. Les autres joueurs peuvent alors lui poser des question et séléctionner un personnage une fois qu'ils pensent l'avoir deviné. Attention, il faut trovuer le personnage le plus vite possible",
                     selected: true,
                     id: 14,
                     desktop: false
-                }
+                },
             ]
         }
 
@@ -512,6 +513,8 @@ class Lobby extends React.Component  {
                     return <Jauge name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
                 case "Qui est-ce":
                     return <Quiestce name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                case "Speed burger":
+                    return <Burger name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
 
                 default:
                     var lsit= this.state.listeJselected

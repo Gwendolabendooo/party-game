@@ -1207,6 +1207,8 @@ input[type="checkbox"]{
   margin: 20px;
 }
 
+
+
 .vote{
   font-size: 38px;
 }
@@ -2396,6 +2398,10 @@ from{
   }
   .pseudo-bac{
     font-size: 13px;
+  }
+  .ctn-celeb > div{
+    width: 200px!important;
+    font-size: 14px!important;
   }
   .card-celebrite-tab{
     width: 140px;

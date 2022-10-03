@@ -17,6 +17,9 @@ import corde from '../img/jeux/tirCorde.svg'
 import memo from '../img/jeux/colorMemory.svg'
 import escalade from '../img/jeux/escalade.svg'
 import click from '../img/jeux/click.svg'
+import jauge from '../img/jeux/cartejauge.svg'
+import Quiestce from '../img/jeux/carteQui.svg'
+import Burger from '../img/jeux/carteburger.svg'
 
 class jeu extends React.Component {
     constructor(props) {
@@ -57,6 +60,12 @@ class jeu extends React.Component {
                 return escalade
             case "click":
                 return click
+            case "jauge":
+                return jauge
+            case "qui":
+                return Quiestce
+            case "burger":
+                return Burger
         }
     }
 

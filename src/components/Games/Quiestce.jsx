@@ -511,6 +511,10 @@ class Quiestce extends React.Component {
             this.setState({ whoIs: whos, devineur: devineur, waitMount: true }) 
         })
 
+        socket.on('setHard', (data) => {
+            this.setState({ hard: data}) 
+        })
+
         socket.on('vote', (data) => {
             let liste = this.state.listeJ;
             let score = this.state.score;
@@ -566,6 +570,10 @@ class Quiestce extends React.Component {
             document.getElementById('listQuiestce').scrollLeft = 0
         }
         this.setState({ nextButton: !this.state.nextButton})
+    }
+
+    setHard(val){
+        socket.emit('setHard', val); 
     }
 
     componentDidMount(){
@@ -638,10 +646,10 @@ class Quiestce extends React.Component {
 
                                     </div>
                                     <div className='d-flex'>
-                                        <div className={!this.state.hard ? "p-2 rounded bg-success" : "p-2 rounded bg-white" } onClick={() => this.setState({ hard: false})}>
+                                        <div className={!this.state.hard ? "p-2 rounded bg-success" : "p-2 rounded bg-white" } onClick={() => this.setHard(false)}>
                                             <Skin conf={this.state.whoIs[0].conf} h="4rem" w="4rem" />
                                         </div>
-                                        <div className={this.state.hard ? "p-2 rounded bg-success" : "p-2 rounded bg-white" } onClick={() => this.setState({ hard: true})}>
+                                        <div className={this.state.hard ? "p-2 rounded bg-success" : "p-2 rounded bg-white" } onClick={() => this.setHard(true)}>
                                             <div className='filter-grey'>
                                                 <Skin conf={this.state.whoIs[0].conf} h="4rem" w="4rem" />
                                             </div>

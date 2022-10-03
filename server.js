@@ -101,6 +101,11 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('unlock', true);
     })
 
+    //unlock 10 player
+    socket.on('setHard', (tab) => {
+      io.to(Array.from(socket.rooms)).emit('setHard', tab);
+    })
+
     //order jeux
     socket.on('newOrderJeux', (tab) => {
       io.to(Array.from(socket.rooms)).emit('newOrderJeux', tab);

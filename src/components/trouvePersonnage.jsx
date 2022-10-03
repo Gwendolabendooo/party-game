@@ -260,7 +260,7 @@ class TrouvePersonnage extends React.Component {
                                 Déplace le mot qui correspond en face du personnage
                             </div>
                             <div className='d-flex flex-row toscale'>
-                                <ul>
+                                <ul className='ctn-celeb'>
                                     {listCelebrity}
                                 </ul>
                                 <SortableList items={this.state.tabFinMot} onSortEnd={this.onSortEnd} />
