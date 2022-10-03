@@ -177,7 +177,7 @@ class creLobby extends React.Component  {
             this.state.regex[place] = index + 1
         }else{
             newConf[name] = skinPart[0]
-            this.state.regex[place] = index + 1
+            this.state.regex[place] = 0
         }
         this.setState({config: newConf})
     }

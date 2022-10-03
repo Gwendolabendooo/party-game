@@ -163,6 +163,14 @@ class Lobby extends React.Component  {
                     id: 14,
                     desktop: false
                 },
+                {
+                    name: "Speed burger",
+                    illustration: "burger",
+                    desc: "Un maître du jeu est designer aléatoirement, il doit ensuite choisir entre deux type de difficultée (normal / difficile). Puis il choisit le personnage à faire deviner. Les autres joueurs peuvent alors lui poser des question et séléctionner un personnage une fois qu'ils pensent l'avoir deviné. Attention, il faut trovuer le personnage le plus vite possible",
+                    selected: true,
+                    id: 15,
+                    desktop: false
+                },
             ]
         }
 

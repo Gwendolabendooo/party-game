@@ -16,6 +16,8 @@ class Burger extends React.Component {
             listeJ: this.props.listej,
             afficheScore : false,
             tuto: true,
+            red: [],
+            blue: []
         };
 
         var tabPoints = this.props.listej
@@ -26,9 +28,29 @@ class Burger extends React.Component {
         socket.on('startGame', (data) => {
             this.setState({ tuto: false })  
         })
+
+        socket.on('neworderteam', (data) => {
+            this.setState({ red: data[0], blue: data[1] })  
+        })
     }
 
     componentDidMount(){
+        if (this.props.chef) {
+            var red = this.state.red;
+            var blue = this.state.blue;
+    
+            let randomfilter = this.state.listeJ
+    
+            randomfilter.sort(()=> Math.random() - 0.5).forEach((joueur,i) =>{
+                if (i % 2 == 0) {
+                    red.push(joueur)
+                }else{
+                    blue.push(joueur)
+                }
+            })
+    
+            socket.emit('neworderteam', [red, blue]);    
+        }
     }
 
     componentWillUnmount(){

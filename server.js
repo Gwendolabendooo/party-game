@@ -111,6 +111,11 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
       io.to(Array.from(socket.rooms)).emit('newOrderJeux', tab);
     })
 
+    //orderjoueursburger
+    socket.on('neworderteam', (tab) => {
+      io.to(Array.from(socket.rooms)).emit('neworderteam', tab);
+    })
+
     //Fin Empileur
     socket.on('empile-fin', (tab) => {
       var retour = [socket.id, tab];

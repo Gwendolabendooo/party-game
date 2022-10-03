@@ -2300,6 +2300,12 @@ from{
   .desc-jeu{
     display: none;
   }
+  body{
+    overscroll-behavior-y: contain;
+  }
+  #root{
+    overflow: hidden;
+  }
   .ctn-leader{
     width: 100vw;
     justify-content: center;
