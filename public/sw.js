@@ -6,7 +6,7 @@ const CACHE_VERSION = 3;
 let CURRENT_CACHES = {
   offline: 'micro-games' + CACHE_VERSION
 };
-const OFFLINE_URL = 'http://micro-games.fr/';
+const OFFLINE_URL = 'http://micro-games.fr/noconnect';
 
 function createCacheBustedRequest(url) {
   let request = new Request(url, {cache: 'reload'});
