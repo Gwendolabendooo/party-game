@@ -1,15 +1,17 @@
 var cors = require('cors');
 var app = require('express')();
-// var fs = require('fs');
+var fs = require('fs');
 
 app.use(cors())
 
-// const opts = {
-//   key: fs.readFileSync('./id_rsa.pub'),
-//   cert: fs.readFileSync('/etc/letsencrypt/cert.pem')
-// }
+var options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/micro-games.fr/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/micro-games.fr/cert.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/micro-games.fr/chain.pem')
+};
 
-var https = require('http').createServer(app);
+
+var https = require('https').createServer(options, app);
 
 const PORT = 8000;
 

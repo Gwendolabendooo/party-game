@@ -1,7 +1,7 @@
 import socketio from "socket.io-client";
 import React from "react";
 
-export const socket = socketio.connect("localhost:8000", {
+export const socket = socketio.connect("micro-games.fr:8000", {
     withCredentials: false,
     
     transportOptions: {

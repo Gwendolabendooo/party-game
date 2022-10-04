@@ -3,6 +3,10 @@
   "name": "Micro games - joue avec tes amis",
   "icons": [
     {
+      "src": "./logo-micro-games.ico",
+      "type": "image/x-icon"
+    },
+    {
       "src": "./logo192.png",
       "sizes": "192x192",
       "type": "image/png"
