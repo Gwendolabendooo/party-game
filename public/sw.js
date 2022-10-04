@@ -6,7 +6,7 @@ const CACHE_VERSION = 3;
 let CURRENT_CACHES = {
   offline: 'micro-games' + CACHE_VERSION
 };
-const OFFLINE_URL = 'https://party-game-beta.vercel.app/noconnect';
+const OFFLINE_URL = 'http://micro-games.fr/noconnect';
 
 function createCacheBustedRequest(url) {
   let request = new Request(url, {cache: 'reload'});
