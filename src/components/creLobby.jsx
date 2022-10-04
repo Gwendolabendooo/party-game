@@ -1,4 +1,5 @@
 import React, { useState, setState, lazy } from 'react';
+import { NavLink } from "react-router-dom";
 
 import {SocketContext, socket} from './socket';
 
@@ -33,6 +34,7 @@ class creLobby extends React.Component  {
                       room: "",
                       pseudo: "",
                       nbrPlayer: 0,
+                      modal: false,
                       computer: true,
                       config: genConfig(AvatarConfig),
                       regex: [],
@@ -109,7 +111,7 @@ class creLobby extends React.Component  {
 
         document.querySelector(':root').style.setProperty('--height100', window.innerHeight+"px")
 
-        setTimeout(() => document.querySelector(':root').style.setProperty('--height100', window.innerHeight+"px"), 2000)
+        setTimeout(() => document.querySelector(':root').style.setProperty('--height100', window.innerHeight+"px"), 1000)
 
         if (window.screen.width <= 900) {
             this.setState({computer: false})
@@ -212,6 +214,9 @@ class creLobby extends React.Component  {
                                 Le groupe que tu essaye de rejoindre est complet et/ou fermé
                             </div>:null
                         }
+                        <div className='align-items-center position-absolute rounded informations cursor-pointer' onClick={() => this.setState({modal: true})}>
+                            ?
+                        </div>
                         <div className='d-flex align-items-center position-absolute rounded nb-j'>
                             <div className='m-2 fontAdd'>
                                 {this.state.nbrPlayer}
@@ -280,20 +285,35 @@ class creLobby extends React.Component  {
                                 </a>
                             </div>
                         </form>
-                        <div className='desc-jeu pt-4'>
+                        <div className={this.state.computer ? 'desc-jeu pt-4 d-flex' : 'desc-jeu pt-4 trans-from-right'} style={this.state.modal ? {display: "flex"} : {display: "none"} }>
                             <div className="d-flex align-items-center w-75 justify-content-evenly pb-0">
                                 <img src={logo} className='logo' alt="" />
                                 <div className='h2 titre'>Micro Games</div>
+                                <div className='position-absolute close-modal-desc rounded cursor-pointer' onClick={() => this.setState({modal: false})}>
+                                    X
+                                </div>
                             </div>
-                            <div className='d-flex flex-column p-0 justify-content-lg-around align-items-center'>
-                                <div className='p-3 pl-3 pr-3 bg-desc-tuto m-3'>
+                            <div className='d-flex flex-column p-0 justify-content-lg-around align-items-center ctn-big-cgu'>
+                                <div className='p-3 pl-3 pr-3 bg-desc-tuto m-3 mb-0'>
                                     Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10 joueurs.<br></br><br></br>Pour jouer c'est simple, tout d'abord renseigne ton nom, puis renseigne le code du groupe que tu souhaites rejoindre.
                                 </div>
-                                <div className='position-relative'>
-                                    <img src={Puzzle} style={{ height: '330px' }} alt="" />
+                                <div className='position-relative ctn-img-desc'>
+                                    <img src={Puzzle} style={{ height: '300px' }} alt="" />
                                     <div className="Bubble-second position-absolute" style={{ width: 80+"px", height: 80+"px", left: -30+"px", bottom: 70+"px" }}></div>
                                     <div className="Bubble-five position-absolute" style={{ width: 40+"px", height: 40+"px", left: -10+"px", bottom: 270+"px" }}></div>
                                     <div className="Bubble-five position-absolute" style={{ width: 60+"px", height: 60+"px", right: 0+"px", bottom: 40+"px" }}></div>
+                                </div>
+                                <div className='w-100 d-flex justify-content-end cgu cursor-pointer'>
+                                    <NavLink to="/CGU">
+                                        <div className='link-cgu cgu1 text-decoration-underline border-end'>
+                                            Conditions d'utilisation
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to="/confidential">
+                                        <div className='link-cgu rounded text-decoration-underline'>
+                                            Confidentialité
+                                        </div>
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>
