@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,8 +18,8 @@ import Score from './components/Score';
 
 import Jeux from './views/select-jeux';
 import Transition from './components/transition';
-import CreLobby from './components/creLobby';
 import Stopwatch from './components/Stopwatch';
+const CreLobby = lazy(() => import('./components/creLobby'));
 
 
 function App() {
@@ -27,13 +27,11 @@ function App() {
 
   return (
     <Router>
+      <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-            <Route path="/">
-                <div className="mini-games">
-                    <CreLobby  test={"test"}/>
-                </div>
-            </Route>
-      </Switch>
+            <Route path="/" component={CreLobby}/>
+        </Switch>
+      </Suspense>
     </Router>
   );
 }

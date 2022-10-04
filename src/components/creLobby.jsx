@@ -1,7 +1,7 @@
-import React, { useState, setState } from 'react';
+import React, { useState, setState, lazy } from 'react';
 
 import {SocketContext, socket} from './socket';
-import Lobby from './Lobby';
+
 import MoovingBG from './mooving-bg';
 
 import logo from '../img/logo-mG.svg';
@@ -22,6 +22,8 @@ import { faDiscord, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import NiceAvatar, { genConfig, AvatarConfig } from 'react-nice-avatar'
+
+const Lobby = lazy(() => import('./Lobby'));
 
 class creLobby extends React.Component  {
     constructor(props) {
@@ -157,7 +159,6 @@ class creLobby extends React.Component  {
 
     ear(){
         var newConf = this.state.config
-        console.log(this.state.config)
         if (newConf.earSize === this.state.earSize[0]) {
             newConf.earSize = this.state.earSize[1]
             this.state.regex[0] = 1
@@ -200,103 +201,105 @@ class creLobby extends React.Component  {
         
 
         return (
-            <div className="d-flex justify-content-around" style={{height: 100+'%', alignItems: "center", width: 100+"%"}}>
-                <MoovingBG></MoovingBG>
-                {this.state.joined === true ? 
-                <div className="ctn-creLobby position-relative">
-                    {
-                        this.state.showPop ?
-                        <div className='p-4 rounded popError position-absolute'>
-                            Le groupe que tu essaye de rejoindre est complet et/ou fermé
-                        </div>:null
-                    }
-                    <div className='d-flex align-items-center position-absolute rounded nb-j'>
-                        <div className='m-2 fontAdd'>
-                            {this.state.nbrPlayer}
+            <div className="mini-games">
+                <div className="d-flex justify-content-around" style={{height: 100+'%', alignItems: "center", width: 100+"%"}}>
+                    <MoovingBG></MoovingBG>
+                    {this.state.joined === true ? 
+                    <div className="ctn-creLobby position-relative">
+                        {
+                            this.state.showPop ?
+                            <div className='p-4 rounded popError position-absolute'>
+                                Le groupe que tu essaye de rejoindre est complet et/ou fermé
+                            </div>:null
+                        }
+                        <div className='d-flex align-items-center position-absolute rounded nb-j'>
+                            <div className='m-2 fontAdd'>
+                                {this.state.nbrPlayer}
+                            </div>
+                            <div>
+                                Joueurs
+                            </div>
                         </div>
-                        <div>
-                            Joueurs
-                        </div>
-                    </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className='ctn-skin'>
-                            <div className='skin'>
-                                <div className='position-relative ctn-wheel'>
-                                    <div className='partSkin' onClick={this.ear}>
-                                        <img src={Hearing} alt="" />
-                                    </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.hairStyle, 'hairStyle', 1)}>
-                                        <img src={WomanHair} alt="" />
-                                    </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.hatStyle, 'hatStyle', 2)}>
-                                        <img src={DetectiveHat} alt="" />
-                                    </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.eyeStyle, 'eyeStyle', 3)}>
-                                        <img src={Eye} alt="" />
-                                    </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.glassesStyle, 'glassesStyle', 4)}>
-                                        <img src={Glasses} alt="" />
-                                    </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.noseStyle, 'noseStyle', 5)}>
-                                        <img src={Smelling} alt="" />
-                                    </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.mouthStyle, 'mouthStyle', 6)}>
-                                        <img src={Lips} alt="" />
-                                    </div>
-                                    <div className='partSkin' onClick={() => this.customSkin(this.state.shirtStyle, 'shirtStyle', 7)}>
-                                        <img src={Tshirt} alt="" />
-                                    </div>
-                                    <div className='partSkin'>
-                                        <div>
-                                            <input type="color" value={this.state.config.faceColor} onChange={(e) => this.changeFace(e)} name="" />
+                        <form onSubmit={this.handleSubmit}>
+                            <div className='ctn-skin'>
+                                <div className='skin'>
+                                    <div className='position-relative ctn-wheel'>
+                                        <div className='partSkin' onClick={this.ear}>
+                                            <img src={Hearing} alt="" />
+                                        </div>
+                                        <div className='partSkin' onClick={() => this.customSkin(this.state.hairStyle, 'hairStyle', 1)}>
+                                            <img src={WomanHair} alt="" />
+                                        </div>
+                                        <div className='partSkin' onClick={() => this.customSkin(this.state.hatStyle, 'hatStyle', 2)}>
+                                            <img src={DetectiveHat} alt="" />
+                                        </div>
+                                        <div className='partSkin' onClick={() => this.customSkin(this.state.eyeStyle, 'eyeStyle', 3)}>
+                                            <img src={Eye} alt="" />
+                                        </div>
+                                        <div className='partSkin' onClick={() => this.customSkin(this.state.glassesStyle, 'glassesStyle', 4)}>
+                                            <img src={Glasses} alt="" />
+                                        </div>
+                                        <div className='partSkin' onClick={() => this.customSkin(this.state.noseStyle, 'noseStyle', 5)}>
+                                            <img src={Smelling} alt="" />
+                                        </div>
+                                        <div className='partSkin' onClick={() => this.customSkin(this.state.mouthStyle, 'mouthStyle', 6)}>
+                                            <img src={Lips} alt="" />
+                                        </div>
+                                        <div className='partSkin' onClick={() => this.customSkin(this.state.shirtStyle, 'shirtStyle', 7)}>
+                                            <img src={Tshirt} alt="" />
+                                        </div>
+                                        <div className='partSkin'>
+                                            <div>
+                                                <input type="color" value={this.state.config.faceColor} onChange={(e) => this.changeFace(e)} name="faceColor" aria-label="faceColor"  />
+                                            </div>
+                                        </div>
+                                        <div className='partSkin'>
+                                            <div>
+                                                <input type="color" value={this.state.config.bgColor} onChange={(e) => this.changeColor(e)} name="BgColor" aria-label="BgColor" />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className='partSkin'>
-                                        <div>
-                                            <input type="color" value={this.state.config.bgColor} onChange={(e) => this.changeColor(e)} name="" />
-                                        </div>
-                                    </div>
+                                    <NiceAvatar style={{ width: '150px', height: '150px' }} {...this.state.config} />
                                 </div>
-                                <NiceAvatar style={{ width: '150px', height: '150px' }} {...this.state.config} />
                             </div>
-                        </div>
-                        <div className='btn-random btn-start little-marg mt-5' onClick={this.randomConfig}>
-                            Aléatoire
-                        </div>
-                        <input type="text" name="Pseudo" maxLength="12" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
-                        <input type="text" name="Lobby" maxLength="10" placeholder='Nom du serveur' value={this.state.room} onChange={this.updateLobby} required id="" />
-                        <input type="submit" value="Rejoindre" className='btn-start btn-creLobby' />
-                        <div className='d-flex align-items-center network justify-content-evenly mt-4'>
-                            <a href="https://www.instagram.com/micro_games.fr/" target="_blank" rel="noopener noreferrer">
-                                <FontAwesomeIcon className="text-white" icon={['fab', 'instagram']} />
-                            </a>
-                            <a href="https://discord.gg/JTV9YnWXCx" target="_blank" rel="noopener noreferrer">
-                                <FontAwesomeIcon className="text-white" icon={['fab', 'discord']} />
-                            </a>
-                            <a href="https://twitter.com/microgamesfr" target="_blank" rel="noopener noreferrer">
-                                <FontAwesomeIcon className="text-white" icon={['fab', 'twitter']} />
-                            </a>
-                        </div>
-                    </form>
-                    <div className='desc-jeu pt-4'>
-                        <div className="d-flex align-items-center w-75 justify-content-evenly pb-0">
-                            <img src={logo} className='logo' alt="" />
-                            <div className='h2 titre'>Micro Games</div>
-                        </div>
-                        <div className='d-flex flex-column p-0 justify-content-lg-around align-items-center'>
-                            <div className='p-3 pl-3 pr-3 bg-desc-tuto m-3'>
-                                Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10 joueurs.<br></br><br></br>Pour jouer c'est simple, tout d'abord renseigne ton nom, puis renseigne le code du groupe que tu souhaites rejoindre.
+                            <div className='btn-random btn-start little-marg mt-5' onClick={this.randomConfig}>
+                                Aléatoire
                             </div>
-                            <div className='position-relative'>
-                                <img src={Puzzle} style={{ height: '330px' }} alt="" />
-                                <div className="Bubble-second position-absolute" style={{ width: 80+"px", height: 80+"px", left: -30+"px", bottom: 70+"px" }}></div>
-                                <div className="Bubble-five position-absolute" style={{ width: 40+"px", height: 40+"px", left: -10+"px", bottom: 270+"px" }}></div>
-                                <div className="Bubble-five position-absolute" style={{ width: 60+"px", height: 60+"px", right: 0+"px", bottom: 40+"px" }}></div>
+                            <input type="text" name="Pseudo" maxLength="12" placeholder='Pseudo' value={this.state.pseudo} onChange={this.updateName} required id="" />
+                            <input type="text" name="Lobby" maxLength="10" placeholder='Nom du serveur' value={this.state.room} onChange={this.updateLobby} required id="" />
+                            <input type="submit" value="Rejoindre" className='btn-start btn-creLobby' />
+                            <div className='d-flex align-items-center network justify-content-evenly mt-4'>
+                                <a href="https://www.instagram.com/micro_games.fr/" aria-label="insta" target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon className="text-white" icon={['fab', 'instagram']} />
+                                </a>
+                                <a href="https://discord.gg/JTV9YnWXCx" aria-label="discord" target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon className="text-white" icon={['fab', 'discord']} />
+                                </a>
+                                <a href="https://twitter.com/microgamesfr" aria-label="twitter" target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon className="text-white" icon={['fab', 'twitter']} />
+                                </a>
+                            </div>
+                        </form>
+                        <div className='desc-jeu pt-4'>
+                            <div className="d-flex align-items-center w-75 justify-content-evenly pb-0">
+                                <img src={logo} className='logo' alt="" />
+                                <div className='h2 titre'>Micro Games</div>
+                            </div>
+                            <div className='d-flex flex-column p-0 justify-content-lg-around align-items-center'>
+                                <div className='p-3 pl-3 pr-3 bg-desc-tuto m-3'>
+                                    Micro-games est une plateforme de mini jeux sur laquelle tu peux jouer avec tes amis de 2 à 10 joueurs.<br></br><br></br>Pour jouer c'est simple, tout d'abord renseigne ton nom, puis renseigne le code du groupe que tu souhaites rejoindre.
+                                </div>
+                                <div className='position-relative'>
+                                    <img src={Puzzle} style={{ height: '330px' }} alt="" />
+                                    <div className="Bubble-second position-absolute" style={{ width: 80+"px", height: 80+"px", left: -30+"px", bottom: 70+"px" }}></div>
+                                    <div className="Bubble-five position-absolute" style={{ width: 40+"px", height: 40+"px", left: -10+"px", bottom: 270+"px" }}></div>
+                                    <div className="Bubble-five position-absolute" style={{ width: 60+"px", height: 60+"px", right: 0+"px", bottom: 40+"px" }}></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    : <Lobby room={this.state.room} pseudo={this.state.pseudo} computer={this.state.computer} config={this.state.regex} />}
                 </div>
-                : <Lobby room={this.state.room} pseudo={this.state.pseudo} computer={this.state.computer} config={this.state.regex} />}
             </div>
         ) 
     } 
