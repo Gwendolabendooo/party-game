@@ -1,0 +1,5 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target" : { "namespace": "android_app", "package_name": "io.microgames.app",
+                 "sha256_cert_fingerprints": ["19:33:87:B7:4D:2A:2E:BF:E6:9C:A3:EB:70:6F:FE:09:62:D3:F1:1B:80:FF:F1:7E:83:7A:1C:29:3F:AC:55:2B"] }
+}]
