@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React, { useState, setState } from 'react';
 
 import { library } from '@fortawesome/fontawesome-svg-core';

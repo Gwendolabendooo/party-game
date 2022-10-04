@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React, { useState, setState } from 'react';
 
 class moovingBG extends React.Component  {
