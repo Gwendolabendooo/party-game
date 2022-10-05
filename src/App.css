@@ -2361,8 +2361,6 @@ from{
 }
 
 @media only screen and (max-height: 685px) {
-  .skin{
-  }
   .btn-random{
     margin: 10px;
   }
@@ -2449,7 +2447,7 @@ from{
   }
   .paires{
     width: 100%;
-    height: 100vh;
+    height: var(--height100);
   }
   .paire-card{
     width: 90px;
