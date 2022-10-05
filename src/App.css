@@ -1281,8 +1281,7 @@ input[type="checkbox"]{
   right: 10px;
   background-color: #ffffff;
   border-radius: 50%;
-  top: padd;
-  top: 58px;
+  top: 40px;
   padding: 10px;
 }
 
@@ -2332,6 +2331,14 @@ from{
   color: white;
 }
 
+.text-cgu{
+  font-size: 14px;
+}
+
+.header-cgu{
+  font-size: 22px;
+}
+
 .pos-retour{
   top: 10px;
   left: 10px;
@@ -2360,17 +2367,23 @@ from{
   display: none;
 }
 
+.ctn-bac{
+  height: auto!important;
+}
+
 @media only screen and (max-height: 685px) {
-  .skin{
-  }
   .btn-random{
     margin: 10px;
   }
   input[type="text"]{
     margin: 10px;
   }
+  .ctn-img-desc {
+    transform: scale(0.5)!important;
+    height: 200px;
+}
   .btn-start{
-    margin: 5px!important;
+    margin: 25px 5px 5px 5px!important;
   }
 }
 
