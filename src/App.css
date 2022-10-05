@@ -2081,6 +2081,49 @@ svg * {
   -o-transform: translate(-50%, -50%);
 }
 
+.carte-joue{
+  height: 230px;
+  width: 160px;
+  z-index: 10;
+  margin-left: -100px;
+  box-shadow: 0px 0 4px 0px #00000058;
+}
+
+.carte-joue:nth-child(1){
+  margin: 0!important;
+}
+
+.carte-poubelle{
+  height: 230px;
+  width: 160px;
+  margin-left: -160px;
+  box-shadow: 0px 0 4px 0px #00000058;
+}
+
+.carte-poubelle:nth-child(1){
+  margin: 0!important;
+}
+
+.ctn-list-card-pre{
+  height: 180px;
+  width: 100%;
+  overflow: auto;
+  overflow-y: hidden;
+}
+
+
+.ctn-list-card-pre > div{
+  width: fit-content;
+}
+
+.font-22{
+  font-size: 22px;
+}
+
+.font-40{
+  font-size: 40px;
+}
+
 .ctn-blue-corde{
   height: 50%;
   background-color: #ff0063;
@@ -2351,6 +2394,10 @@ from{
 
 .trans-from-right{
   animation: .5s ease-in-out trans-from-right;
+}
+
+.carte-poubelle{
+
 }
 
 .link-cgu{
@@ -2640,5 +2687,8 @@ from{
   }
   .room-name{
     font-size: 24px;
+  }
+  .ctn-bac{
+    height: auto!important;
   }
 }
