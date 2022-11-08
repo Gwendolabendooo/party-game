@@ -5,14 +5,14 @@ import { NavLink } from "react-router-dom";
 class Cgu extends React.Component {
     render() {
         return (
-            <div>
+            <div className='m-auto'>
                 <NavLink to="/">
                     <div className='align-items-center rounded btn-design position-absolute pos-retour cursor-pointer'>
                         Retour
                     </div>
                 </NavLink>
                 <div className='header-cgu p-3 text-center'>CGU</div>
-                <div className='p-2'>
+                <div className='p-2 m-2' style={{maxWidth: "800px"}}>
                     <div className='rounded p-2 bg-white text-primary mb-2 mt-1'>
                         Accès au site
                     </div>
