@@ -223,7 +223,7 @@ class SpeedWord extends React.Component {
                                 ""
                             }
                         </div>
-                        <input type="text" id='inputRed' value={this.state.redInput} onChange={(e) => this.verifMot(e, "redTeam")} className='w-75 text-center' autocomplete="off" autoFocus name="" disabled/>
+                        <input type="text" id='inputRed' value={this.state.redInput} onChange={(e) => this.verifMot(e, "redTeam")} className='w-75 text-center' autocomplete="off" name="" disabled/>
                         <div className='cpt-Words'>
                             {this.state.redTeamlvl} / 6
                         </div>
@@ -242,7 +242,7 @@ class SpeedWord extends React.Component {
                                 ""
                             }
                         </div>
-                        <input type="text" id='inputBlue' value={this.state.blueInput} onChange={(e) => this.verifMotBlue(e, "blueTeam")} className='w-75 text-center' autocomplete="off" name="" autoFocus disabled/>
+                        <input type="text" id='inputBlue' value={this.state.blueInput} onChange={(e) => this.verifMotBlue(e, "blueTeam")} className='w-75 text-center' autocomplete="off" name="" disabled/>
                         <div className='cpt-Words'>
                             {this.state.blueTeamlvl} / 6
                         </div>

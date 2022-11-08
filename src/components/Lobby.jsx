@@ -25,6 +25,7 @@ import Jauge from './Games/jauge';
 import ChaisesMusicales from './Games/ChaisesMusicale';
 import Burger from './Games/burger';
 import Quiestce from './Games/Quiestce';
+import President from './Games/president';
 import Skin from './skin';
 
 
@@ -54,7 +55,7 @@ class Lobby extends React.Component  {
                     name: "Jeu des Paires",
                     illustration: "paire",
                     desc: "Tu dois découvrir deux cartes identiques pour former une paire. Si les cartes découvertes ne forment pas une paire elle sont de nouveau couvertes et c'est au joueur suivant de jouer. Le jeu se poursuit ainsi jusqu'à ce que toutes les paires soient découvertes.",
-                    selected: true,
+                    selected: false,
                     id: 1,
                     desktop: true
                 },
@@ -62,7 +63,7 @@ class Lobby extends React.Component  {
                     name: "Empileur",
                     illustration: "empileur",
                     desc: "A l'aide de la touche 'ESPACE' appuie lorsque le cube qui se déplace est juste au dessus du précédent. La partie s'arrète lorsque tous les joueurs ont fini d'empiler",
-                    selected: true,
+                    selected: false,
                     id: 2,
                     desktop: false
                 },
@@ -70,7 +71,7 @@ class Lobby extends React.Component  {
                     name: "Autoclick",
                     illustration: "click",
                     desc: "Appuie le plus vite possible sur le carré bleue. Attention, une lettre peut apparaître de temps en temps, il faudrat que tu appuie sur la touche de ton clavier correspondante pour continuer d'avancer. La partie prends fin lorsque tous les joueurs ont remplit la barre entièrement",
-                    selected: true,
+                    selected: false,
                     id: 3,
                     desktop: false
                 },
@@ -78,7 +79,7 @@ class Lobby extends React.Component  {
                     name: "Dans le mille",
                     illustration: "mille",
                     desc: "Des cibles apparaisse aléatoirement sur ton écran, appuie le plus vite possible sur ces dernières (le plus au centre possible). Attention, les cibles rouges sont des maluces tandis que les cibles vertes te donnent beaucoup de points. La partie prends fin lorsque la barre verte est vide.",
-                    selected: true,
+                    selected: false,
                     id: 4,
                     desktop: true
                 },
@@ -86,7 +87,7 @@ class Lobby extends React.Component  {
                     name: "PtitBac",
                     illustration: "ptitBac",
                     desc: "Le principe est basé sur celui du petit bac classique. Une catégorie vous sera proposée (Nom, fruit, pays,...) ainsi qu'une lettre de l'alphabet.Le but du jeu est de trouver un mot appartenant à la catégorie proposée et commençant par la lettre demandée.",
-                    selected: true,
+                    selected: false,
                     id: 5,
                     desktop: false
                 },
@@ -94,7 +95,7 @@ class Lobby extends React.Component  {
                     name: "Trouve le Personnage",
                     illustration: "personnage",
                     desc: "Chaque joueur reçoit un personnage qu’il garde secret et écrit un mot qui lui fait penser à ce dernier. Ce mot passera de main en main, et changera petit à petit. A la fin de la partie, tous les personnages seront révélés. Les joueurs devront retrouver sans communiquer quel personnage correspond à chaque mot.",
-                    selected: true,
+                    selected: false,
                     id: 6,
                     desktop: false
                 },
@@ -102,7 +103,7 @@ class Lobby extends React.Component  {
                     name: "Calcul Mental",
                     illustration: "mental",
                     desc: "Un calcul s'affiche, à toi de le résoudre avant que la barre verte ne se vide complètement. La partie s'arrète après le 5eme calcul.",
-                    selected: true,
+                    selected: false,
                     id: 7,
                     desktop: false
                 },
@@ -110,7 +111,7 @@ class Lobby extends React.Component  {
                     name: "Color Memory",
                     illustration: "memo",
                     desc: "Une combinaison de couleur s'affiche (pendant que le fond est sombre) lorsque c'est ton tour reproduit cette dernière en cliquant sur les couleurs correspondante. A chaque fois qu'un joueur reproduit la combinaison, une couleur supplémentaite est ajoutée à la combinaison. Chaque joueurs dispose d'une vie, la partie s'arrète lorsqu'il de reste aucun joueur",
-                    selected: true,
+                    selected: false,
                     id: 8,
                     desktop: false
                 },
@@ -118,7 +119,7 @@ class Lobby extends React.Component  {
                     name: "Speed Word",
                     illustration: "word",
                     desc: "Tu arrive dans une équipe aléatoire. Le but, écrire le plus vite possible une suite de mots, lorsque tu à bien reproduit chaque mots, le tour passe automatiquement à tes coéquipiers. La partie se termine au bout de 6 suites de mots validés.",
-                    selected: true,
+                    selected: false,
                     id: 9,
                     desktop: false
                 },
@@ -126,7 +127,7 @@ class Lobby extends React.Component  {
                     name: "Tir a la corde",
                     illustration: "corde",
                     desc: "Tu arrive dans une équipe aléatoire. Le but, appuyer sur les touches '<' et '>' en alterné le plus vite possible. La partie s'arrête lorsqu'une des deux équipes à franchie les pointillés noir.",
-                    selected: true,
+                    selected: false,
                     id: 10,
                     desktop: false
                 },
@@ -134,7 +135,7 @@ class Lobby extends React.Component  {
                     name: "Escalade en relais",
                     illustration: "escalade",
                     desc: "Tu arrive dans une équipe aléatoire. Le but, appuyer le plus rapidement possible sur les touches 'A', 'Z', 'E' et 'R' (si c'est ton tour) lorsque ces dernières apparaissent sur l'écran. Attention, appuyer sur la mauvaise touche te fais redescendre d'un niveau. La partie s'arrète lorsqu'une des deux équipes à fini 6 fois.",
-                    selected: true,
+                    selected: false,
                     id: 11,
                     desktop: false
                 },
@@ -142,7 +143,7 @@ class Lobby extends React.Component  {
                     name: "Chaises Musicales",
                     illustration: "chaise",
                     desc: "Chaque joueur est représenté par son avatar. le but, se déplacer à l'aide des touches directionnel du clavier et se rendre le premier dans la zone qui apparaît. à chaque fois qu'il ne reste qu'un joueur à ne pas être qualifié, un nouveau tour commence et il est éliminer.",
-                    selected: true,
+                    selected: false,
                     id: 12,
                     desktop: true
                 },
@@ -150,7 +151,7 @@ class Lobby extends React.Component  {
                     name: "Jauge",
                     illustration: "jauge",
                     desc: "Lorsque c'est ton tour, frotte le plus vite possible le rond blanc jusqu'à qu'il disparaisse. Ensuite, appuie au bon moment sur le bouton pour avoir le meilleur score possible, chaque joueur à 2 essai ton score final sera le meilleur score de tes 2 essai.",
-                    selected: true,
+                    selected: false,
                     id: 13,
                     desktop: true
                 },
@@ -158,7 +159,7 @@ class Lobby extends React.Component  {
                     name: "Qui est-ce",
                     illustration: "qui",
                     desc: "Un maître du jeu est designer aléatoirement, il doit ensuite choisir entre deux type de difficultée (normal / difficile). Puis il choisit le personnage à faire deviner. Les autres joueurs peuvent alors lui poser des question et séléctionner un personnage une fois qu'ils pensent l'avoir deviné. Attention, il faut trovuer le personnage le plus vite possible",
-                    selected: true,
+                    selected: false,
                     id: 14,
                     desktop: false
                 },
@@ -166,10 +167,18 @@ class Lobby extends React.Component  {
                     name: "Speed burger",
                     illustration: "burger",
                     desc: "Un maître du jeu est designer aléatoirement, il doit ensuite choisir entre deux type de difficultée (normal / difficile). Puis il choisit le personnage à faire deviner. Les autres joueurs peuvent alors lui poser des question et séléctionner un personnage une fois qu'ils pensent l'avoir deviné. Attention, il faut trovuer le personnage le plus vite possible",
-                    selected: true,
+                    selected: false,
                     id: 15,
                     desktop: false
                 },
+                {
+                    name: "President",
+                    illustration: "president",
+                    desc: "Un maître du jeu est designer aléatoirement, il doit ensuite choisir entre deux type de difficultée (normal / difficile). Puis il choisit le personnage à faire deviner. Les autres joueurs peuvent alors lui poser des question et séléctionner un personnage une fois qu'ils pensent l'avoir deviné. Attention, il faut trovuer le personnage le plus vite possible",
+                    selected: true,
+                    id: 16,
+                    desktop: false
+                }
             ]
         }
 
@@ -522,6 +531,8 @@ class Lobby extends React.Component  {
                     return <Quiestce name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
                 case "Speed burger":
                     return <Burger name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
+                case "President":
+                    return <President name={game} score={this.state.scoreFinal} id={this.state.id}  cle={this.state.id} chef={this.state.chef == this.state.id} listej={this.state.listeJ}/>
 
                 default:
                     var lsit= this.state.listeJselected

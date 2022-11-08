@@ -1,6 +1,7 @@
 {
   "short_name": "Micro games",
   "name": "Micro games - joue avec tes amis",
+  "description": "Micro games est une plateforme de mini-jeux sur laquelle tu peux jouer avec tes amis de 2 à 10.",
   "icons": [
     {
       "src": "./logo-micro-games.ico",

@@ -170,7 +170,7 @@ class PtitBac extends React.Component {
                 {this.state.tuto ? <Tuto chef={this.props.chef == this.props.id} game='Le ptit bac' desc="Le principe est basé sur celui du petit bac classique. Une catégorie vous sera proposée (Nom, fruit, pays,...) ainsi qu'une lettre de l'alphabet.Le but du jeu est de trouver un mot appartenant à la catégorie proposée et commençant par la lettre demandée."></Tuto> : ""}
                 <Transition  title={"Le ptit bac"}/>
                 {this.state.afficheScore ? <Score jeu={"Le ptit bac"} chef={this.props.chef === this.props.id} listej={this.state.listeJ}/> : ''}
-                <div className="ctn-autoC ctn-empileur apparition-game h-auto">
+                <div className="ctn-autoC ctn-empileur ctn-bac apparition-game h-auto">
                     <div className='ptit-bac h-100'>
                         <div className=' lettre'>Lettre <span className='text-primary font-20'>{this.state.letter}</span></div>
                         {this.state.validation ? 
